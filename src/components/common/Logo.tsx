@@ -7,7 +7,7 @@ const Logo = () => {
   return (
     <Link href='/' className="relative">
 
-      <Image src='/logo.svg' width={150} height={150} priority alt="" />
+      <Image  src='/logo.svg' width={120} height={40} priority alt="" />
     </Link>
   )
 }
