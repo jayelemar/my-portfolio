@@ -36,10 +36,10 @@ const Header = () => {
           <Logo/>
           
             {/* nav */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4 xl:gap-6">
             <div className="hidden xl:flex">
               <Nav 
-                containerStyles='flex justify-center items-center gap-6' 
+                containerStyles='flex justify-center items-center gap-10' 
                 linkStyles='relative hover:text-primary transition-all' 
                 underlineStyles='absolute left-0 top-full h-[2px] bg-primary w-full'
               />
@@ -47,7 +47,7 @@ const Header = () => {
             <ThemeToggleBtn />
             {/* mobile nav */}
             <div className="flex xl:hidden">
-              {/* <MobileNav /> */}
+              <MobileNav />
             </div>
           </div>
         </div>

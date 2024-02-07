@@ -19,6 +19,9 @@ const config = {
       },
     },
     extend: {
+      screens: {
+        'xs': '480px',  
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -76,12 +79,6 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
-      backgroundImage: {
-        hero: 'url(/hero/hero-bg.png)',
-        hero_shape: 'url(/hero/shape-1.svg)',
-        hero_shape2_light: 'url(/hero/shape-2-light.svg)',
-        hero_shape2_dark: 'url(/hero/shape-1.svg)',
-      }
     },
   },
   plugins: [require("tailwindcss-animate")],

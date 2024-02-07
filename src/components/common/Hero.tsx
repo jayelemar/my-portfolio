@@ -33,7 +33,7 @@ const Hero = () => {
                 </Button>
               </Link>
               <Link href='/contact'>
-                <Button variant={'secondary'} className='gap-2 rounded-full text-base w-44 bg-foreground/10'>
+                <Button variant={'secondary'} className='gap-2 rounded-full text-base w-44 bg-foreground/10 hover:bg-foreground/15'>
                   Download CV <Download size={18}/>
                 </Button>
               </Link>
@@ -48,7 +48,6 @@ const Hero = () => {
             <div 
               className="bg-[url('/hero/shape-2-light.svg')]  dark:bg-[url('/hero/shape-2-dark.svg')]  w-[500px] h-[800px] bg-no-repeat absolute right-0 -top-12">
             </div>
-
             <HeroImage 
               containerStyles={`
                 w-[300px] h-[500px] bg-no-repeat absolute -top-28 right-16
@@ -57,7 +56,7 @@ const Hero = () => {
           </div>
 
           {/* down icon */}
-          <div className='hidden xl:flex absolute left-2/4 -bottom-16 animate-bounce '>
+          <div className='hidden xl:flex absolute left-2/4 -bottom-12 animate-bounce '>
             <RiArrowDownSFill className='text-3xl text-primary'/>
           </div>
         </div>
