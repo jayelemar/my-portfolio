@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { ThemeToggleBtn } from "../common/ThemeToggleBtn";
-import Logo from "./Logo";
+import Logo from "../common/Logo";
 import MobileNav from "./MobileNav";
 import Nav from "./Nav";
 import { useEffect, useState } from "react";
@@ -47,7 +47,7 @@ const Header = () => {
             <ThemeToggleBtn />
             {/* mobile nav */}
             <div className="flex xl:hidden">
-              <MobileNav />
+              {/* <MobileNav /> */}
             </div>
           </div>
         </div>
