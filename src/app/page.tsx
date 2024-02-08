@@ -1,3 +1,4 @@
+import About from "@/components/common/About";
 import Hero from "@/components/common/Hero";
 import { Download, Send } from "lucide-react";
 import { RiBriefcase4Fill, RiTeamFill, RiTodoFill, RiArrowDownLine } from 'react-icons/ri'
@@ -5,7 +6,8 @@ import { RiBriefcase4Fill, RiTeamFill, RiTodoFill, RiArrowDownLine } from 'react
 export default function Home() {
   return (
     <main>
-      <Hero/>
+      <Hero />
+      <About />
     </main>
   );
 }

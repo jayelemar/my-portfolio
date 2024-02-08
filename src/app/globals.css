@@ -1,9 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
-
-
 
 @layer base {
   :root {
@@ -52,10 +49,6 @@
   }
 }
 
-
-
-
- 
 @layer base {
   * {
     @apply border-border;
@@ -63,5 +56,13 @@
   body {
     @apply bg-background text-foreground;
   }
-
+  .h2 {
+    @apply text-4xl font-bold
+  }
+  .h3 {
+    @apply text-3xl font-bold
+  }
+  .h4 {
+    @apply text-[22px] font-semibold
+  }
 }
