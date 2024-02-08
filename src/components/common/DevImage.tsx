@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import { FC } from 'react'
 
-type HeroImageProps = {
+type DevImageProps = {
   containerStyles: string,
   imgSrc: string,
 }
-const HeroImage:FC<HeroImageProps> = ({ containerStyles, imgSrc}) => {
+const DevImage:FC<DevImageProps> = ({ containerStyles, imgSrc}) => {
   return (
     <div className={`${containerStyles}`}>
       <Image src={imgSrc} fill sizes='30' priority alt='' className='relative top-0 right-0' />
@@ -13,4 +13,4 @@ const HeroImage:FC<HeroImageProps> = ({ containerStyles, imgSrc}) => {
   )
 }
 
-export default HeroImage
+export default DevImage
