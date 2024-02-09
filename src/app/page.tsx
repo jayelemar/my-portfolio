@@ -1,4 +1,4 @@
-import About from "@/components/common/About";
+import About from "@/components/about/About";
 import Hero from "@/components/common/Hero";
 import { Download, Send } from "lucide-react";
 import { RiBriefcase4Fill, RiTeamFill, RiTodoFill, RiArrowDownLine } from 'react-icons/ri'
