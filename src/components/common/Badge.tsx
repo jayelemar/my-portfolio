@@ -1,8 +1,9 @@
 import React from 'react'
 
-const Badge = () => {
+
+const Badge = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div>Badge</div>
+    <div>{children}</div>
   )
 }
 
