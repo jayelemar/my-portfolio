@@ -27,7 +27,7 @@ const AboutSkillList:FC<AboutSkillListProps> = ({ skillSet, getData }) => {
       opts={{ align: 'start', loop: true, containScroll: "keepSnaps"}}
       plugins={[
         AutoScroll({ 
-          speed: 1,
+          speed: .5,
           startDelay: 100,
           playOnInit: true,
           stopOnInteraction: false,
