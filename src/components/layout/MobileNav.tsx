@@ -6,9 +6,16 @@ import Nav from './Nav'
 import Socials from '../common/Socials'
 
 const MobileNav = () => {
+  // const {isOpen, setIsOpen} = useMobileNavStore()
+  // const handleNavClick = () => {
+  //   setIsOpen(!isOpen)
+  // };
   return (
     <div>
-      <Sheet>
+      <Sheet 
+        // open={isOpen} 
+        // onOpenChange={handleNavClick}
+      >
         <SheetTrigger asChild>
           <AlignJustify className='cursor-pointer'/>
         </SheetTrigger>

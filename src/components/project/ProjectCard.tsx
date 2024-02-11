@@ -8,13 +8,11 @@ import { FC } from 'react';
 import { GoLinkExternal } from "react-icons/go";
 import { FiGithub, FiLink } from "react-icons/fi";
 import { Badge } from '../ui/badge';
-
-
+import { ProjectType } from './ProjectData';
 
 type ProjectCardProps = {
-  project: any
+  project: ProjectType
 }
-
 
 const ProjectCard:FC<ProjectCardProps> = ({ project }) => {
   const { image, link, category, name, description, github } = project
@@ -23,10 +21,10 @@ const ProjectCard:FC<ProjectCardProps> = ({ project }) => {
       <Card className='group overflow-hidden relative flex flex-col lg:flex-row  '>
         <CardHeader className='w-full'>
           {/* Image */}
-          <div className="relative w-full h-[300px] flex items-center justify-center lg:bg-[110%] lg:no-repeat overflow-hidden bg-light_cream"
+          <div className="relative w-full h-[300px] flex items-center justify-center lg:bg-[110%] lg:no-repeat overflow-hidden bg-red-100 "
           >
             <Image src={image} alt='' width={247} height={258} priority   
-              className='group-hover:scale-110 transition-all duration-800 ease-in-out '/>
+              className='group-hover:scale-125 transition-all duration-800 ease-in-out '/>
 
           </div>
         </CardHeader>
