@@ -10,16 +10,15 @@ import DevImage from './DevImage';
 
 const Hero = () => {
   return (
-    <section id='#hero' className='py-0 h-[85vh] mb-12 xl:py-4 bg-hero bg-no-repeat bg-bottom bg-cover dark:bg-none -scroll-mt-96'>
-      
+    <section className='py-0 h-[85vh] mb-12 xl:py-4 bg-hero bg-no-repeat bg-bottom bg-cover dark:bg-none  '>
       <div className="container mx-auto">
-        <div className="flex justify-between gap-x-8 relative">
+        <div  className="flex justify-between gap-x-8 relative ">
           {/* text */}
           <div className="flex max-w-2xl flex-col justify-center items-center xl:items-start text-center mx-auto xl:mx-0 xl:text-left">
-            <div className="text-sm uppercase font-semibold mb-4 text-primary tracking-wide absolute top-4 xl:top-6 xl:left-1 whitespace-nowrap">
+            <div  className="text-sm uppercase font-semibold mb-4 text-primary tracking-wide absolute top-4 xl:top-6 xl:left-1 whitespace-nowrap">
               Front End Developer
             </div>
-            <h1 className='pt-10 text-5xl xl:text-[72px] xl:leading-[80px] tracking-tight mb-4 font-bold md:max-w-lg'>
+            <h1   className='pt-10 text-5xl xl:text-[72px] xl:leading-[80px] tracking-tight mb-4 font-bold md:max-w-lg'>
               Hello, my <span className='inline xs:hidden'><br /></span>
               name is <span className='inline md:hidden'><br /></span>
               <span className='whitespace-nowrap'>Jay Elemar</span>

@@ -1,4 +1,16 @@
-export const projectData = [
+export type ProjectType = {
+  image: string,
+  category: string,
+  name: string
+  description:string,
+  link: string,
+  github: string,
+}
+
+
+
+
+export const projectData:ProjectType[] = [
   {
     image: '/work/1.png',
     category: 'NextJS 13',
