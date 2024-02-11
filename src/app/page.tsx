@@ -1,8 +1,8 @@
 import About from "@/components/about/About";
+import Contact from "@/components/common/Contact";
 import Hero from "@/components/common/Hero";
 import Projects from "@/components/project/Projects";
-import { Download, Send } from "lucide-react";
-import { RiBriefcase4Fill, RiTeamFill, RiTodoFill, RiArrowDownLine } from 'react-icons/ri'
+
 
 export default function Home() {
   return (
@@ -10,6 +10,7 @@ export default function Home() {
       <Hero />
       <About />
       <Projects />
+      <Contact />
     </main>
   );
 }
