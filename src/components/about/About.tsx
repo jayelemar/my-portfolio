@@ -8,6 +8,8 @@ import { CircleUserRound } from "lucide-react";
 
 import { SkillSetProps, skillSet } from "./AboutData";
 import AboutInfo from "./AboutInfo";
+import AboutFrontEnd from "./AboutFrontEnd";
+import AboutBackEnd from "./AboutBackend";
 
 
 
@@ -45,12 +47,12 @@ const About = () => {
                 <TabsContent value="skillset">
                   {/* Skill List */}
                   <span className="text-muted-foreground text-balance mx-auto hidden md:flex">Here are the techonologies and tools that i use everyday.</span>
-                  <div className="text-center xl:text-left">
-
+                  <div className="flex flex-col justify-center text-center xl:text-left">
                     <AboutSkillList 
                       skillSet={skillSet} 
                       getData={getData} 
                     />
+                  
                   </div>
                 </TabsContent>
                 <TabsContent value="info">
