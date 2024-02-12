@@ -17,8 +17,8 @@ const AboutSkillOthers:FC<AboutSkillListProps> = ({ skillSet, getData }) => {
                 <HoverCardTrigger>
               <div className={`${color} hover:scale-125`}>{imgPath}</div>
               </HoverCardTrigger>
-              <HoverCardContent className='absolute py-0 left-0 bottom-0 bg-white/30 rounded-full px-2 w-min'>
-              <p className="w-auto text-center mx-auto text-base font-semibold whitespace-nowrap text-foreground  cursor-default px-2 h-6 outline-none">
+              <HoverCardContent className='z-50 border text-popover-foreground shadow-md  absolute py-0 left-0 bottom-0 rounded-full px-1 w-min'>
+              <p className="w-auto text-center mx-auto text-sm font-medium whitespace-nowrap text-foreground  cursor-default px-1 ">
                 {name}
               </p>
               </HoverCardContent>

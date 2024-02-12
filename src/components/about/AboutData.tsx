@@ -45,11 +45,6 @@ export const skillSet: SkillSetProps[]  = [
     title: 'Frontend',
     data: [
       {
-        name: 'React',
-        imgPath: <SiReact size={60} />,
-        color: 'text-[#00d1f7]'
-      },
-      {
         name: 'Javascript',
         imgPath: <SiJavascript size={60} />, 
         color: 'text-[#efd81d]'
@@ -60,9 +55,14 @@ export const skillSet: SkillSetProps[]  = [
         color: 'text-[#0076c6]'
       },
       {
-        name: 'NextJS13',
+        name: 'React',
+        imgPath: <SiReact size={60} />,
+        color: 'text-[#00d1f7]'
+      },
+      {
+        name: 'NextJS 13',
         imgPath: <TbBrandNextjs size={60} />,
-        color: 'text-black'
+        color: 'dark:text-white'
       },  
       {
         name: 'Sass',
