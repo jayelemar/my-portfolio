@@ -8,7 +8,7 @@ const Contact = () => {
   const filteredInfo = info.filter((item) => item.text !== "Jay Elemar Termulo" )
 
   return (
-    <section>
+    <section id='contact' className='scroll-mt-12'>
       <div className="container mx-auto mb-16 ">
         {/* text header */}
         <div>

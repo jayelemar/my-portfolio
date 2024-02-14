@@ -1,24 +1,19 @@
+'use client';
 import React from 'react'
-import { Sheet, SheetContent, SheetTrigger } from '../ui/sheet'
-import { AlignJustify } from 'lucide-react'
 import Logo from '../common/Logo'
 import Nav from './Nav'
 import Socials from '../common/Socials'
 
+import { Sheet, SheetContent } from '../ui/sheet'
+import { useMobileNavStore } from '@/store/MobileNavStore';
+
+
 const MobileNav = () => {
-  // const {isOpen, setIsOpen} = useMobileNavStore()
-  // const handleNavClick = () => {
-  //   setIsOpen(!isOpen)
-  // };
+  const {isOpen } = useMobileNavStore()
+
   return (
-    <div>
-      <Sheet 
-        // open={isOpen} 
-        // onOpenChange={handleNavClick}
-      >
-        <SheetTrigger asChild>
-          <AlignJustify className='cursor-pointer'/>
-        </SheetTrigger>
+    <div className='z-50'>
+      <Sheet open={isOpen}>
         <SheetContent>
           <div className="flex flex-col items-center justify-between h-full py-8">
             <div className="flex flex-col items-center gap-y-32">
@@ -26,7 +21,7 @@ const MobileNav = () => {
               <Nav 
                 containerStyles='flex flex-col gap-y-6 items-center' 
                 linkStyles='text-2xl' 
-                underlineStyles=''
+                activeLinkStyles=''
               />
 
             </div>
