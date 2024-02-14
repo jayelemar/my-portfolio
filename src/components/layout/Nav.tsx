@@ -1,41 +1,68 @@
-import { FC } from "react"
-import Link from "next/link"
+'use client';
 
-type linksType = {
-  path: string,
-  name: string
+import { FC } from "react"
+import { Link } from "react-scroll"
+import { getOffset } from "@/lib/utils";
+import { useMobileNavStore } from "@/store/MobileNavStore";
+
+
+type LinkType = { 
+    path: string,
+    name: string,
+    offset: number ,
 }
 
-const links = [
-  { path: '', name: 'home', action: 'scrollToTop'},
-  { path: '#about', name: 'about'},
-  { path: '#projects', name: 'my projects'},
-  { path: '#contact', name: 'contact'},
+const links:LinkType[] = [
+  { 
+    path: 'hero',
+    name: 'home',
+    offset: -120,
+  },  
+  { 
+    path: 'about',
+    name: 'about',
+    offset: getOffset(0, -90),
+  }, 
+  { 
+    path: 'projects',
+    name: 'my projects',
+    offset: -90,
+  },  
+  { 
+    path: 'contact',
+    name: 'contact',
+    offset: getOffset(-80, -160),
+  }, 
 ]
 
 type NavProps = {
   containerStyles: string,
   linkStyles: string,
-  underlineStyles:string
+  activeLinkStyles:string,
 }
 
 
-const Nav:FC<NavProps> = ({ containerStyles, linkStyles, underlineStyles }) => {
-  const scrollToTop = () => (
-    window.scrollTo(0,0)
-  )
+const Nav:FC<NavProps> = ({ containerStyles, linkStyles, activeLinkStyles }) => {
+  const {isOpen, setIsOpen } = useMobileNavStore()
 
   return (
     <nav className={`${containerStyles}`}>
       {links.map((link, index) => (
-        <Link
-          scroll={true}
-          href={link.path}
-          key={index}
-          className={`capitalize ${linkStyles}`}
-          onClick={scrollToTop}
+        <Link 
+          key={index} 
+          to={link.path} 
+          smooth={true} 
+          duration={300} 
+          offset={link.offset}
+          activeClass={activeLinkStyles} 
+          spy={true} 
+          hashSpy={true} 
+          spyThrottle={500} 
+          ignoreCancelEvents={false}
+          className={linkStyles}
+          onClick={() => setIsOpen(false)}
         >
-          {link.name}
+          <span className="capitalize cursor-pointer">{link.name}</span>
         </Link>
       ))}
     </nav>

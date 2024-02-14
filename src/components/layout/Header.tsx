@@ -6,11 +6,14 @@ import Logo from "../common/Logo";
 import MobileNav from "./MobileNav";
 import Nav from "./Nav";
 import { useEffect, useState } from "react";
+import { useMobileNavStore } from "@/store/MobileNavStore";
+import { AlignJustify } from "lucide-react";
 
 const Header = () => {
+
+  // header style event transition
   const [header, setHeader] = useState(false)
   const pathname = usePathname()
-
   useEffect(() => {
     const scrollYPos = window.addEventListener('scroll', () => {
       window.scrollY > 50 ? setHeader(true) : setHeader(false)
@@ -20,6 +23,13 @@ const Header = () => {
     return () => window.removeEventListener('scroll', () => scrollYPos )
   }, [])
   
+  // Mobile Nav Event
+  const { setIsOpen } = useMobileNavStore()
+  const handleClick = (e:React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+    e.preventDefault();
+    setIsOpen(true)
+  };
+
   return (
     <header className={`${
         header 
@@ -40,14 +50,19 @@ const Header = () => {
             <div className="hidden xl:flex">
               <Nav 
                 containerStyles='flex justify-center items-center gap-10' 
-                linkStyles='relative hover:text-primary transition-all' 
-                underlineStyles='absolute left-0 top-full h-[2px] bg-primary w-full'
+                linkStyles='relative hover:text-primary/60 transition-all duration-300 text-lg font-medium' 
+                activeLinkStyles='text-primary'
               />
             </div>
             <ThemeToggleBtn />
             {/* mobile nav */}
             <div className="flex xl:hidden">
-              <MobileNav />
+              <AlignJustify 
+                size={30} 
+                className="cursor-pointer lg:hidden"
+                onClick={handleClick}
+              />
+            <MobileNav/>
             </div>
           </div>
         </div>
