@@ -14,10 +14,10 @@ export const projectData:ProjectType[] = [
   {
     image: '/work/1.png',
     category: 'NextJS 13',
-    name: 'Mexa Website',
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
-    link: '/',
-    github: '/',
+    name: 'Bike Me',
+    description: 'A full stack e-commerce bike store using NextJS, React, Tailwind CSS,  Sanity.io and Stripe ',
+    link: 'https://bike-me.vercel.app/',
+    github: 'https://github.com/jayelemar/bike-shop-app.git',
 
   },
   {
