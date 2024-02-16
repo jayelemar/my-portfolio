@@ -9,7 +9,7 @@ const ProjectHeader = () => {
         My Projects
       </h2>
       <p className="text-center xl:text-left">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.  similique?
+        Check out some of my recent work
       </p>
     </div>
   )

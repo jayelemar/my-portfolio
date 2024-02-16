@@ -1,5 +1,6 @@
 export type ProjectType = {
-  image: string,
+  desktopImage: string,
+  mobileImage: string,
   category: string,
   name: string
   description:string,
@@ -12,7 +13,8 @@ export type ProjectType = {
 
 export const projectData:ProjectType[] = [
   {
-    image: '/work/1.png',
+    desktopImage: '/work/1.png',
+    mobileImage: '/work/bike-me-mobile.png',
     category: 'NextJS 13',
     name: 'Bike Me',
     description: 'A full stack e-commerce bike store using NextJS, React, Tailwind CSS,  Sanity.io and Stripe ',
@@ -21,15 +23,17 @@ export const projectData:ProjectType[] = [
 
   },
   {
-    image: '/work/2.png',
+    desktopImage: '/work/2.png',
+    mobileImage: '/work/leave-mobile.png',
     category: 'Vite',
-    name: 'Dada Website',
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
+    name: 'Leave Management System',
+    description: 'A full stack leave management system using Vite, React, Tailwind CSS, React Hook Form, Zustand, Express.JS and Mongodb',
     link: '/',
     github: '/',
   },
   {
-    image: '/work/3.png',
+    desktopImage: '/work/3.png',
+    mobileImage: '/work/leave-mobile.png',
     category: 'React',
     name: 'Kaka Website',
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',

@@ -1,9 +1,4 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
-}
+'use client';
 
 export const getOffset = (desktopOffset:number, mobileOffset:number): number => {
   if (typeof window !== 'undefined') {

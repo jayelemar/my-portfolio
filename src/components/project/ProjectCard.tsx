@@ -14,18 +14,24 @@ type ProjectCardProps = {
 }
 
 const ProjectCard:FC<ProjectCardProps> = ({ project }) => {
-  const { image, link, category, name, description, github } = project
+  const { desktopImage,mobileImage, link, category, name, description, github } = project
   return (
 
-      <Card className='group overflow-hidden relative flex flex-col lg:flex-row  '>
+      <Card className='group overflow-hidden relative flex flex-col xl:flex-row  '>
         <CardHeader className='w-full'>
           {/* Image */}
-          <div className="relative w-full h-[300px] flex items-center justify-center lg:bg-[110%] lg:no-repeat overflow-hidden bg-red-100 sm:bg-green-50 "
+          <div className="relative w-full h-[300px] flex items-center justify-center lg:bg-[110%] lg:no-repeat overflow-hidden bg-green-50 "
           >
-            <Image src={image} alt='' width={240} height={240} priority   
+            <Image src={desktopImage} alt='' width={300} height={200} priority   
               className='absolute group-hover:scale-110 transition-all duration-800 ease-in-out '/>
+            <div className="w-[700px] flex justify-center items-center relative">
+              <Image src='/work/laptop-view.png' alt='laptop-view' width={470} height={470} priority className='overflow-hidden z-10 hidden sm:flex' />
+              <Image src={mobileImage} alt='' width={100} height={470} priority className='overflow-hidden z-10  absolute w-[100px] right-24 top-[170px] ' />
 
-            <Image src='/work/laptop-view.png' alt='laptop-view' width={470} height={470} priority className='overflow-hidden z-10 hidden sm:flex' />
+            </div>
+
+
+ 
 
           </div>
         </CardHeader>
@@ -39,12 +45,13 @@ const ProjectCard:FC<ProjectCardProps> = ({ project }) => {
           <div className="flex">
             {/* buttons */}
             <div className='absolute flex gap-2'>
-            <Link href={github} target='_blank' className='bg-muted-foreground text-muted p-2 rounded-full hover:scale-110'>
+              <Link href={link} target='_blank' className='bg-primary px-2 py-1 rounded-full flex gap-1 justify-center items-center  hover:scale-110 text-sm font-medium text-muted'>
+                  Demo <FiLink />
+                </Link>
+              <Link href={github} target='_blank' className='bg-muted text-muted-foreground p-2 rounded-full hover:scale-110'>
                 <FiGithub />
               </Link>
-              <Link href={link} target='_blank' className='bg-primary px-3 py-1 rounded-full flex gap-1 justify-center items-center  hover:scale-110 text-sm font-medium text-muted'>
-                Demo <FiLink />
-              </Link>
+
 
             </div>
           </div>
