@@ -31,13 +31,13 @@ export const projectData:ProjectType[] = [
     link: '/',
     github: '/',
   },
-  {
-    desktopImage: '/work/3.png',
-    mobileImage: '/work/leave-mobile.png',
-    category: 'React',
-    name: 'Kaka Website',
-    description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. ',
-    link: '/',
-    github: '/',
-  }
+  // {
+  //   desktopImage: '/work/3.png',
+  //   mobileImage: '/work/leave-mobile.png',
+  //   category: 'React',
+  //   name: 'Bulakenya Giftshop',
+  //   description: 'A full stack e-commerce app using vite, react, tailwind, redux toolkit and firebase ',
+  //   link: '/',
+  //   github: '/',
+  // }
 ]

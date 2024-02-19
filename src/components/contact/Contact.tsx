@@ -1,8 +1,9 @@
 'use client';
-import { HomeIcon, MailIcon, PhoneIcon } from 'lucide-react'
+
 import React from 'react'
 import { info } from '../about/AboutData'
-import Form from './Form'
+import ContactForm from './ContactForm';
+
 
 const Contact = () => {
   const filteredInfo = info.filter((item) => item.text !== "Jay Elemar Termulo" )
@@ -41,7 +42,7 @@ const Contact = () => {
           </div>
           {/* form */}
           <div className="md:basis-4/5">
-          <Form />
+          <ContactForm />
           </div>
         </div>
 

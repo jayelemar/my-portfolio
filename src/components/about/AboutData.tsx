@@ -46,38 +46,38 @@ export const skillSet: SkillSetProps[]  = [
     data: [
       {
         name: 'Javascript',
-        imgPath: <SiJavascript size={60} />, 
+        imgPath: <SiJavascript size={40} />, 
         color: 'text-[#efd81d]'
       },
       {
         name: 'Typescript',
-        imgPath: <SiTypescript size={60} />,
+        imgPath: <SiTypescript size={40} />,
         color: 'text-[#0076c6]'
       },
       {
         name: 'React',
-        imgPath: <SiReact size={60} />,
+        imgPath: <SiReact size={40} />,
         color: 'text-[#00d1f7]'
       },
       {
         name: 'NextJS 13',
-        imgPath: <TbBrandNextjs size={60} />,
+        imgPath: <TbBrandNextjs size={40} />,
         color: 'dark:text-white'
       },  
       {
         name: 'Sass',
-        imgPath: <FaSass size={60} />,
+        imgPath: <FaSass size={40} />,
         color: 'text-[#c66394]'
       },
       {
         name: 'Tailwind',
-        imgPath: <SiTailwindcss size={60} />,
+        imgPath: <SiTailwindcss size={40} />,
         color: 'text-[#08b1cf]'
       },
 
       {
         name: 'React Query',
-        imgPath: <SiReactquery size={60} />,
+        imgPath: <SiReactquery size={40} />,
         color: 'text-[#f73f51]'
       },
 
@@ -88,21 +88,21 @@ export const skillSet: SkillSetProps[]  = [
     data: [
       {
         name: 'NodeJS',
-        imgPath: <FaNodeJs size={65} />,
+        imgPath: <FaNodeJs size={40} />,
         color: 'text-[#509941]'
       },
       {
         name: 'ExpressJS',
-        imgPath: <SiExpress size={65} />,
+        imgPath: <SiExpress size={40} />,
       },
       {
         name: 'Firebase',
-        imgPath: <SiFirebase size={60} />,
+        imgPath: <SiFirebase size={40} />,
         color: 'text-[#f7c52a]'
       },
       {
         name: 'MongoDB',
-        imgPath: <SiMongodb size={65} />,
+        imgPath: <SiMongodb size={40} />,
         color: 'text-[#50ae3e]'
       },
 
@@ -113,21 +113,21 @@ export const skillSet: SkillSetProps[]  = [
     data: [
       {
         name: 'VScode',
-        imgPath: <SiVisualstudiocode size={60} />,
+        imgPath: <SiVisualstudiocode size={40} />,
         color: 'text-[#36aaf2]'
       },
       {
         name: 'Git',
-        imgPath: <SiGit size={70} />,
+        imgPath: <SiGit size={40} />,
         color: 'text-[#e84d31]'
       },
       {
         name: 'Github',
-        imgPath: <SiGithub size={60} />
+        imgPath: <SiGithub size={40} />
       },
       {
         name: 'Postman',
-        imgPath: <SiPostman size={60} />,
+        imgPath: <SiPostman size={40} />,
         color: 'text-[#f76935]'
       },
     ]

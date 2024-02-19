@@ -31,7 +31,7 @@ const AboutSkillFrontend:FC<AboutSkillListProps> = ({ skillSet, getData }) => {
         <div className="flex flex-col items-center justify-center text-center gap-y-1.5">
           <HoverCard>
             <HoverCardTrigger>
-              <Image src='/about/zustand-logo.png' alt="" width={80} height={80} className="relative left-4 hover:scale-125"/>
+              <Image src='/about/zustand-logo.png' alt="" width={46} height={46} className="relative hover:scale-125"/>
             </HoverCardTrigger>
             <HoverCardContent className='z-50 border text-popover-foreground shadow-md  absolute py-0 left-0 bottom-0 rounded-full px-1 w-min'>
               <p className="w-auto text-center mx-auto text-sm font-medium whitespace-nowrap text-foreground  cursor-default px-1 ">
