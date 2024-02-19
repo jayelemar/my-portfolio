@@ -49,13 +49,14 @@ const Hero = () => {
            {/* image */}
           <div className="hidden xl:flex ">
             <div 
-              className="bg-[url('/hero/shape-2-light.svg')]  dark:bg-[url('/hero/shape-2-dark.svg')]  w-[500px] h-[800px] bg-no-repeat absolute right-0 -top-12">
+              className="bg-[url('/hero/shape-2-light.svg')]  dark:bg-[url('/hero/shape-2-dark.svg')]  w-[500px] h-[800px] bg-no-repeat absolute right-0 -top-20">
             </div>
             <DevImage 
               containerStyles={`
-                w-[300px] h-[500px] bg-no-repeat absolute -top-28 right-16
+                w-[433px] h-[577px] bg-no-repeat absolute -top-32 right-8 scale-[.7]
               `} 
-              imgSrc='/hero/dev.png'/>
+              imgSrc='/hero/dev.png'
+            />
           </div>
 
           {/* down icon */}

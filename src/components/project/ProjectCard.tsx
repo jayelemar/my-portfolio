@@ -20,19 +20,14 @@ const ProjectCard:FC<ProjectCardProps> = ({ project }) => {
       <Card className='group overflow-hidden relative flex flex-col xl:flex-row  '>
         <CardHeader className='w-full'>
           {/* Image */}
-          <div className="relative w-full h-[300px] flex items-center justify-center lg:bg-[110%] lg:no-repeat overflow-hidden bg-green-50 "
+          <div className="relative w-full h-[210px] sm:h-[300px] flex items-center justify-center lg:bg-[110%] lg:no-repeat overflow-hidden bg-green-50 "
           >
             <Image src={desktopImage} alt='' width={300} height={200} priority   
               className='absolute group-hover:scale-110 transition-all duration-800 ease-in-out '/>
             <div className="w-[700px] flex justify-center items-center relative">
               <Image src='/work/laptop-view.png' alt='laptop-view' width={470} height={470} priority className='overflow-hidden z-10 hidden sm:flex' />
               <Image src={mobileImage} alt='' width={100} height={470} priority className='overflow-hidden z-10  absolute w-[100px] right-24 top-[170px] ' />
-
             </div>
-
-
- 
-
           </div>
         </CardHeader>
 

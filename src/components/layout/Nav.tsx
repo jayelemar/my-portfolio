@@ -3,7 +3,7 @@
 import { FC } from "react"
 import { Link } from "react-scroll"
 import { useMobileNavStore } from "@/store/MobileNavStore";
-import { getOffset } from "@/lib/helper";
+import { getOffset } from "@/lib/getOffset";
 
 
 type LinkType = { 

@@ -1,10 +1,12 @@
 'use client';
 import About from "@/components/about/About";
-import Contact from "@/components/common/Contact";
+import Contact from "@/components/contact/Contact";
 import Hero from "@/components/common/Hero";
 import Projects from "@/components/project/Projects";
 import { useEffect } from "react";
 import { Events, scrollSpy } from "react-scroll";
+import { Toaster } from "@/components/ui/toaster"
+ 
 
 
 export default function Home() {
@@ -37,6 +39,7 @@ export default function Home() {
       <About />
       <Projects />
       <Contact />
+      <Toaster />
     </main>
   );
 }
