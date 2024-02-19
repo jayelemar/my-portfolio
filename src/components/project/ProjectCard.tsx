@@ -31,7 +31,7 @@ const ProjectCard:FC<ProjectCardProps> = ({ project }) => {
           </div>
         </CardHeader>
 
-        <div className=" h-full px-8 pt-0 pb-16 lg:py-6">
+        <div className=" h-full px-8 pt-0 pb-16 xl:py-6">
           <Badge className='uppercase text-sm font-medium mb-2 absolute top-4 left-5' >
             {category}
           </Badge>

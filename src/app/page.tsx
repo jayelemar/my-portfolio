@@ -1,7 +1,7 @@
 'use client';
 import About from "@/components/about/About";
 import Contact from "@/components/contact/Contact";
-import Hero from "@/components/common/Hero";
+import Hero from "@/components/hero/Hero";
 import Projects from "@/components/project/Projects";
 import { useEffect } from "react";
 import { Events, scrollSpy } from "react-scroll";

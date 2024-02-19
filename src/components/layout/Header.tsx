@@ -47,7 +47,7 @@ const Header = () => {
           
             {/* nav */}
           <div className="flex items-center gap-4 xl:gap-6">
-            <div className="hidden xl:flex">
+            <div className="hidden lg:flex">
               <Nav 
                 containerStyles='flex justify-center items-center gap-10' 
                 linkStyles='relative hover:text-primary/60 transition-all duration-300 text-lg font-medium' 

@@ -34,7 +34,7 @@ const AboutSkillList:FC<AboutSkillListProps> = ({ skillSet, getData }) => {
           stopOnMouseEnter: true,
         }),
       ]}
-      className="w-[500px]"
+      className="w-full xl:w-[500px]"
       
     >
       <CarouselContent className="">

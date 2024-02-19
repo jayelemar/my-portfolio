@@ -9,7 +9,7 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from '../ui/hover-card'
 
 const AboutSkillFrontend:FC<AboutSkillListProps> = ({ skillSet, getData }) => {
   return (
-    <article className="flex flex-col relative top-0 right-0  w-[230px] h-[30px]">
+    <article className="flex flex-col relative top-0 right-0 w-[230px] h-[30px]">
       <div className="grid grid-cols-2 gap-x-2 gap-y-6 pt-4 w-auto">
         {getData(skillSet, 'Frontend' )?.data.map((item:DataProps, index:number) => {
           const {name, imgPath, color} = item
