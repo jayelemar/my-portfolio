@@ -17,7 +17,7 @@ const formSchema = z.object({
   email: z.string().email({
       message: "Invalid email format.",
   }),
-  textMessage: z.string().min(5, {
+  message: z.string().min(5, {
     message: "Message must be at least 5 characters.",
   }),
 })
@@ -33,13 +33,15 @@ const ContactForm = () => {
     defaultValues: {
       name: "",
       email:"",
-      textMessage: "",
+      message: "",
     },
   })
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     console.log({ values });
     toast({
-      title:`Hi ${values.name}, I have recieved your message. I'll send a confirmation email.Thank you.`,
+      title: `Hello ${values.name},`,
+      description: `Thanks for reaching out.
+      A confirmation email will be send shortly`,
     })
     reset();
 
@@ -128,7 +130,7 @@ const ContactForm = () => {
         <div className="relative">
           <FormField 
             control={form.control}
-            name="textMessage"
+            name="message"
             render={({ field }) => (
               <FormItem className="w-full flex flex-col justify-center items-start">
                 <FormLabel 
