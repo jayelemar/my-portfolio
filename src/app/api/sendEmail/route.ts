@@ -10,7 +10,7 @@ export async function POST( request:NextRequest ) {
       port: 587,
       auth: {
         user: process.env.NEXT_PUBLIC_EMAIL_USER,
-        pass: process.env.NEXT_PUBLIC_EMAIL_PASSWORD,
+        pass: process.env.NEXT_PUBLIC_EMAIL_PASS,
       },
       tls: {
         ciphers: "SSLv3",
