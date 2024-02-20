@@ -1,23 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 
-export async function POST( request:NextRequest ) {
+type Data = any
+
+export async function POST( request:NextRequest, response:NextResponse<Data> ) {
   try {
     const {name, email, message} = await request.json()
 
-    const transporter = nodemailer.createTransport({
-      host: process.env.NEXT_PUBLIC_EMAIL_HOST,
-      port: 587,
-      auth: {
-        user: process.env.NEXT_PUBLIC_EMAIL_USER,
-        pass: process.env.NEXT_PUBLIC_EMAIL_PASS,
-      },
-      tls: {
-        ciphers: "SSLv3",
-        rejectUnauthorized: false,
-      }
-    })
-  
     const mailOption = {
       from: process.env.NEXT_PUBLIC_EMAIL_USER,
       to: email,
@@ -71,19 +60,57 @@ export async function POST( request:NextRequest ) {
       </html>
       `
     }
-  
-    await transporter.sendMail(mailOption, (error, info) => {
-      if (error) {
-        console.error("Error sending email: ", error);
-      } else {
-        console.log("Email sent: ", info.response);
+
+    const transporter = nodemailer.createTransport({
+      host: process.env.NEXT_PUBLIC_EMAIL_HOST,
+      port: 587,
+      auth: {
+        user: process.env.NEXT_PUBLIC_EMAIL_USER,
+        pass: process.env.NEXT_PUBLIC_EMAIL_PASS,
+      },
+      tls: {
+        ciphers: "SSLv3",
+        rejectUnauthorized: false,
       }
-    });
+    })
   
+    const server = await new Promise((resolve, reject) => {
+      // verify connection configuration
+      transporter.verify(function (error: any, success: any) {
+        if (success) {
+          resolve(success)
+        }
+        reject(error)
+      })
+    })
+    if (!server) {
+      return NextResponse.json(
+        {message: "BE: Failed to send email"},
+        {status: 500},
+      )
+    }
+
+    const success = await new Promise((resolve, reject) => {
+      transporter.sendMail(mailOption, (error, info) => {
+        if (error) {
+          console.error("Error sending email: ", error);
+        } else {
+          console.log("Email sent: ", info.response);
+        }
+      });
+    })
+
+    if (!success) {
+      return NextResponse.json(
+        {message: "BE: Failed to send email"},
+        {status: 500},
+      )
+    }
     return NextResponse.json(
       {message: "BE: Email Sent Successfully"},
       {status:200},
     )
+
   } catch (error) {
     return NextResponse.json(
       {message: "BE: Failed to send email"},
