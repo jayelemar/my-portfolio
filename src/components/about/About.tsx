@@ -11,7 +11,7 @@ const About = () => {
   };
 
   return (
-    <section id="about"  className="h-[85vh] mb-44 xl:mb-48 xl:py-24 relative scroll-mt-24 xl:-scroll-mt-2">
+    <section id="about"  className="h-[85vh] mb-44 xl:mb-40 xl:py-24 relative scroll-mt-24 xl:-scroll-mt-2">
       <div className="container mx-auto overflow-hidden">
         <h2  className="mb-2 text-center mx-auto text-4xl font-bold relative w-max flex items-center justify-between gap-x-3 ">
           <CircleUserRound size={35} className="text-primary"/>About Me

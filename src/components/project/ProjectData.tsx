@@ -29,7 +29,7 @@ export const projectData:ProjectType[] = [
     name: 'Leave Management System',
     description: 'A full stack leave management system using Vite, React, Tailwind CSS, React Hook Form, Zustand, Express.JS and Mongodb',
     link: '/',
-    github: '/',
+    github: 'https://github.com/jayelemar/leave-management-app-client',
   },
   // {
   //   desktopImage: '/work/3.png',

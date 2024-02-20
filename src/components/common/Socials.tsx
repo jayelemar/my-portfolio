@@ -6,15 +6,15 @@ import { FC } from 'react';
 
 const icons = [
   {
-    path: '/',
+    path: 'https://www.linkedin.com/in/jay-termulo/',
     name: <RiLinkedinFill/>
   },
   {
-    path: '/',
+    path: 'https://github.com/jayelemar',
     name: <RiGithubFill/>
   },
   {
-    path: '/',
+    path: 'https://facebook.com/jayelemar.termulo/',
     name: <RiFacebookFill/>
   },
 ]
@@ -29,7 +29,7 @@ const Socials:FC<SocialsProps> = ({ containerStyles, iconStyles }) => {
     <div className={`${containerStyles}`}>
       {icons.map((icon, index) => {
         return (
-          <Link href={icon.path} key={index} className={iconStyles}>
+          <Link href={icon.path} target='_blank' key={index} className={iconStyles}>
             {icon.name }
           </Link>
         )
