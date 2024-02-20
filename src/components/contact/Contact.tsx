@@ -25,7 +25,10 @@ const Contact = () => {
           <div className="flex flex-col md:basis-2/5 pt-4 md:pt-8 mb-6 md:mb-12 xl:mb-0">
           {/* text  */}
           <div className="flex flex-col justify-center">
-            <p className='subtitle max-w-full mb-6'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores nulla magni adipisci tempore.
+            <p className='flex subtitle max-w-full text-lg font-base text-muted-foreground text-balance'>I&apos;m available for freelance & full time positions. 
+            </p>
+            <p className='flex subtitle max-w-full mb-6 text-lg font-base text-muted-foreground'>
+              Contact me and lets talk.
             </p>
           </div>
           <div className="flex flex-col gap-y-4 md:gap-y-12 mb-12 md:mb-10 text-base">
@@ -34,7 +37,7 @@ const Contact = () => {
               return (
                 <div key={index} className="flex items-center text-center gap-x-8 ">
                   <span className='text-primary'>{info.icon}</span>
-                <div className="">{info.text}</div>
+                <div className="text-muted-foreground">{info.text}</div>
               </div>
               )
             })}
