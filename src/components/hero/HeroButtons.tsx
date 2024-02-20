@@ -7,12 +7,12 @@ import { Download, Send } from "lucide-react";
 const HeroButtons = () => {
   return (
     <div className="flex flex-col gap-3 lg:flex-row lg:justify-center xl:justify-start w-full mx-auto xl:mx-0 mb-16 xs:mb-5 lg:mb-12 xl:mb-5">
-      <Link href='/contact'>
+      <Link href='#contact'>
         <Button className='gap-2 rounded-full text-base w-44'>
           Contact Me <Send size={18}/>
         </Button>
       </Link>
-      <Link href='/contact'>
+      <Link href='https://drive.google.com/uc?id=10C3-BD3QVUDj7tE3wokJE0Mpjs8pn1eP' download>
         <Button variant={'secondary'} className='gap-2 rounded-full text-base w-44 bg-foreground/10 hover:bg-foreground/15'>
           Download CV <Download size={18}/>
         </Button>
