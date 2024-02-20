@@ -84,7 +84,7 @@ const ContactForm = () => {
             render={({ field }) => (
               <FormItem className="w-full flex flex-col justify-center items-start">
                 <FormLabel 
-                  className="absolute bg-background px-0 top-0 left-4 text-muted-foreground"
+                  className="absolute bg-background px-1 top-0 left-6 text-muted-foreground"
                 >
                   Name:
                 </FormLabel>
@@ -109,7 +109,7 @@ const ContactForm = () => {
             render={({ field }) => (
               <FormItem className="w-full flex flex-col justify-center items-start">
                 <FormLabel 
-                  className="absolute bg-background px-0 top-0 left-4 text-muted-foreground"
+                  className="absolute bg-background px-1 top-0 left-6 text-muted-foreground"
                 >
                   Email:</FormLabel>
                 <FormControl>
@@ -134,7 +134,7 @@ const ContactForm = () => {
             render={({ field }) => (
               <FormItem className="w-full flex flex-col justify-center items-start">
                 <FormLabel 
-                  className="absolute bg-background px-0 top-0 left-4 text-muted-foreground"
+                  className="absolute bg-background px-1 top-0 left-6 text-muted-foreground"
                 >
                   Message:</FormLabel>
                 <FormControl>

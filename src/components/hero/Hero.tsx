@@ -6,7 +6,7 @@ import HeroHeader from './HeroHeader';
 
 const Hero = () => {
   return (
-    <section  id='hero'  className='py-0 h-[100vh] mb-12 xl:py-4 bg-hero bg-no-repeat bg-bottom bg-cover dark:bg-none  '>
+    <section  id='hero'  className='py-0 h-[85vh] mb-44 xl:mb-96 xl:py-4 bg-hero bg-no-repeat bg-bottom bg-cover dark:bg-none  '>
       <div className="container mx-auto">
         <div  className="flex justify-between gap-x-8 relative ">
           <HeroHeader />
