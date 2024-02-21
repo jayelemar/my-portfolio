@@ -46,6 +46,10 @@ const ContactForm = () => {
 
     try {
       const backendAPI = process.env.NEXT_PUBLIC_BACKEND_API;
+      if(!backendAPI) {
+        console.log("no backendAPI");
+      }
+
       if (backendAPI) {
         try {
           const response = await fetch(backendAPI, {
@@ -57,12 +61,12 @@ const ContactForm = () => {
           });
       
           if (response.ok) {
-            console.log('Email sent successfully');
+            console.log('Message sent successfully');
           } else {
-            console.error('Error sending email1:', await response.text());
+            console.error('Error sending message:', await response.text());
           }
         } catch (error) {
-          console.error('Error sending email2:', error);
+          console.error('Error sending message:', error);
         }
       } else {
         console.error('Backend URL is undefined');
