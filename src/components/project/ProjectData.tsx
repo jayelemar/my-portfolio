@@ -31,13 +31,13 @@ export const projectData:ProjectType[] = [
     link: '/',
     github: 'https://github.com/jayelemar/leave-management-app-client',
   },
-  // {
-  //   desktopImage: '/work/3.png',
-  //   mobileImage: '/work/leave-mobile.png',
-  //   category: 'React',
-  //   name: 'Bulakenya Giftshop',
-  //   description: 'A full stack e-commerce app using vite, react, tailwind, redux toolkit and firebase ',
-  //   link: '/',
-  //   github: '/',
-  // }
+  {
+    desktopImage: '/work/3.png',
+    mobileImage: '/work/leave-mobile.png',
+    category: 'React',
+    name: 'Bulakenya Giftshop',
+    description: 'A full stack e-commerce app using vite, react, tailwind, redux toolkit and firebase ',
+    link: '/',
+    github: '/',
+  }
 ]
