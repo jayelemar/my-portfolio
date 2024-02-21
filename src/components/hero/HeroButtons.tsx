@@ -12,7 +12,10 @@ const HeroButtons = () => {
           Contact Me <Send size={18}/>
         </Button>
       </Link>
-      <Link href='https://drive.google.com/uc?id=10C3-BD3QVUDj7tE3wokJE0Mpjs8pn1eP' download>
+      <Link 
+        href='https://drive.google.com/uc?id=16ISbek2KoUqtkvyVkx18GNjWJx0IIBjQ' 
+        download
+      >
         <Button variant={'secondary'} className='gap-2 rounded-full text-base w-44 bg-foreground/10 hover:bg-foreground/15'>
           Download CV <Download size={18}/>
         </Button>
