@@ -43,21 +43,29 @@ const ContactForm = () => {
       description: `Thanks for reaching out.
       A confirmation email will be send shortly`,
     })
-    reset();
 
     try {
-      const response = await fetch('http://localhost:8000/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(values),
-      });
-  
-      if (response.ok) {
-        console.log('Email sent successfully');
+      const backendAPI = process.env.NEXT_PUBLIC_BACKEND_API;
+      if (backendAPI) {
+        try {
+          const response = await fetch(backendAPI, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
+          });
+      
+          if (response.ok) {
+            console.log('Email sent successfully');
+          } else {
+            console.error('Error sending email1:', await response.text());
+          }
+        } catch (error) {
+          console.error('Error sending email2:', error);
+        }
       } else {
-        console.error('Error sending email1:', await response.text());
+        console.error('Backend URL is undefined');
       }
     } catch (error) {
       console.error('Error sending email2:', error);

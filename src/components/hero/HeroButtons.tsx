@@ -18,7 +18,7 @@ const HeroButtons = () => {
       >
         <Button variant={'secondary'} className='gap-2 rounded-full text-base w-44 bg-foreground/10 hover:bg-foreground/15'>
           Download CV <Download size={18}/>
-        </Button>git 
+        </Button>
       </Link>
     </div>
   )
