@@ -12,10 +12,11 @@ export function ThemeToggleBtn() {
   const { theme, setTheme } = useTheme()
 
   return (
-    <div className="">
+    <div>
       <Button 
         className="h-10 rounded-full text-base bg-transparent"
         variant={"outline"} 
+        name="theme"
         size="icon"
         onClick={() => setTheme( theme === 'dark' ? 'light' : 'dark')}
       >

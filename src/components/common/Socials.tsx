@@ -29,7 +29,7 @@ const Socials:FC<SocialsProps> = ({ containerStyles, iconStyles }) => {
     <div className={`${containerStyles}`}>
       {icons.map((icon, index) => {
         return (
-          <Link href={icon.path} target='_blank' key={index} className={iconStyles}>
+          <Link href={icon.path} target='_blank' key={index} className={iconStyles} aria-label={`See more details in my ${icon.name} account`} >
             {icon.name }
           </Link>
         )
