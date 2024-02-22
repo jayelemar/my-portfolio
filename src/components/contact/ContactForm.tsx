@@ -2,12 +2,13 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { ArrowRightIcon, MailIcon, MessageSquare, User } from "lucide-react";
+import { ArrowRightIcon, Check, Loader2, MailIcon, MessageSquare, User } from "lucide-react";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { useToast } from '../ui/use-toast';
+import { useFormSubmit } from "@/service/formServices";
 
 
 const formSchema = z.object({
@@ -25,8 +26,7 @@ const formSchema = z.object({
 
 const ContactForm = () => {
   const { toast } = useToast();
-  const {reset} = useForm();
-
+  const { mutate: FormSubmitMutation, isPending, isSuccess } = useFormSubmit()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -36,52 +36,29 @@ const ContactForm = () => {
       message: "",
     },
   })
+
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log({ values });
+
+    // console.log({ values });
     toast({
       title: `Hello ${values.name},`,
-      description: `Thanks for reaching out.
-      A confirmation email will be send shortly`,
+      description: `Thank you for reaching out.
+      A confirmation email will be send to you within a day`,
     })
 
     try {
-      const backendAPI = process.env.NEXT_PUBLIC_BACKEND_API;
-      if(!backendAPI) {
-        console.log("no backendAPI");
-      }
-
-      if (backendAPI) {
-        try {
-          const response = await fetch(backendAPI, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(values),
-          });
-      
-          if (response.ok) {
-            console.log('Message sent successfully');
-          } else {
-            console.error('Error sending message:', await response.text());
-          }
-        } catch (error) {
-          console.error('Error sending message:', error);
-        }
-      } else {
-        console.error('Backend URL is undefined');
-      }
+      await FormSubmitMutation(values);
+      console.log('form submitted successfully', values);
+      form.reset();
     } catch (error) {
-      console.error('Error sending email2:', error);
+      console.error('Error sending email:', error);
     }
-
-
   };
 
   
   return (
     <>
-    <Form {...form}>
+    <Form {...form} >
       <form 
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col mx-auto gap-y-4 w-full xl:relative top-[27px]"
@@ -163,11 +140,25 @@ const ContactForm = () => {
         </div>
 
         <Button 
-          type="submit"
+          type="submit" disabled={isPending || isSuccess }
           className="flex items-center w-full sm:max-w-48 xl:max-w-[400px] rounded-full gap-2 "
         >
-          Let&apos;s Talk
-          <ArrowRightIcon size={20} />
+          {isPending ? (
+            <>
+              <span>Loading</span>
+              <Loader2 className='animate-spin' size={20} />
+            </>
+          ) : isSuccess ? (
+            <>
+              <span>Message Sent</span>
+              <Check size={20} />
+            </>
+          ) : (
+            <>
+              <span>Let&apos;s Talk</span>
+              <ArrowRightIcon size={20} />
+            </>
+          )}
         </Button>
       </form>
     </Form>
