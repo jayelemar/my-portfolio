@@ -25,7 +25,7 @@ const ProjectCardHeader:FC<ProjectCardHeader> = ({ desktopImage, mobileImage }) 
           alt='laptop-view' 
           width={470} 
           height={470} 
-          priority 
+          loading='lazy'
           className='overflow-hidden z-10 hidden sm:flex' 
         />
         <Image 

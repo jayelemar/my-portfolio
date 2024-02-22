@@ -1,9 +1,9 @@
 'use client';
 
 
-import { Card, CardHeader } from '../ui/card'
+import { Card, CardHeader } from '../../ui/card'
 import { FC } from 'react';
-import { ProjectType } from './ProjectData';
+import { ProjectType } from '../ProjectData';
 import ProjectCardHeader from './ProjectCardHeader';
 import ProjectCardBody from './ProjectCardBody';
 

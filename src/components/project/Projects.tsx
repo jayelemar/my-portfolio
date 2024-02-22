@@ -1,6 +1,6 @@
 'use client';
 
-import ProjectCard from "./ProjectCard";
+import ProjectCard from "./projectCard/ProjectCard";
 import { projectData } from "./ProjectData";
 import ProjectHeader from "./ProjectHeader";
 

@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Badge } from '../ui/badge'
+import { Badge } from '../../ui/badge'
 import Link from 'next/link'
 import { FiGithub, FiLink } from 'react-icons/fi'
 
@@ -17,15 +17,25 @@ const ProjectCardBody:FC<ProjectCardBodyType> = ({ category, name, description, 
       <Badge className='uppercase text-sm font-medium mb-2 absolute top-4 left-5' >
         {category}
       </Badge>
-      <h4 className='h4 mb-1'>{name}</h4>
+      <h1 className='h4 mb-1 text-primary'>{name}</h1>
       <p className='text-muted-foreground text-lg mb-2 '>{description}</p>
       <div className="flex">
         {/* buttons */}
         <div className='absolute flex gap-2'>
-          <Link href={link} target='_blank' className='bg-primary px-2 py-1 rounded-full flex gap-1 justify-center items-center  hover:scale-110 text-sm font-medium text-muted'>
+          <Link 
+            href={link} 
+            target='_blank' 
+            className='bg-primary px-2 py-1 rounded-full flex gap-1 justify-center items-center  hover:scale-110 text-sm font-medium text-muted'
+            aria-label='Click to see the Linked Project'
+          >
               Demo <FiLink />
             </Link>
-          <Link href={github} target='_blank' className='bg-muted text-muted-foreground p-2 rounded-full hover:scale-110'>
+          <Link 
+            href={github} 
+            target='_blank' 
+            className='bg-muted text-muted-foreground p-2 rounded-full focus:scale-110'
+            aria-label='Click to see the Github Repot'
+          >
             <FiGithub />
           </Link>
         </div>
