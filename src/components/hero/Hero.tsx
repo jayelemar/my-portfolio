@@ -3,6 +3,7 @@
 import { RiArrowDownSFill } from 'react-icons/ri'
 import HeroImage from './HeroImage';
 import HeroHeader from './HeroHeader';
+import { Suspense } from 'react';
 
 const Hero = () => {
   return (
@@ -10,7 +11,10 @@ const Hero = () => {
       <div className="container mx-auto">
         <div  className="flex justify-between gap-x-8 relative ">
           <HeroHeader />
-          <HeroImage />
+          <Suspense>
+            <HeroImage />
+          </Suspense>
+
           {/* down icon */}
           <div className='hidden xl:flex absolute left-2/4 -bottom-16 animate-bounce '>
             <RiArrowDownSFill className='text-3xl text-primary'/>
