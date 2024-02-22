@@ -4,6 +4,8 @@ import { CircleUserRound } from "lucide-react";
 import { SkillSetProps, skillSet } from "./AboutData";
 import AboutTabs from "./AboutTabs";
 import AboutImage from "./AboutImage";
+import { Suspense } from "react";
+import Spinner from "../common/Spinner";
 
 const About = () => {
   const getData = (arr: SkillSetProps[], title: string): SkillSetProps | undefined => {
@@ -18,7 +20,9 @@ const About = () => {
         </h2>
         <div className="flex flex-col xl:flex-row justify-center items-center xl:items-start xl:justify-between">
           {/* Image */}
-          <AboutImage />
+          <Suspense fallback={<Spinner/>}>
+            <AboutImage />
+          </Suspense>
           {/* Tabs */}
           <AboutTabs skillSet={skillSet} getData={getData} />
         </div>
