@@ -47,8 +47,8 @@ const ContactForm = () => {
     })
 
     try {
-      await FormSubmitMutation(values);
-      console.log('form submitted successfully', values);
+      FormSubmitMutation(values);
+      await new Promise(resolve => setTimeout(resolve, 2000));
       form.reset();
     } catch (error) {
       console.error('Error sending email:', error);

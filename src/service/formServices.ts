@@ -9,6 +9,8 @@ type FormDataType = {
 
 const formSubmit = async (values: FormDataType) => {
   try {
+
+    await new Promise(resolve => setTimeout(resolve, 2000))
     const backendAPI = process.env.NEXT_PUBLIC_BACKEND_API;
     
     if (!backendAPI) {

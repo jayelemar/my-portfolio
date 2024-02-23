@@ -4,7 +4,7 @@ const HeroText = () => {
   return (
     <>
       <div className="text-sm uppercase font-semibold mb-4 text-primary tracking-wide absolute top-4 xs:top-4 xl:top-6 xl:left-1 whitespace-nowrap">
-        Front End Developer
+        Full Stack Developer
       </div>
       <h1   className='pt-10 text-5xl xl:text-[72px] xl:leading-[80px] tracking-tight mb-4 font-bold md:max-w-lg'>
         Hello, my <span className='inline xs:hidden'><br /></span>

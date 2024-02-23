@@ -14,7 +14,7 @@ const HeroHeader = () => {
       <div className="xs:mt-6">
         <Socials 
           containerStyles='flex justify-between items-center text-center gap-x-6 mx-auto xl:mx-0' 
-          iconStyles='text-foreground text-3xl hover:text-primary transition-all'
+          iconStyles='text-foreground text-3xl hover:text-primary transition-all hover:scale-110'
         />
       </div>
     </div>

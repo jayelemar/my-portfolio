@@ -102,4 +102,10 @@
   animation: customBounce 1s infinite 0.6s;
 }
 
+@layer utilities {
+  .btn-secondary {
+    @apply bg-muted hover:bg-muted/90 text-muted-foreground hover:scale-105;
+  }
+}
+
 

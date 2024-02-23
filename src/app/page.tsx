@@ -3,9 +3,10 @@ import About from "@/components/about/About";
 import Contact from "@/components/contact/Contact";
 import Hero from "@/components/hero/Hero";
 import Projects from "@/components/project/Projects";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { Events, scrollSpy } from "react-scroll";
 import { Toaster } from "@/components/ui/toaster"
+import Spinner from "@/components/common/Spinner";
  
 
 
@@ -35,10 +36,19 @@ export default function Home() {
 
   return (
     <main>
-      <Hero />
-      <About />
-      <Projects />
-      <Contact />
+      <Suspense>
+        <Hero />
+      </Suspense>
+      <Suspense fallback={<Spinner />}>
+        <About/>
+      </Suspense>
+      <Suspense fallback={<Spinner />}>
+        <Projects/>
+      </Suspense>
+      <Suspense fallback={<Spinner />}>
+        <Contact />
+      </Suspense>
+
       <Toaster />
     </main>
   );

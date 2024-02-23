@@ -18,22 +18,22 @@ const ProjectCardBody:FC<ProjectCardBodyType> = ({ category, name, description, 
         {category}
       </Badge>
       <h1 className='h4 mb-1 text-primary'>{name}</h1>
-      <p className='text-muted-foreground text-lg mb-2 '>{description}</p>
+      <p className='text-muted-foreground text-lg mb-3 '>{description}</p>
       <div className="flex">
         {/* buttons */}
-        <div className='absolute flex gap-2'>
+        <div className='absolute flex gap-3'>
           <Link 
             href={link} 
             target='_blank' 
-            className='bg-primary px-2 py-1 rounded-full flex gap-1 justify-center items-center  hover:scale-110 text-sm font-medium text-muted'
+            className='bg-primary px-3 py-1 rounded-full flex gap-1 justify-center items-center  hover:scale-110 text-sm font-medium text-muted'
             aria-label='Click to see the Linked Project'
           >
               Demo <FiLink />
-            </Link>
+          </Link>
           <Link 
             href={github} 
             target='_blank' 
-            className='bg-muted text-muted-foreground p-2 rounded-full focus:scale-110'
+            className='bg-muted text-muted-foreground p-2 rounded-full hover:scale-125'
             aria-label='Click to see the Github Repot'
           >
             <FiGithub />
