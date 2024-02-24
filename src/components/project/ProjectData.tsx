@@ -28,7 +28,7 @@ export const projectData:ProjectType[] = [
     category: 'Vite',
     name: 'Leave Management System',
     description: 'A full stack leave management system using Vite, React, Tailwind CSS, React Hook Form, Zustand, Express.JS and Mongodb',
-    link: 'leave-management-app-client-2pkphlp22.vercel.app',
+    link: 'https://leave-management-app-client-2pkphlp22.vercel.app/',
     github: 'https://github.com/jayelemar/leave-management-app-client',
   },
   {
