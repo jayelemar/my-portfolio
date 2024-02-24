@@ -34,9 +34,9 @@ export const projectData:ProjectType[] = [
   {
     desktopImage: '/work/3.png',
     mobileImage: '/work/port-mobile.png',
-    category: 'React',
-    name: 'Bulakenya Giftshop',
-    description: 'A full stack e-commerce app using vite, react, tailwind, redux toolkit and firebase ',
+    category: 'NextJS 13',
+    name: 'My Portfolio',
+    description: 'A Static site using NextJS, tailwind, Nodemailer and React Hook Form.',
     link: 'https://elemar.site/',
     github: 'https://github.com/jayelemar/my-portfolio',
   }
