@@ -12,7 +12,7 @@ const MobileNav = () => {
   const {isOpen } = useMobileNavStore()
 
   return (
-    <div className='z-50'>
+    <div className=''>
       <Sheet open={isOpen}>
         <SheetContent>
           <div className="flex flex-col items-center justify-between h-full py-8">
