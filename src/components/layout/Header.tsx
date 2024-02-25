@@ -3,8 +3,8 @@
 import { usePathname } from "next/navigation";
 import { ThemeToggleBtn } from "../common/ThemeToggleBtn";
 import Logo from "../common/Logo";
-import MobileNav from "./MobileNav";
-import Nav from "./Nav";
+import MobileNav from "../nav/MobileNav";
+import Nav from "../nav/Nav";
 import { useEffect, useState } from "react";
 import { useMobileNavStore } from "@/store/MobileNavStore";
 import { AlignJustify } from "lucide-react";

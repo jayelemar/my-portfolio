@@ -26,8 +26,8 @@ const AboutTabs:FC<AboutTabsProps> = ({ skillSet, getData }) => {
         {/* Tabs Content */}
         <TabsContent value="skillset">
           {/* Skill List */}
-          <span className="text-muted-foreground text-balance mx-auto hidden md:flex">Here are the techonologies and tools that i use everyday.</span>
-          <div className="flex flex-col justify-center text-center xl:text-left">
+          <span className="text-primary text-base mx-auto">Here are the techonologies I worked with.</span>
+          <div className="flex flex-col justify-center text-center xl:text-left mt-2">
             <AboutSkillList 
               skillSet={skillSet} 
               getData={getData} 

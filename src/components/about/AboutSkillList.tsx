@@ -2,14 +2,8 @@
 
 import Image from "next/image";
 import { FC,  } from "react";
-
-import { CarouselContent, Carousel, CarouselItem, CarouselPrevious, CarouselNext } from "../ui/carousel";
-import AutoScroll from 'embla-carousel-auto-scroll'
-
-import AboutSkillFrontend from "./AboutSkillFrontend";
-import AboutSkillBackend from "./AboutSkillBackend";
-import AboutSkillOthers from "./AboutSkillOthers";
-import { SkillSetProps } from "./AboutData";
+import { DataProps, SkillSetProps } from "./AboutData";
+import { HoverCard, HoverCardTrigger } from "../ui/hover-card";
 
 
 
@@ -22,45 +16,62 @@ const AboutSkillList:FC<AboutSkillListProps> = ({ skillSet, getData }) => {
 
 
   return (
-    <div className="">
-    <Carousel
-      opts={{ align: 'start', loop: true, containScroll: "keepSnaps"}}
-      plugins={[
-        AutoScroll({ 
-          speed: .5,
-          startDelay: 100,
-          playOnInit: true,
-          stopOnInteraction: false,
-          stopOnMouseEnter: true,
-        }),
-      ]}
-      className="w-full xl:w-[500px]"
-      
-    >
-      <CarouselContent className="">
 
-        <CarouselItem>
-          <AboutSkillFrontend skillSet={skillSet} getData={getData}  />
-        </CarouselItem>
-        <CarouselItem>
-          <AboutSkillBackend skillSet={skillSet} getData={getData} />
-        </CarouselItem>
-        <CarouselItem>
-          <AboutSkillOthers skillSet={skillSet} getData={getData} />
-        </CarouselItem>
-        <CarouselItem>
-          <AboutSkillFrontend skillSet={skillSet} getData={getData} />
-        </CarouselItem>
-        <CarouselItem>
-          <AboutSkillBackend skillSet={skillSet} getData={getData} />
-        </CarouselItem>
-        <CarouselItem>
-          <AboutSkillOthers skillSet={skillSet} getData={getData} />
-        </CarouselItem>
-  
-      </CarouselContent>
-    </Carousel>
-    </div>
+      <div className="grid grid-cols-4 gap-x-4  xl:grid-cols-5 gap-y-5 pt-2 w-auto relative  right-0 xl:right-10">
+        {getData(skillSet, 'Frontend' )?.data.map((item:DataProps, index:number) => {
+          const {name, imgPath, color} = item
+          return (
+            <div key={index} className="flex flex-col items-center justify-center text-center gap-y-[7px] z-10">
+              <HoverCard>
+                <HoverCardTrigger className='flex flex-col justify-center items-center text-center'>
+                  <>
+                    <div className={`${color} hover:scale-125`}>{imgPath}</div>
+                    <p className=" text-center w-auto  font-medium whitespace-nowrap text-muted-foreground text-[10px] cursor-default ">
+                      {name}
+                    </p>
+                  </>
+                </HoverCardTrigger>
+            </HoverCard>
+            </div>
+          )
+        })}
+        <div className="flex flex-col items-center justify-start text-">
+          <HoverCard>
+            <HoverCardTrigger>
+              <>
+              <Image 
+                src='/about/zustand-logo.png' 
+                alt="zustand" 
+                width={46} 
+                height={46} 
+                className="relative hover:scale-125"
+              />
+              <p className="w-auto text-center mx-auto relative bottom-0.5 font-medium whitespace-nowrap text-muted-foreground text-[10px] cursor-default ">
+                Zustand
+              </p>
+              </>
+            </HoverCardTrigger>
+              </HoverCard>
+        </div>
+        {getData(skillSet, 'Backend' )?.data.map((item:DataProps, index:number) => {
+          const {name, imgPath, color} = item
+          return (
+            <div key={index} className="flex flex-col items-center justify-center text-center">
+              <HoverCard>
+                <HoverCardTrigger className='flex flex-col justify-center items-center text-center'>
+                  <>
+                    <div className={`${color} hover:scale-125`}>{imgPath}</div>
+                    <p className="w-auto text-center mx-auto  font-medium whitespace-nowrap text-muted-foreground text-[10px] cursor-default ">
+                      {name}
+                    </p>
+                  </>
+                </HoverCardTrigger>
+            </HoverCard>
+            </div>
+          )
+        })}
+      </div>
+
   )
 }
 

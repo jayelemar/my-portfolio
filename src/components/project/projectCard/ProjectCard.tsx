@@ -16,7 +16,7 @@ const ProjectCard:FC<ProjectCardProps> = ({ project }) => {
   return (
 
       <Card className='group overflow-hidden relative flex flex-col xl:flex-row  '>
-        <CardHeader className='w-full'>
+        <CardHeader className='basis-1/2'>
           {/* Image */}
           <ProjectCardHeader 
             desktopImage={desktopImage} 

@@ -12,7 +12,7 @@ const HeroText = () => {
         <span className='whitespace-nowrap'>Jay Elemar</span>
       </h1>
       <p className='text-center xl:text-left text-muted-foreground text-xl mb-4 font-light max-w-lg'>
-        an aspiring developer with passion for design, automation and technologies
+        a self taught developer with passion for design, automation and technologies
       </p>
     </>
   )

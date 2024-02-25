@@ -27,7 +27,7 @@ export const projectData:ProjectType[] = [
     mobileImage: '/work/leave-mobile.png',
     category: 'Vite',
     name: 'Leave Management System',
-    description: 'A full stack leave management system using Vite, React, Tailwind CSS, React Hook Form, Zustand, Express.JS and Mongodb',
+    description: 'A full stack leave management system using Vite, React, Tailwind CSS, React Hook Form, Zustand, Express.JS and MongoDB',
     link: 'https://leave-management-app-client.vercel.app/',
     github: 'https://github.com/jayelemar/leave-management-app-client',
   },
@@ -36,7 +36,7 @@ export const projectData:ProjectType[] = [
     mobileImage: '/work/port-mobile.png',
     category: 'NextJS 13',
     name: 'My Portfolio',
-    description: 'A Static site using NextJS, tailwind, Nodemailer and React Hook Form.',
+    description: 'A static site using NextJS, Tailwind CSS, Nodemailer and React Hook Form.',
     link: 'https://elemar.site/',
     github: 'https://github.com/jayelemar/my-portfolio',
   }

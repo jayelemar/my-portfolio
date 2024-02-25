@@ -21,7 +21,7 @@ const links:LinkType[] = [
   { 
     path: 'about',
     name: 'about',
-    offset: getOffset(0, -160),  //desktop , mobile
+    offset: getOffset(-180, -90),  //desktop , mobile
   }, 
   { 
     path: 'projects',

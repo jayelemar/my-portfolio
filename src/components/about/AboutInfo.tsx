@@ -4,7 +4,7 @@ import { GraduationCap } from 'lucide-react';
 
 const AboutInfo = () => {
   return (
-    <div className='mt-12'>
+    <div className='mt-0'>
     {info.map((item, index) => {
       return (
         <div className="flex items-center gap-x-4 m-6 pl-4 mx-auto xl:mx-0 text-left text-balance" key={index}>

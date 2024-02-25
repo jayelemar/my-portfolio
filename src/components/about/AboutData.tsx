@@ -1,5 +1,5 @@
 import { HomeIcon, MailIcon, PhoneCall, User2 } from "lucide-react";
-import { SiCss3, SiFigma, SiGit, SiGithub, SiHtml5, SiJavascript, SiReact, SiReactquery, SiRedux, SiTailwindcss, SiTypescript, SiVisualstudiocode, SiExpress, SiFirebase, SiMongodb, SiPostman  } from "react-icons/si";
+import { SiCss3, SiFigma, SiGit, SiGithub, SiHtml5, SiJavascript, SiReact, SiReactquery, SiRedux, SiTailwindcss, SiTypescript, SiVisualstudiocode, SiExpress, SiFirebase, SiMongodb, SiPostman, SiReacthookform  } from "react-icons/si";
 import { FaSass } from "react-icons/fa";
 import { TbBrandNextjs } from "react-icons/tb";
 import { FaNodeJs } from "react-icons/fa";
@@ -45,14 +45,19 @@ export const skillSet: SkillSetProps[]  = [
     title: 'Frontend',
     data: [
       {
+        name: 'HTML',
+        imgPath: <SiHtml5 size={40} />,
+        color: 'text-[#dd4b25]'
+      },
+      {
+        name: 'CSS',
+        imgPath: <SiCss3 size={40} />,
+        color: 'text-[#2862e9]'
+      },
+      {
         name: 'Javascript',
         imgPath: <SiJavascript size={40} />, 
         color: 'text-[#efd81d]'
-      },
-      {
-        name: 'Typescript',
-        imgPath: <SiTypescript size={40} />,
-        color: 'text-[#0076c6]'
       },
       {
         name: 'React',
@@ -60,21 +65,21 @@ export const skillSet: SkillSetProps[]  = [
         color: 'text-[#00d1f7]'
       },
       {
+        name: 'Typescript',
+        imgPath: <SiTypescript size={40} />,
+        color: 'text-[#0076c6]'
+      },
+      {
         name: 'NextJS 13',
         imgPath: <TbBrandNextjs size={40} />,
         color: 'dark:text-white'
       },  
-      {
-        name: 'Sass',
-        imgPath: <FaSass size={40} />,
-        color: 'text-[#c66394]'
-      },
+
       {
         name: 'Tailwind',
         imgPath: <SiTailwindcss size={40} />,
         color: 'text-[#08b1cf]'
       },
-
       {
         name: 'React Query',
         imgPath: <SiReactquery size={40} />,
@@ -95,27 +100,13 @@ export const skillSet: SkillSetProps[]  = [
         name: 'ExpressJS',
         imgPath: <SiExpress size={40} />,
       },
-      {
-        name: 'Firebase',
-        imgPath: <SiFirebase size={40} />,
-        color: 'text-[#f7c52a]'
-      },
+
       {
         name: 'MongoDB',
         imgPath: <SiMongodb size={40} />,
         color: 'text-[#50ae3e]'
       },
 
-    ]
-  },
-  {
-    title: 'Others',
-    data: [
-      {
-        name: 'VScode',
-        imgPath: <SiVisualstudiocode size={40} />,
-        color: 'text-[#36aaf2]'
-      },
       {
         name: 'Git',
         imgPath: <SiGit size={40} />,
@@ -130,6 +121,8 @@ export const skillSet: SkillSetProps[]  = [
         imgPath: <SiPostman size={40} />,
         color: 'text-[#f76935]'
       },
+
     ]
   },
+  
 ]
