@@ -9,15 +9,19 @@ import { useMobileNavStore } from '@/store/MobileNavStore';
 
 
 const MobileNav = () => {
-  const {isOpen } = useMobileNavStore()
+  const {isOpen, setIsOpen} = useMobileNavStore()
+  const handleNavClick = () => {
+    setIsOpen(!isOpen)
+  };
 
   return (
     <div className=''>
-      <Sheet open={isOpen}>
+      <Sheet open={isOpen} onOpenChange={handleNavClick}>
         <SheetContent>
-          <div className="flex flex-col items-center justify-between h-full py-8">
-            <div className="flex flex-col items-center gap-y-32">
-              <Logo  />
+          <div className="flex flex-col items-center justify-between h-full py-0 gap-4">
+            <Logo  />
+            <div className="flex flex-col items-center h-full justify-center">
+
               <Nav 
                 containerStyles='flex flex-col gap-y-6 items-center' 
                 linkStyles='text-2xl' 
