@@ -17,7 +17,7 @@ const AboutSkillList:FC<AboutSkillListProps> = ({ skillSet, getData }) => {
 
   return (
 
-      <div className="grid grid-cols-4 sm:grid-cols-5 gap-y-5 pt-2 gap-x-4 sm:gap-x-8 xl:gap-x-4 w-auto relative  right-0 xl:right-10">
+      <div className="grid grid-cols-4 sm:grid-cols-5 gap-y-5 pt-2 gap-x-4 sm:gap-x-8 xl:gap-x-4 w-auto relative  right-0 xl:right-10 h-[345px]  xl:h-[255px]">
         {getData(skillSet, 'Frontend' )?.data.map((item:DataProps, index:number) => {
           const {name, imgPath, color} = item
           return (
