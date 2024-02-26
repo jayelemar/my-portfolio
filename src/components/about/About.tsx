@@ -13,7 +13,7 @@ const About = () => {
   };
 
   return (
-    <section id="about"  className="h-[85vh] xl:mt-32 mb-44 xl:mb-40 xl:py-24 relative flex justify-center items-center">
+    <section id="about"  className="h-[85vh] xl:mt-32 mb-44 xl:mb-40 xl:py-24 relative flex -scroll-mt-12 justify-center items-center">
       <div className="container mx-auto overflow-hidden">
         <h2  className="mb-6 text-center mx-auto text-4xl font-bold relative w-max flex items-center justify-between gap-x-3 ">
           <CircleUserRound size={35} className="text-primary"/>About Me
