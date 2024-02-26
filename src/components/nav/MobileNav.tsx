@@ -8,7 +8,7 @@ import { Sheet, SheetContent } from '../ui/sheet'
 import { useMobileNavStore } from '@/store/MobileNavStore';
 
 
-const MobileNav = () => {
+const MobileNav = ({children}: {children: React.ReactNode}) => {
   const {isOpen, setIsOpen} = useMobileNavStore()
   const handleNavClick = () => {
     setIsOpen(!isOpen)
@@ -22,11 +22,7 @@ const MobileNav = () => {
             <Logo  />
             <div className="flex flex-col items-center h-full justify-center">
 
-              <Nav 
-                containerStyles='flex flex-col gap-y-6 items-center' 
-                linkStyles='text-2xl' 
-                activeLinkStyles=''
-              />
+            {children}
 
             </div>
             <Socials 
