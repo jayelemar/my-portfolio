@@ -62,7 +62,7 @@ const ContactForm = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col mx-auto gap-y-4 w-full xl:relative top-[27px]"
       >
-        <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row flex-1 gap-5 ">
+        <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row flex-1 gap-4 xl:gap-5 ">
         
         {/* Name */}
         <div className="relative flex items-center mb-2 w-full mr-4">
@@ -85,7 +85,7 @@ const ContactForm = () => {
                   <User className=" absolute right-6 bottom-4" size={20} />
                   </div>
                 </FormControl>
-                  <FormMessage className="absolute text-xs -bottom-5 left-8 w-full" />
+                  <FormMessage className="absolute text-xs -bottom-5 left-[28px] w-full" />
               </FormItem>
             )}
           />
@@ -112,7 +112,7 @@ const ContactForm = () => {
                   <MailIcon className=" absolute right-6 bottom-4" size={20} />
                 </div>
                 </FormControl>
-                  <FormMessage className="absolute text-xs -bottom-5 left-8 w-full" />
+                  <FormMessage className="absolute text-xs -bottom-5 left-[28px] w-full" />
               </FormItem>
             )}
           />
@@ -121,7 +121,7 @@ const ContactForm = () => {
         </div>
 
         {/* Message */}
-        <div className="relative mb-3 mt-2">
+        <div className="relative mb-3">
           <FormField 
             control={form.control}
             name="message"
@@ -137,7 +137,7 @@ const ContactForm = () => {
                     {...field}
                   />
                 </FormControl>
-                  <FormMessage className="absolute text-xs -bottom-5 left-8 w-full" />
+                  <FormMessage className="absolute text-xs -bottom-5 left-[28px] w-full" />
               </FormItem>
             )}
           />
