@@ -10,7 +10,6 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { useToast } from '../ui/use-toast';
 import { useFormSubmit } from "@/service/formServices";
 
-
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "Name must be at least 2 characters.",
@@ -63,7 +62,7 @@ const ContactForm = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col mx-auto gap-y-4 w-full xl:relative top-[27px]"
       >
-        <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row flex-1 ">
+        <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row flex-1 gap-5 ">
         
         {/* Name */}
         <div className="relative flex items-center mb-2 w-full mr-4">
@@ -73,21 +72,24 @@ const ContactForm = () => {
             render={({ field }) => (
               <FormItem className="w-full flex flex-col justify-center items-start">
                 <FormLabel 
-                  className="absolute bg-background px-1 top-0 left-6 text-muted-foreground"
+                  className="absolute bg-background px-1 top-0 left-6 text-muted-foreground z-10"
                 >
                   Name:
                 </FormLabel>
                 <FormControl>
+                  <div className='flex relative w-full'>
                   <Input 
                     className="px-8 h-[54px] rounded-2xl text-base " 
                     {...field}
-                  />
+                    />
+                  <User className=" absolute right-6 bottom-4" size={20} />
+                  </div>
                 </FormControl>
-                  <FormMessage />
+                  <FormMessage className="absolute text-xs -bottom-5 left-8 w-full" />
               </FormItem>
             )}
           />
-          <User className=" absolute right-6 bottom-4" size={20} />
+
         </div>
 
         {/* Email */}
@@ -98,25 +100,28 @@ const ContactForm = () => {
             render={({ field }) => (
               <FormItem className="w-full flex flex-col justify-center items-start">
                 <FormLabel 
-                  className="absolute bg-background px-1 top-0 left-6 text-muted-foreground"
+                  className="absolute bg-background px-1 top-0 left-6 text-muted-foreground z-10"
                 >
                   Email:</FormLabel>
                 <FormControl>
+                <div className='flex relative w-full'>
                   <Input 
                     className="px-8 h-[54px] rounded-2xl text-base" 
                     {...field}
                   />
+                  <MailIcon className=" absolute right-6 bottom-4" size={20} />
+                </div>
                 </FormControl>
-                  <FormMessage />
+                  <FormMessage className="absolute text-xs -bottom-5 left-8 w-full" />
               </FormItem>
             )}
           />
-          <MailIcon className=" absolute right-6 bottom-4" size={20} />
+          
         </div>
         </div>
 
         {/* Message */}
-        <div className="relative">
+        <div className="relative mb-3 mt-2">
           <FormField 
             control={form.control}
             name="message"
@@ -132,7 +137,7 @@ const ContactForm = () => {
                     {...field}
                   />
                 </FormControl>
-                  <FormMessage />
+                  <FormMessage className="absolute text-xs -bottom-5 left-8 w-full" />
               </FormItem>
             )}
           />
