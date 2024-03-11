@@ -39,6 +39,26 @@ const ContactForm = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
 
     // console.log({ values });
+
+    try {
+      const response = await fetch('api/sendEmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+  
+      if (response.ok) {
+        console.log('Email sent successfully');
+      } else {
+        console.error('Error sending email1:', await response.text());
+      }
+    } catch (error) {
+      console.error('Error sending email2:', error);
+    }
+
+
     toast({
       title: `Hello ${values.name},`,
       description: `Thank you for reaching out.
@@ -46,8 +66,9 @@ const ContactForm = () => {
     })
 
     try {
-      FormSubmitMutation(values);
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      new Promise(resolve => setTimeout(resolve, 2000));
+
+      await FormSubmitMutation(values);
       form.reset();
     } catch (error) {
       console.error('Error sending email:', error);
