@@ -4,8 +4,8 @@ import Image from "next/image";
 import { FC,  } from "react";
 import { DataProps, SkillSetProps } from "./AboutData";
 import { HoverCard, HoverCardTrigger } from "../ui/hover-card";
-
-
+import {motion} from 'framer-motion'
+import { statsContainerVariant, statsItem } from "@/lib/variant";
 
 export type AboutSkillListProps = {
   skillSet: SkillSetProps[],
@@ -14,14 +14,22 @@ export type AboutSkillListProps = {
 
 const AboutSkillList:FC<AboutSkillListProps> = ({ skillSet, getData }) => {
 
-
   return (
-
-      <div className="grid grid-cols-4 sm:grid-cols-5 gap-y-5 pt-2 gap-x-4 sm:gap-x-8 xl:gap-x-4 w-auto relative  right-0 xl:right-10 h-[345px]  xl:h-[255px]">
+      <motion.div 
+        variants={statsContainerVariant}
+        initial='hidden'
+        whileInView={'show'}
+        viewport={{once: false, amount: 0.3 }}
+        className="grid grid-cols-4 sm:grid-cols-5 gap-y-5 pt-2 gap-x-4 sm:gap-x-8 xl:gap-x-4 w-auto relative  right-0 xl:right-10"
+      >
         {getData(skillSet, 'Frontend' )?.data.map((item:DataProps, index:number) => {
           const {name, imgPath, color} = item
           return (
-            <div key={index} className="flex flex-col items-center justify-center text-center gap-y-[7px] z-10">
+            <motion.div
+              variants={statsItem}
+              key={index} 
+              className="flex flex-col items-center justify-center text-center gap-y-[7px] z-10"
+            >
               <HoverCard>
                 <HoverCardTrigger className='flex flex-col justify-center items-center text-center'>
                   <>
@@ -32,10 +40,13 @@ const AboutSkillList:FC<AboutSkillListProps> = ({ skillSet, getData }) => {
                   </>
                 </HoverCardTrigger>
             </HoverCard>
-            </div>
+            </motion.div>
           )
         })}
-        <div className="flex flex-col items-center justify-start text-">
+        <motion.div
+          variants={statsItem}
+          className="flex flex-col items-center justify-start text-center"
+        >
           <HoverCard>
             <HoverCardTrigger>
               <>
@@ -52,11 +63,15 @@ const AboutSkillList:FC<AboutSkillListProps> = ({ skillSet, getData }) => {
               </>
             </HoverCardTrigger>
               </HoverCard>
-        </div>
+        </motion.div>
         {getData(skillSet, 'Backend' )?.data.map((item:DataProps, index:number) => {
           const {name, imgPath, color} = item
           return (
-            <div key={index} className="flex flex-col items-center justify-center text-center">
+            <motion.div 
+              variants={statsItem}
+              key={index} 
+              className="flex flex-col items-center justify-center text-center"
+            >
               <HoverCard>
                 <HoverCardTrigger className='flex flex-col justify-center items-center text-center'>
                   <>
@@ -67,10 +82,10 @@ const AboutSkillList:FC<AboutSkillListProps> = ({ skillSet, getData }) => {
                   </>
                 </HoverCardTrigger>
             </HoverCard>
-            </div>
+            </motion.div>
           )
         })}
-      </div>
+      </motion.div>
 
   )
 }

@@ -7,7 +7,7 @@ import { Suspense } from 'react';
 
 const Hero = () => {
   return (
-    <section  id='hero'  className='py-0 h-[85vh] mb-44 xl:mb-0 xl:py-4 bg-hero bg-no-repeat bg-bottom bg-cover dark:bg-none flex justify-center items-center '>
+    <section  id='hero'  className='py-0 h-[85vh] mb-56 xl:py-4 bg-hero bg-no-repeat bg-bottom bg-cover dark:bg-none flex justify-center items-center '>
       <div className="container mx-auto">
         <div  className="flex justify-between gap-x-8 relative ">
           <HeroHeader />

@@ -10,7 +10,7 @@ import { fadeIn } from "@/lib/variant";
 
 const HeroButtons = () => {
   return (
-    <div className="flex flex-col gap-3 lg:flex-row lg:justify-center xl:justify-start w-full mx-auto xl:mx-0 mb-16 xs:mb-5 lg:mb-12 xl:mb-5">
+    <div className="flex flex-col gap-3 lg:flex-row lg:justify-center xl:justify-start w-full mx-auto xl:mx-0 mb-12 xs:mb-5 lg:mb-12 xl:mb-5">
       <motion.div
         variants={fadeIn('up', 1.2)}
         initial='hidden'
