@@ -24,3 +24,29 @@ export const fadeIn = (direction:string, delay: number) => {
     }
   }
 }
+
+export const statsContainerVariant = {
+  hidden: { opacity: 0 },
+  show: { 
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      duration: 0.5,
+      ease: 'linear',
+      delayChildren: 1.2, 
+    }
+  },
+}
+
+export const statsItem = {
+  hidden: { y: 20 , opacity: 0 },
+  show: {
+    y: 0 ,
+    opacity: 1,
+    delay: 2,
+    transition: {
+      duration: 0.5,
+      ease: [ 0.25, 0.6, 0.3, 0.8 ],
+    }
+  }
+}
