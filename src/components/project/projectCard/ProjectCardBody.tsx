@@ -13,12 +13,12 @@ type ProjectCardBodyType = {
 
 const ProjectCardBody:FC<ProjectCardBodyType> = ({ category, name, description, link, github }) => {
   return (
-    <div className=" h-full px-8 pt-0 pb-16 xl:py-6">
+    <div className=" h-full px-8 pt-0 pb-16 xl:py-6 xl:basis-1/2">
       <Badge className='uppercase text-sm font-medium mb-2 absolute top-4 left-5' >
         {category}
       </Badge>
       <h1 className='h4 mb-1 text-primary'>{name}</h1>
-      <p className='text-muted-foreground text-lg mb-3 '>{description}</p>
+      <p className='text-muted-foreground text-lg mb-3'>{description}</p>
       <div className="flex">
         {/* buttons */}
         <div className='absolute flex gap-3'>

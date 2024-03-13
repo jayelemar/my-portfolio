@@ -9,6 +9,8 @@ import { Button } from "../ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import { useToast } from '../ui/use-toast';
 import { useFormSubmit } from "@/service/formServices";
+import { motion } from 'framer-motion'
+import { fadeIn } from "@/lib/variant";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -86,7 +88,13 @@ const ContactForm = () => {
         <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row flex-1 gap-4 xl:gap-5 ">
         
         {/* Name */}
-        <div className="relative flex items-center mb-2 w-full mr-4">
+        <motion.div 
+          variants={fadeIn('up', 1.0)}
+          initial='hidden'
+          whileInView={'show'}
+          viewport={{once:false, amount: 0.2}}
+          className="relative flex items-center mb-2 w-full mr-4"
+        >
           <FormField 
             control={form.control}
             name="name"
@@ -111,10 +119,16 @@ const ContactForm = () => {
             )}
           />
 
-        </div>
+        </motion.div>
 
         {/* Email */}
-        <div className="relative flex items-center mb-2  w-full">
+        <motion.div
+          variants={fadeIn('up', 1.2)}
+          initial='hidden'
+          whileInView={'show'}
+          viewport={{once:false, amount: 0.2}}
+          className="relative flex items-center mb-2  w-full"
+        >
           <FormField 
             control={form.control}
             name="email"
@@ -138,11 +152,17 @@ const ContactForm = () => {
             )}
           />
           
-        </div>
+        </motion.div>
         </div>
 
         {/* Message */}
-        <div className="relative mb-3">
+        <motion.div
+          variants={fadeIn('up', 1.4)}
+          initial='hidden'
+          whileInView={'show'}
+          viewport={{once:false, amount: 0.2}}
+          className="relative mb-3"
+        >
           <FormField 
             control={form.control}
             name="message"
@@ -163,29 +183,36 @@ const ContactForm = () => {
             )}
           />
           <MessageSquare className=" absolute right-6 top-8" size={20} />
-        </div>
-
-        <Button 
-          type="submit" disabled={isPending || isSuccess }
-          className="flex items-center w-full sm:max-w-48 xl:max-w-[400px] rounded-full gap-2 "
+        </motion.div>
+        <motion.div
+          variants={fadeIn('up', .4)}
+          initial='hidden'
+          whileInView={'show'}
+          viewport={{once:false, amount: 0.1}}
         >
-          {isPending ? (
-            <>
-              <span>Loading</span>
-              <Loader2 className='animate-spin' size={20} />
-            </>
-          ) : isSuccess ? (
-            <>
-              <span>Message Sent</span>
-              <Check size={20} />
-            </>
-          ) : (
-            <>
-              <span>Let&apos;s Talk</span>
-              <ArrowRightIcon size={20} />
-            </>
-          )}
-        </Button>
+          <Button 
+            type="submit" disabled={isPending || isSuccess }
+            className="flex items-center w-full sm:max-w-48 xl:max-w-[400px] rounded-full gap-2 "
+          >
+            {isPending ? (
+              <>
+                <span>Loading</span>
+                <Loader2 className='animate-spin' size={20} />
+              </>
+            ) : isSuccess ? (
+              <>
+                <span>Message Sent</span>
+                <Check size={20} />
+              </>
+            ) : (
+              <>
+                <span>Let&apos;s Talk</span>
+                <ArrowRightIcon size={20} />
+              </>
+            )}
+          </Button>
+        </motion.div>
+
       </form>
     </Form>
     </>
