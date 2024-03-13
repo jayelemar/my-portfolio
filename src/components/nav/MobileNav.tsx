@@ -1,5 +1,5 @@
 'use client';
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 import Logo from '../common/Logo'
 import Socials from '../common/Socials'
 
@@ -59,4 +59,4 @@ const MobileNav:FC<NavProps> = ({ containerStyles, linkStyles, activeLinkStyles 
   )
 }
 
-export default MobileNav
+export default memo(MobileNav)
