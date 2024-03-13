@@ -4,6 +4,8 @@ import { RiArrowDownSFill } from 'react-icons/ri'
 import HeroImage from './HeroImage';
 import HeroHeader from './HeroHeader';
 import { Suspense } from 'react';
+import { motion } from 'framer-motion'
+import { fadeIn } from '@/lib/variant';
 
 const Hero = () => {
   return (
@@ -16,9 +18,15 @@ const Hero = () => {
           </Suspense>
 
           {/* down icon */}
-          <div className='hidden xl:flex absolute left-2/4 -bottom-4 animate-bounce '>
+          <motion.div
+            variants={fadeIn('up', 0.8)}
+            initial='hidden'
+            whileInView={'show'}
+            viewport={{once:false, amount: 0.2}}
+            className='hidden xl:flex absolute left-2/4 -bottom-4 animate-bounce'
+          >
             <RiArrowDownSFill className='text-3xl text-primary'/>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -5,7 +5,7 @@ import { FC,  } from "react";
 import { DataProps, SkillSetProps } from "./AboutData";
 import { HoverCard, HoverCardTrigger } from "../ui/hover-card";
 import {motion} from 'framer-motion'
-import { statsContainerVariant, statsItem } from "@/lib/variant";
+import { containerVariant, itemVariant } from "@/lib/variant";
 
 export type AboutSkillListProps = {
   skillSet: SkillSetProps[],
@@ -16,7 +16,7 @@ const AboutSkillList:FC<AboutSkillListProps> = ({ skillSet, getData }) => {
 
   return (
       <motion.div 
-        variants={statsContainerVariant}
+        variants={containerVariant}
         initial='hidden'
         whileInView={'show'}
         viewport={{once: false, amount: 0.3 }}
@@ -26,7 +26,7 @@ const AboutSkillList:FC<AboutSkillListProps> = ({ skillSet, getData }) => {
           const {name, imgPath, color} = item
           return (
             <motion.div
-              variants={statsItem}
+              variants={itemVariant}
               key={index} 
               className="flex flex-col items-center justify-center text-center gap-y-[7px] z-10"
             >
@@ -44,7 +44,7 @@ const AboutSkillList:FC<AboutSkillListProps> = ({ skillSet, getData }) => {
           )
         })}
         <motion.div
-          variants={statsItem}
+          variants={itemVariant}
           className="flex flex-col items-center justify-start text-center"
         >
           <HoverCard>
@@ -68,7 +68,7 @@ const AboutSkillList:FC<AboutSkillListProps> = ({ skillSet, getData }) => {
           const {name, imgPath, color} = item
           return (
             <motion.div 
-              variants={statsItem}
+              variants={itemVariant}
               key={index} 
               className="flex flex-col items-center justify-center text-center"
             >

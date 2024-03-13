@@ -1,8 +1,10 @@
 'use client';
 
+
 import ProjectCard from "./projectCard/ProjectCard";
 import { projectData } from "./ProjectData";
 import ProjectHeader from "./ProjectHeader";
+
 
 const Projects = () => {
   return (
@@ -13,7 +15,7 @@ const Projects = () => {
         <ProjectHeader />
         
         {/* Projects */}
-        <div className="grid grid-cols-1 gap-4">
+        <div className="flex flex-col gap-10">
           {projectData.map((project, index) => {
             return (
               <ProjectCard key={index} project={project}/>

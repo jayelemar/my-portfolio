@@ -8,7 +8,7 @@ type ProjectCardHeader = {
 
 const ProjectCardHeader:FC<ProjectCardHeader> = ({ desktopImage, mobileImage }) => {
   return (
-    <div className="relative w-full h-[210px] sm:h-[300px] flex items-center justify-center lg:bg-[110%] lg:no-repeat overflow-hidden bg-green-50 "
+    <div className="relative w-full  h-[210px] sm:h-[300px] flex items-center justify-center lg:bg-[110%] lg:no-repeat overflow-hidden bg-green-50 "
     >
       <Image 
         src={desktopImage} 
@@ -19,7 +19,7 @@ const ProjectCardHeader:FC<ProjectCardHeader> = ({ desktopImage, mobileImage }) 
         loading='lazy'
       />
 
-      <div className="w-[700px] flex justify-center items-center relative">
+      <div className="w-[700px] justify-center items-center relative hidden sm:flex">
         <Image 
           src='/work/laptop-view.png' 
           alt='laptop-view' 
