@@ -1,14 +1,17 @@
 'use client';
-import React from 'react'
+import React, { FC } from 'react'
 import Logo from '../common/Logo'
-import Nav from './Nav'
 import Socials from '../common/Socials'
 
 import { Sheet, SheetContent } from '../ui/sheet'
 import { useMobileNavStore } from '@/store/MobileNavStore';
+import { links } from './NavData';
+
+import { NavProps } from './Nav';
+import { Link } from 'react-scroll';
 
 
-const MobileNav = ({children}: {children: React.ReactNode}) => {
+const MobileNav:FC<NavProps> = ({ containerStyles, linkStyles, activeLinkStyles }) => {
   const {isOpen, setIsOpen} = useMobileNavStore()
   const handleNavClick = () => {
     setIsOpen(!isOpen)
@@ -22,7 +25,26 @@ const MobileNav = ({children}: {children: React.ReactNode}) => {
             <Logo  />
             <div className="flex flex-col items-center h-full justify-center">
 
-            {children}
+            <nav className={containerStyles}>
+            {links.map((link, index) => (
+              <Link 
+                key={index} 
+                to={link.path} 
+                smooth={true} 
+                duration={300} 
+                offset={link.offset}
+                activeClass={activeLinkStyles} 
+                spy={true} 
+                hashSpy={true} 
+                spyThrottle={500} 
+                ignoreCancelEvents={false}
+                className={linkStyles}
+                onClick={() => setIsOpen(false)}
+              >
+                <span className="capitalize cursor-pointer">{link.name}</span>
+              </Link>
+            ))}
+            </nav>
 
             </div>
             <Socials 
