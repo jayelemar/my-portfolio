@@ -5,7 +5,7 @@ import { Link } from "react-scroll"
 import { useMobileNavStore } from "@/store/MobileNavStore";
 import { links } from "./NavData";
 
-type NavProps = {
+export type NavProps = {
   containerStyles: string,
   linkStyles: string,
   activeLinkStyles:string,

@@ -62,13 +62,11 @@ const Header = () => {
                 className="cursor-pointer lg:hidden"
                 onClick={handleClick}
               />
-            <MobileNav>
-              <Nav 
-                containerStyles='flex flex-col gap-y-6 items-center' 
-                linkStyles='text-2xl' 
-                activeLinkStyles=''
-              />
-            </MobileNav>
+            <MobileNav 
+              containerStyles='flex flex-col gap-y-6 items-center' 
+              linkStyles='text-2xl' 
+              activeLinkStyles=''
+            />
 
             </div>
           </div>
