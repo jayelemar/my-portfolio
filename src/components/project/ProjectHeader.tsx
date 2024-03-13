@@ -18,7 +18,7 @@ const ProjectHeader = () => {
       </motion.h2>
 
       <motion.p
-        variants={fadeIn('up', 0.8)}
+        variants={fadeIn('left', 0.8)}
         initial='hidden'
         whileInView={'show'}
         viewport={{once:false, amount: 0.2}}

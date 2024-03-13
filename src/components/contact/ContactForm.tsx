@@ -88,13 +88,7 @@ const ContactForm = () => {
         <div className="flex flex-col sm:flex-row md:flex-col lg:flex-row flex-1 gap-4 xl:gap-5 ">
         
         {/* Name */}
-        <motion.div 
-          variants={fadeIn('up', 1.0)}
-          initial='hidden'
-          whileInView={'show'}
-          viewport={{once:false, amount: 0.2}}
-          className="relative flex items-center mb-2 w-full mr-4"
-        >
+        <div className="relative flex items-center mb-2 w-full mr-4">
           <FormField 
             control={form.control}
             name="name"
@@ -119,16 +113,10 @@ const ContactForm = () => {
             )}
           />
 
-        </motion.div>
+        </div>
 
         {/* Email */}
-        <motion.div
-          variants={fadeIn('up', 1.2)}
-          initial='hidden'
-          whileInView={'show'}
-          viewport={{once:false, amount: 0.2}}
-          className="relative flex items-center mb-2  w-full"
-        >
+        <div className="relative flex items-center mb-2  w-full">
           <FormField 
             control={form.control}
             name="email"
@@ -152,17 +140,11 @@ const ContactForm = () => {
             )}
           />
           
-        </motion.div>
+        </div>
         </div>
 
         {/* Message */}
-        <motion.div
-          variants={fadeIn('up', 1.4)}
-          initial='hidden'
-          whileInView={'show'}
-          viewport={{once:false, amount: 0.2}}
-          className="relative mb-3"
-        >
+        <div className="relative mb-3">
           <FormField 
             control={form.control}
             name="message"
@@ -183,13 +165,8 @@ const ContactForm = () => {
             )}
           />
           <MessageSquare className=" absolute right-6 top-8" size={20} />
-        </motion.div>
-        <motion.div
-          variants={fadeIn('up', 1.6)}
-          initial='hidden'
-          whileInView={'show'}
-          viewport={{once:false, amount: 0.1}}
-        >
+        </div>
+
           <Button 
             type="submit" disabled={isPending || isSuccess }
             className="flex items-center w-full sm:max-w-48 xl:max-w-[400px] rounded-full gap-2 "
@@ -211,7 +188,6 @@ const ContactForm = () => {
               </>
             )}
           </Button>
-        </motion.div>
 
       </form>
     </Form>
