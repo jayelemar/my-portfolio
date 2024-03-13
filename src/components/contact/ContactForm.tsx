@@ -185,7 +185,7 @@ const ContactForm = () => {
           <MessageSquare className=" absolute right-6 top-8" size={20} />
         </motion.div>
         <motion.div
-          variants={fadeIn('up', .4)}
+          variants={fadeIn('up', 1.6)}
           initial='hidden'
           whileInView={'show'}
           viewport={{once:false, amount: 0.1}}
