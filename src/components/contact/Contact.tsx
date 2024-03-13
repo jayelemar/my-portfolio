@@ -83,9 +83,15 @@ const Contact = () => {
           </motion.div>
           </div>
           {/* form */}
-          <div className="md:basis-4/5">
-          <ContactForm />
-          </div>
+          <motion.div 
+            variants={fadeIn('left', 2.0)}
+            initial='hidden'
+            whileInView={'show'}
+            viewport={{once:false, amount: 0.2}}
+            className="md:basis-4/5"
+          >
+            <ContactForm />
+          </motion.div>
         </div>
 
 
