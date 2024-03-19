@@ -1,6 +1,7 @@
 import { HomeIcon, MailIcon, PhoneCall, User2 } from "lucide-react";
-import { SiCss3, SiFigma, SiGit, SiGithub, SiHtml5, SiJavascript, SiReact, SiReactquery, SiRedux, SiTailwindcss, SiTypescript, SiVisualstudiocode, SiExpress, SiFirebase, SiMongodb, SiPostman, SiReacthookform  } from "react-icons/si";
-import { FaSass } from "react-icons/fa";
+import { SiCss3, SiGit, SiGithub, SiHtml5, SiJavascript, SiReact, SiReactquery, SiTailwindcss, SiTypescript, SiExpress, SiPrisma, SiMysql  } from "react-icons/si";
+import { GrMysql } from "react-icons/gr";
+
 import { TbBrandNextjs } from "react-icons/tb";
 import { FaNodeJs } from "react-icons/fa";
 
@@ -102,11 +103,15 @@ export const skillSet: SkillSetProps[]  = [
       },
 
       {
-        name: 'MongoDB',
-        imgPath: <SiMongodb size={40} />,
-        color: 'text-[#50ae3e]'
+        name: 'Prisma',
+        imgPath: <SiPrisma size={40} />,
+        color: ''
       },
-
+      {
+        name: 'MySQL',
+        imgPath: <GrMysql size={40} />,
+        color: 'text-[#015c87]'
+      },
       {
         name: 'Git',
         imgPath: <SiGit size={40} />,
@@ -116,12 +121,6 @@ export const skillSet: SkillSetProps[]  = [
         name: 'Github',
         imgPath: <SiGithub size={40} />
       },
-      {
-        name: 'Postman',
-        imgPath: <SiPostman size={40} />,
-        color: 'text-[#f76935]'
-      },
-
     ]
   },
   

@@ -1,7 +1,7 @@
 'use client';
 
 import Image from "next/image";
-import { FC,  } from "react";
+import { FC } from "react";
 import { DataProps, SkillSetProps } from "./AboutData";
 import { HoverCard, HoverCardTrigger } from "../ui/hover-card";
 import {motion} from 'framer-motion'

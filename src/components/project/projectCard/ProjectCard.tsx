@@ -23,7 +23,7 @@ const ProjectCard:FC<ProjectCardProps> = ({ project }) => {
         viewport={{once:false, amount: 0.1}}
       >
         <Card className='group overflow-hidden relative flex flex-col xl:flex-row'>
-          <CardHeader className=''>
+          <CardHeader className='xl:w-[700px]'>
             {/* Image */}
             <ProjectCardHeader 
               desktopImage={desktopImage} 
