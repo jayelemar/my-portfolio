@@ -1,7 +1,8 @@
 import { HomeIcon, MailIcon, PhoneCall, User2 } from "lucide-react";
-import { SiCss3, SiGit, SiGithub, SiHtml5, SiJavascript, SiReact, SiReactquery, SiTailwindcss, SiTypescript, SiExpress, SiPrisma, SiMysql  } from "react-icons/si";
+import { 
+  SiCss3, SiGit, SiGithub, SiHtml5, SiJavascript, SiReact, SiTailwindcss, SiTypescript, SiExpress, SiPrisma, SiMongodb, SiJest 
+} from "react-icons/si";
 import { GrMysql } from "react-icons/gr";
-
 import { TbBrandNextjs } from "react-icons/tb";
 import { FaNodeJs } from "react-icons/fa";
 
@@ -81,12 +82,6 @@ export const skillSet: SkillSetProps[]  = [
         imgPath: <SiTailwindcss size={40} />,
         color: 'text-[#08b1cf]'
       },
-      {
-        name: 'React Query',
-        imgPath: <SiReactquery size={40} />,
-        color: 'text-[#f73f51]'
-      },
-
     ]
   },
   {
@@ -113,6 +108,11 @@ export const skillSet: SkillSetProps[]  = [
         color: 'text-[#015c87]'
       },
       {
+        name: 'MongoDB',
+        imgPath: <SiMongodb size={40} />,
+        color: 'text-[#599636]'
+      },
+      {
         name: 'Git',
         imgPath: <SiGit size={40} />,
         color: 'text-[#e84d31]'
@@ -121,6 +121,11 @@ export const skillSet: SkillSetProps[]  = [
         name: 'Github',
         imgPath: <SiGithub size={40} />
       },
+      {
+        name: 'Jest',
+        imgPath: <SiJest size={40} />,
+        color: 'text-[#c03b13]'
+      }
     ]
   },
   

@@ -1,6 +1,5 @@
 'use client';
 
-import Image from "next/image";
 import { FC } from "react";
 import { DataProps, SkillSetProps } from "./AboutData";
 import { HoverCard, HoverCardTrigger } from "../ui/hover-card";
@@ -43,27 +42,6 @@ const AboutSkillList:FC<AboutSkillListProps> = ({ skillSet, getData }) => {
             </motion.div>
           )
         })}
-        <motion.div
-          variants={itemVariant}
-          className="flex flex-col items-center justify-start text-center"
-        >
-          <HoverCard>
-            <HoverCardTrigger>
-              <>
-              <Image 
-                src='/about/zustand-logo.png' 
-                alt="zustand" 
-                width={46} 
-                height={46} 
-                className="relative hover:scale-125"
-              />
-              <p className="w-auto text-center mx-auto relative bottom-0.5 font-medium whitespace-nowrap text-muted-foreground text-[10px] cursor-default ">
-                Zustand
-              </p>
-              </>
-            </HoverCardTrigger>
-              </HoverCard>
-        </motion.div>
         {getData(skillSet, 'Backend' )?.data.map((item:DataProps, index:number) => {
           const {name, imgPath, color} = item
           return (

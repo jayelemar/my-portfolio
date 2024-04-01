@@ -8,6 +8,8 @@ import Nav from "../nav/Nav";
 import { useEffect, useState } from "react";
 import { useMobileNavStore } from "@/store/MobileNavStore";
 import { AlignJustify } from "lucide-react";
+import { motion } from 'framer-motion'
+import { fadeIn } from "@/lib/variant";
 
 const Header = () => {
 
@@ -43,7 +45,14 @@ const Header = () => {
     >
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
-          <Logo/>
+          <motion.div
+            variants={fadeIn('right', 0.2)}
+            initial='hidden'
+            whileInView={'show'}
+            viewport={{once:false, amount: 0.2}}
+          >
+            <Logo/>
+          </motion.div>
           
             {/* nav */}
           <div className="flex items-center gap-4 xl:gap-6">
@@ -54,25 +63,36 @@ const Header = () => {
                 activeLinkStyles='text-primary underline underline-offset-[6px]'
               />
             </div>
-            <ThemeToggleBtn />
+            <motion.div
+              variants={fadeIn('left', 0.4)}
+              initial='hidden'
+              whileInView={'show'}
+              viewport={{once:false, amount: 0.2}}
+            >
+              <ThemeToggleBtn />
+            </motion.div>
             {/* mobile nav */}
-            <div className="flex xl:hidden">
+            <motion.div
+              variants={fadeIn('left', .4)}
+              initial='hidden'
+              whileInView={'show'}
+              viewport={{once:false, amount: 0.2}}
+              className="flex xl:hidden"
+            >
               <AlignJustify 
                 size={30} 
                 className="cursor-pointer lg:hidden"
                 onClick={handleClick}
               />
-            <MobileNav 
-              containerStyles='flex flex-col gap-y-6 items-center' 
-              linkStyles='text-2xl' 
-              activeLinkStyles=''
-            />
-
-            </div>
+              <MobileNav 
+                containerStyles='flex flex-col gap-y-6 items-center' 
+                linkStyles='text-2xl' 
+                activeLinkStyles=''
+              />
+            </motion.div>
           </div>
         </div>
       </div>
-
     </header>
   )
 }
