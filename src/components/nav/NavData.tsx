@@ -8,7 +8,7 @@ export type LinkType = {
 
 export const links:LinkType[] = [
 { 
-  path: 'hero',
+  path: 'h',
   name: 'home',
   offset: -120,
 },  

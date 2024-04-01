@@ -1,19 +1,29 @@
 'use client';
 import { fadeIn } from '@/lib/variant';
 import { motion } from 'framer-motion'
+import { useTypewriter, Cursor } from 'react-simple-typewriter'
 
 const HeroText = () => {
+  const [ text ] = useTypewriter({
+    words: ['Full Stack Developer', 'React JS Developer'],
+    loop: false,
+    deleteSpeed: 20,
+  })
+
   return (
     <>
-      <motion.div 
-        variants={fadeIn('up', 0.4)}
+      <motion.p 
+        variants={fadeIn('left', 0.4)}
         initial='hidden'
         whileInView={'show'}
         viewport={{once:false, amount: 0.2}}
         className="text-sm uppercase font-semibold mb-4 text-primary tracking-wide absolute top-4 xs:top-0 xl:top-6 xl:left-1 whitespace-nowrap"
       >
-        Full Stack Developer
-      </motion.div>
+        { text }
+      <span className='text-primary'>
+        <Cursor />
+      </span>
+      </motion.p>
       <motion.h1
         variants={fadeIn('up', 0.6)}
         initial='hidden'
