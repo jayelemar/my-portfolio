@@ -56,15 +56,15 @@ export const containerVariant2 = {
     opacity: 1,
     transition: {
       staggerChildren: .4, // 
-      duration: .8,
+      duration: 1,
       ease: 'linear',
     }
   },
 }
 export const itemVariant2 = {
-  hidden: { y: 20 , opacity: 0 },
+  hidden: { x: 20 , opacity: 0 },
   show: {
-    y: 0 ,
+    x: 0 ,
     opacity: 1,
     transition: {
       duration: .8,

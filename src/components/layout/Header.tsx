@@ -56,15 +56,21 @@ const Header = () => {
           
             {/* nav */}
           <div className="flex items-center gap-4 xl:gap-6">
-            <div className="hidden lg:flex">
+            <motion.div 
+              variants={fadeIn('left', 0.6)}
+              initial='hidden'
+              whileInView={'show'}
+              viewport={{once:false, amount: 0.2}}
+              className="hidden lg:flex"
+            >
               <Nav 
                 containerStyles='flex justify-center items-center gap-10' 
                 linkStyles='relative hover:text-primary/60 transition-all duration-300 text-lg font-medium' 
                 activeLinkStyles='text-primary underline underline-offset-[6px]'
               />
-            </div>
+            </motion.div>
             <motion.div
-              variants={fadeIn('left', 0.4)}
+              variants={fadeIn('down', 1.6)}
               initial='hidden'
               whileInView={'show'}
               viewport={{once:false, amount: 0.2}}
