@@ -1,5 +1,4 @@
 "use client";
-
 import { Card, CardHeader } from "../../ui/card";
 import { FC } from "react";
 import { ProjectType } from "../ProjectData";
@@ -10,9 +9,10 @@ import { fadeIn } from "@/lib/variant";
 
 type ProjectCardProps = {
   project: ProjectType;
+  containerStyles: string;
 };
 
-const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
+const ProjectCard: FC<ProjectCardProps> = ({ project, containerStyles }) => {
   const {
     desktopImage,
     mobileImage,
@@ -24,13 +24,14 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
   } = project;
   return (
     <motion.div
-      variants={fadeIn("left", 0.4)}
+      className={containerStyles}
+      variants={fadeIn("left", 0.2)}
       initial="hidden"
       whileInView={"show"}
-      viewport={{ once: false, amount: 0.1 }}
+      viewport={{ once: false, amount: 0.2 }}
     >
-      <Card className="group relative flex flex-col overflow-hidden xl:flex-row">
-        <CardHeader className="xl:w-[700px]">
+      <Card className="group relative flex flex-col overflow-hidden">
+        <CardHeader className="xl:w-full">
           {/* Image */}
           <ProjectCardHeader
             desktopImage={desktopImage}

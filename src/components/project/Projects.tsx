@@ -15,9 +15,15 @@ const Projects = () => {
         <ProjectHeader />
 
         {/* Projects */}
-        <div className="flex flex-col gap-10">
+        <div className="grid grid-cols-2 gap-8">
           {projectData.map((project, index) => {
-            return <ProjectCard key={index} project={project} />;
+            return (
+              <ProjectCard
+                key={index}
+                project={project}
+                containerStyles="col-span-2 md:max-w-4xl"
+              />
+            );
           })}
         </div>
       </div>

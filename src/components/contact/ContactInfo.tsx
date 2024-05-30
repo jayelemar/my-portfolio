@@ -12,7 +12,7 @@ const ContactInfo = () => {
       {/* text  */}
       <div className="flex flex-col justify-center">
         <motion.p
-          variants={fadeIn("up", 0.2)}
+          variants={fadeIn("up", 0.4)}
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
@@ -21,7 +21,7 @@ const ContactInfo = () => {
           I&apos;m available for freelance & full time positions.
         </motion.p>
         <motion.p
-          variants={fadeIn("up", 0.2)}
+          variants={fadeIn("up", 0.4)}
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}

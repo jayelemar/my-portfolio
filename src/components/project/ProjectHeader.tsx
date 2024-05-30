@@ -7,7 +7,7 @@ const ProjectHeader = () => {
   return (
     <div className="mx-auto mb-6 flex h-[15vh] w-full flex-col justify-center text-center xl:mx-0 xl:text-left ">
       <motion.h2
-        variants={fadeIn("left", 0.2)}
+        variants={fadeIn("up", 0.2)}
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.2 }}
@@ -18,7 +18,7 @@ const ProjectHeader = () => {
       </motion.h2>
 
       <motion.p
-        variants={fadeIn("left", 0.4)}
+        variants={fadeIn("up", 0.4)}
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.2 }}

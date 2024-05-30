@@ -18,6 +18,8 @@ const ProjectCardHeader:FC<ProjectCardHeader> = ({ desktopImage, mobileImage }) 
         className='absolute group-hover:scale-110 transition-all duration-800 ease-in-out'
         loading='lazy'
       />
+      
+
 
       <div className="w-[700px] justify-center items-center relative hidden sm:flex">
         <Image 
