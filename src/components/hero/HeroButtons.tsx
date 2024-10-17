@@ -29,8 +29,9 @@ const HeroButtons = () => {
         viewport={{ once: false, amount: 0.2 }}
       >
         <Link
-          href="https://drive.google.com/uc?id=16ISbek2KoUqtkvyVkx18GNjWJx0IIBjQ"
+          href="https://drive.google.com/file/d/1oVPaUUjUkGoW4d-7V_6mqMb0FqYNZP5j/view?usp=sharing"
           download
+          target="_blank"
         >
           <Button
             variant={"secondary"}
