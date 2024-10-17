@@ -75,6 +75,7 @@ const Header = () => {
             >
               <ThemeToggleBtn />
             </motion.div>
+
             {/* mobile nav */}
             <motion.div
               variants={fadeIn("left", 0.4)}

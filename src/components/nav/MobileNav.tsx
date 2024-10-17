@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 import { NavProps } from "./Nav";
 import { Link } from "react-scroll";
 import { containerVariant, fadeIn, itemVariant } from "@/lib/variant";
+import { cn } from "@/lib/utils";
 
 const MobileNav: FC<NavProps> = ({
   containerStyles,
@@ -20,6 +21,11 @@ const MobileNav: FC<NavProps> = ({
   const { isOpen, setIsOpen } = useMobileNavStore();
   const handleNavClick = () => {
     setIsOpen(!isOpen);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setIsOpen(false); // Close mobile nav if open
   };
 
   return (
@@ -36,6 +42,13 @@ const MobileNav: FC<NavProps> = ({
                 viewport={{ once: false, amount: 0.3 }}
                 className={containerStyles}
               >
+                <button
+                  onClick={scrollToTop}
+                  className={cn("cursor-pointer", linkStyles)}
+                >
+                  Home
+                </button>
+
                 {links.map((link, index) => (
                   <motion.div variants={itemVariant} key={index}>
                     <Link

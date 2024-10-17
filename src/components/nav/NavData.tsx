@@ -8,11 +8,6 @@ export type LinkType = {
 
 export const links: LinkType[] = [
   {
-    path: "h",
-    name: "home",
-    offset: -120,
-  },
-  {
     path: "about",
     name: "about",
     offset: -100, //desktop , mobile , negative upward, try 130 mobile
