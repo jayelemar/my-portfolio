@@ -32,7 +32,12 @@ export default function RootLayout({
           {children}
           <ScrollToTop />
           <Footer />
-          <Toaster position="bottom-right" />
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              style: { marginTop: "70px" },
+            }}
+          />
         </ThemeProvider>
       </body>
     </html>
