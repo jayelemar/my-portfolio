@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 import { Download, Send } from "lucide-react";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/lib/variant";
+import { DOWNLOAD_CV } from "@/lib/constant";
 
 const HeroButtons = () => {
   return (
@@ -29,7 +30,8 @@ const HeroButtons = () => {
         viewport={{ once: false, amount: 0.2 }}
       >
         <Link
-          href="https://drive.google.com/file/d/1oVPaUUjUkGoW4d-7V_6mqMb0FqYNZP5j/view?usp=sharing"
+          // href="https://drive.google.com/file/d/1oVPaUUjUkGoW4d-7V_6mqMb0FqYNZP5j/view?usp=sharing"
+          href={DOWNLOAD_CV}
           download
           target="_blank"
         >
