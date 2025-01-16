@@ -20,11 +20,11 @@ const ProjectCardBody: FC<ProjectCardBodyType> = ({
 }) => {
   return (
     <div className=" h-full px-8 pb-16 pt-0 xl:w-full">
-      <Badge className="absolute left-5 top-4 mb-2 text-sm font-medium uppercase">
+      <Badge className="absolute left-5 top-4 mb-2 bg-green-400 text-sm font-medium uppercase">
         {category}
       </Badge>
       <h1 className="h4 mb-1 text-primary">{name}</h1>
-      <p className="mb-3 line-clamp-2 text-lg text-muted-foreground sm:line-clamp-none xl:line-clamp-2">
+      <p className="mb-3 line-clamp-2 text-base text-muted-foreground sm:line-clamp-none xl:line-clamp-2">
         {description}
       </p>
       <div className="flex">

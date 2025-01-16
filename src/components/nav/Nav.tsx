@@ -1,5 +1,3 @@
-"use client";
-
 import { FC, memo } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -46,12 +44,22 @@ const Nav: FC<NavProps> = ({
               scrollToElement(link.path);
             }}
             className={cn(
-              "cursor-pointer capitalize",
+              "group relative cursor-pointer capitalize transition-colors duration-300",
               linkStyles,
-              activeSection === link.path && activeLinkStyles,
+              activeSection === link.path && `${activeLinkStyles}`,
             )}
           >
             {link.name}
+            {activeSection === link.path && (
+              <motion.span
+                layout
+                className="absolute bottom-0 left-0 h-[2px] bg-primary"
+                initial={{ width: 0 }}
+                animate={{ width: "100%" }}
+                exit={{ width: 0 }}
+                transition={{ duration: 0.5 }}
+              />
+            )}
           </motion.button>
         </motion.div>
       ))}
@@ -60,71 +68,3 @@ const Nav: FC<NavProps> = ({
 };
 
 export default memo(Nav);
-
-// "use client";
-
-// import { FC, memo } from "react";
-// import { Link } from "react-scroll";
-// import { useMobileNavStore } from "@/store/MobileNavStore";
-// import { links } from "./NavData";
-// import { motion } from "framer-motion";
-// import { containerVariant2, itemVariant2 } from "@/lib/variant";
-// import { cn } from "@/lib/utils";
-
-// export type NavProps = {
-//   containerStyles: string;
-//   linkStyles: string;
-//   activeLinkStyles: string;
-// };
-
-// const Nav: FC<NavProps> = ({
-//   containerStyles,
-//   linkStyles,
-//   activeLinkStyles,
-// }) => {
-//   const { isOpen, setIsOpen } = useMobileNavStore();
-
-//   const scrollToTop = () => {
-//     window.scrollTo({ top: 0, behavior: "smooth" });
-//     setIsOpen(false); // Close mobile nav if open
-//   };
-
-//   return (
-//     <motion.nav
-//       variants={containerVariant2}
-//       initial="hidden"
-//       whileInView={"show"}
-//       viewport={{ once: false, amount: 0.3 }}
-//       className={`${containerStyles}`}
-//     >
-//       <button
-//         onClick={scrollToTop}
-//         className={cn("cursor-pointer", linkStyles)}
-//       >
-//         Home
-//       </button>
-
-//       {links.map((link, index) => (
-//         <motion.div variants={itemVariant2} key={index}>
-//           <Link
-//             to={link.path}
-//             smooth={true}
-//             duration={300}
-//             offset={link.offset}
-//             activeClass={activeLinkStyles}
-//             spy={true}
-//             hashSpy={true}
-//             spyThrottle={500}
-//             ignoreCancelEvents={false}
-//             className={linkStyles}
-//             onClick={() => setIsOpen(false)}
-//           >
-//             <span className="cursor-pointer capitalize">{link.name}</span>
-//           </Link>
-//         </motion.div>
-//       ))}
-//     </motion.nav>
-//   );
-// };
-
-// export default memo(Nav);

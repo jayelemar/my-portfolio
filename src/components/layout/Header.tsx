@@ -64,7 +64,7 @@ const Header = () => {
               <Nav
                 containerStyles="flex justify-center items-center gap-10"
                 linkStyles="relative hover:text-primary/60 transition-all duration-300 text-lg font-medium"
-                activeLinkStyles="text-primary underline underline-offset-[6px]"
+                activeLinkStyles="text-primary"
               />
             </motion.div>
             <motion.div
