@@ -28,9 +28,7 @@ export default function Home() {
 
   return (
     <main>
-      <Suspense>
-        <Hero />
-      </Suspense>
+      <Hero />
       <Suspense fallback={<Spinner />}>
         <About />
       </Suspense>

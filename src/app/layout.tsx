@@ -4,7 +4,8 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/provider/ThemeProvider";
-import ReactQueryProvider from "@/components/provider/ReactQueryProvider";
+import { Toaster } from "react-hot-toast";
+import ScrollToTop from "@/components/common/ScrollToTop";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,18 +22,18 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ReactQueryProvider>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
-          <Header/>
-            {children}
-          <Footer/>
+          <Header />
+          {children}
+          <ScrollToTop />
+          <Footer />
+          <Toaster />
         </ThemeProvider>
-        </ReactQueryProvider>
       </body>
     </html>
   );
