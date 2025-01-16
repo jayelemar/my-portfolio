@@ -72,7 +72,7 @@ const ContactForm = () => {
       }),
       {
         loading: "Sending your message...",
-        success: (message) => `🎉 ${message}`,
+        success: (message) => `${message}`,
         error: (error) =>
           `❌ ${error.message || "Something went wrong. Please try again."}`,
       },
