@@ -7,7 +7,7 @@ import HeroDownIcon from "./HeroDownIcon";
 const Hero = () => {
   return (
     <section
-      id="h"
+      id="/"
       className="mb-56 flex h-[85vh] items-center justify-center bg-hero bg-cover bg-bottom bg-no-repeat py-0 dark:bg-none xl:py-4 "
     >
       <div className="container mx-auto">
