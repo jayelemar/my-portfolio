@@ -1,16 +1,28 @@
 import { HomeIcon, MailIcon, PhoneCall, User2 } from "lucide-react";
-import { 
-  SiCss3, SiGit, SiGithub, SiHtml5, SiJavascript, SiReact, SiTailwindcss, SiTypescript, SiExpress, SiPrisma, SiMongodb, SiJest 
+import {
+  SiCss3,
+  SiGit,
+  SiGithub,
+  SiHtml5,
+  SiJavascript,
+  SiReact,
+  SiTailwindcss,
+  SiTypescript,
+  SiExpress,
+  SiPrisma,
+  SiMongodb,
+  SiJest,
+  SiFigma,
+  SiRedux,
 } from "react-icons/si";
 import { GrMysql } from "react-icons/gr";
 import { TbBrandNextjs } from "react-icons/tb";
 import { FaNodeJs } from "react-icons/fa";
 
-
 export type infoProps = {
-  icon: React.ReactElement,
-  text: string,
-}
+  icon: React.ReactElement;
+  text: string;
+};
 
 export const info: infoProps[] = [
   {
@@ -28,105 +40,115 @@ export const info: infoProps[] = [
   {
     icon: <HomeIcon size={20} />,
     text: "Bulacan, Philippines",
-  }
-]
+  },
+];
 
 export type DataProps = {
-  name: string,
-  imgPath: React.ReactElement,
-  color?: string
-}
+  name: string;
+  imgPath: React.ReactElement;
+  color?: string;
+};
 
 export type SkillSetProps = {
-  title: string,
-  data: DataProps[],
-}
+  title: string;
+  data: DataProps[];
+};
 
-export const skillSet: SkillSetProps[]  = [
+export const skillSet: SkillSetProps[] = [
   {
-    title: 'Frontend',
+    title: "Frontend",
     data: [
       {
-        name: 'HTML',
+        name: "HTML",
         imgPath: <SiHtml5 size={40} />,
-        color: 'text-[#dd4b25]'
+        color: "text-[#dd4b25]",
       },
       {
-        name: 'CSS',
+        name: "CSS",
         imgPath: <SiCss3 size={40} />,
-        color: 'text-[#2862e9]'
+        color: "text-[#2862e9]",
       },
       {
-        name: 'Javascript',
-        imgPath: <SiJavascript size={40} />, 
-        color: 'text-[#efd81d]'
+        name: "Javascript",
+        imgPath: <SiJavascript size={40} />,
+        color: "text-[#efd81d]",
       },
       {
-        name: 'React',
+        name: "React.js",
         imgPath: <SiReact size={40} />,
-        color: 'text-[#00d1f7]'
+        color: "text-[#00d1f7]",
       },
       {
-        name: 'Typescript',
+        name: "Typescript",
         imgPath: <SiTypescript size={40} />,
-        color: 'text-[#0076c6]'
+        color: "text-[#0076c6]",
       },
       {
-        name: 'NextJS 13',
+        name: "Next.js",
         imgPath: <TbBrandNextjs size={40} />,
-        color: 'dark:text-white'
-      },  
+        color: "dark:text-white",
+      },
 
       {
-        name: 'Tailwind',
+        name: "Tailwind",
         imgPath: <SiTailwindcss size={40} />,
-        color: 'text-[#08b1cf]'
+        color: "text-[#08b1cf]",
       },
-    ]
+      {
+        name: "Redux TLK",
+        imgPath: <SiRedux size={40} />,
+        color: "text-[#7248b6]",
+      },
+    ],
   },
   {
-    title: 'Backend',
+    title: "Backend",
     data: [
       {
-        name: 'NodeJS',
+        name: "NodeJS",
         imgPath: <FaNodeJs size={40} />,
-        color: 'text-[#509941]'
+        color: "text-[#509941]",
       },
       {
-        name: 'ExpressJS',
+        name: "Express.js",
         imgPath: <SiExpress size={40} />,
       },
 
       {
-        name: 'Prisma',
+        name: "Prisma",
         imgPath: <SiPrisma size={40} />,
-        color: ''
+        color: "",
       },
+
       {
-        name: 'MySQL',
+        name: "MySQL",
         imgPath: <GrMysql size={40} />,
-        color: 'text-[#015c87]'
+        color: "text-[#015c87]",
       },
       {
-        name: 'MongoDB',
+        name: "MongoDB",
         imgPath: <SiMongodb size={40} />,
-        color: 'text-[#599636]'
+        color: "text-[#599636]",
       },
       {
-        name: 'Git',
+        name: "Git",
         imgPath: <SiGit size={40} />,
-        color: 'text-[#e84d31]'
+        color: "text-[#e84d31]",
       },
       {
-        name: 'Github',
-        imgPath: <SiGithub size={40} />
+        name: "Github",
+        imgPath: <SiGithub size={40} />,
       },
       {
-        name: 'Jest',
+        name: "Jest",
         imgPath: <SiJest size={40} />,
-        color: 'text-[#c03b13]'
-      }
-    ]
+        color: "text-[#c03b13]",
+      },
+      {
+        name: "Figma",
+        imgPath: <SiFigma size={40} />,
+        color: "",
+      },
+    ],
   },
-  
-]
+];
