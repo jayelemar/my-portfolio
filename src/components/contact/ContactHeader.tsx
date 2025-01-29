@@ -20,7 +20,7 @@ const ContactHeader = () => {
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.1 }}
-        className="h1 max-w-md md:w-auto md:whitespace-nowrap"
+        className="h1 max-w-md md:w-auto md:whitespace-nowrap "
       >
         Lets Work Together.
       </motion.h1>

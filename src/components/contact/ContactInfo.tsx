@@ -8,15 +8,15 @@ const ContactInfo = () => {
     (item) => item.text !== "Jay Elemar Termulo",
   );
   return (
-    <div className="mb-6 flex flex-col pt-4 md:mb-12 md:basis-2/5 md:pt-0 xl:mb-0">
+    <div className="mb-6 flex flex-col pt-4 md:mb-12 md:basis-2/5 md:pt-0 lg:pt-4 xl:mb-0">
       {/* text  */}
-      <div className="flex flex-col justify-center">
+      <div className="flex flex-col justify-center ">
         <motion.p
           variants={fadeIn("up", 0.4)}
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.1 }}
-          className="subtitle font-base flex max-w-full text-balance text-lg text-muted-foreground"
+          className="subtitle font-base flex max-w-full text-balance text-lg text-muted-foreground "
         >
           I&apos;m available for freelance & full time positions.
         </motion.p>

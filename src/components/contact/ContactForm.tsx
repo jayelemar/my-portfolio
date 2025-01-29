@@ -85,7 +85,7 @@ const ContactForm = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="top-[27px] mx-auto flex w-full flex-col gap-y-4 xl:relative"
+          className="top-[27px] mx-auto flex w-full flex-col gap-y-4 md:mt-7 lg:mt-0 xl:relative"
         >
           <fieldset disabled={isPending || isSuccess}>
             <div className="flex flex-1 flex-col gap-4 sm:flex-row md:flex-col lg:flex-row xl:gap-5 ">
