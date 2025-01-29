@@ -88,7 +88,7 @@ const ContactForm = () => {
           className="top-[27px] mx-auto flex w-full flex-col gap-y-4 md:mt-7 lg:mt-0 xl:relative"
         >
           <fieldset disabled={isPending || isSuccess}>
-            <div className="flex flex-1 flex-col gap-4 sm:flex-row md:flex-col lg:flex-row xl:gap-5 ">
+            <div className="flex flex-1 flex-col sm:flex-row sm:gap-x-4 md:flex-col lg:flex-row ">
               {/* Name */}
               <div className="relative mb-6 flex w-full items-center lg:mb-6">
                 <InputField

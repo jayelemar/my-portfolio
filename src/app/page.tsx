@@ -38,7 +38,6 @@ export default function Home() {
       <Suspense fallback={<Spinner />}>
         <Contact />
       </Suspense>
-
       <Toaster />
     </main>
   );

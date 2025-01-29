@@ -18,7 +18,10 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="relative my-24 mb-52 xl:my-0 xl:mb-72">
+    <section
+      id="about"
+      className="relative my-24 mb-52 scroll-mt-52 xl:my-0 xl:mb-72 xl:scroll-mt-24"
+    >
       <div className="container mx-auto flex flex-col items-center justify-center gap-2 xl:h-[85vh]">
         <motion.h2
           variants={fadeIn("up", 0.4)}
