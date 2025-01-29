@@ -8,7 +8,7 @@ const ContactInfo = () => {
     (item) => item.text !== "Jay Elemar Termulo",
   );
   return (
-    <div className="mb-6 flex flex-col pt-4 md:mb-12 md:basis-2/5 md:pt-8 xl:mb-0">
+    <div className="mb-6 flex flex-col pt-4 md:mb-12 md:basis-2/5 md:pt-0 xl:mb-0">
       {/* text  */}
       <div className="flex flex-col justify-center">
         <motion.p

@@ -1,18 +1,13 @@
 "use client";
 
 import React from "react";
-import { info } from "../about/AboutData";
 import ContactForm from "./ContactForm";
 import { motion } from "framer-motion";
-import { containerVariant, fadeIn, itemVariant } from "@/lib/variant";
+import { fadeIn } from "@/lib/variant";
 import ContactInfo from "./ContactInfo";
 import ContactHeader from "./ContactHeader";
 
 const Contact = () => {
-  const filteredInfo = info.filter(
-    (item) => item.text !== "Jay Elemar Termulo",
-  );
-
   return (
     <section id="contact" className="scroll-mt-12">
       <div className="container mx-auto mb-16 xl:h-[55vh] ">
