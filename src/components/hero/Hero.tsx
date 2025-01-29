@@ -9,7 +9,7 @@ const Hero = () => {
   return (
     <section
       id="/"
-      className="mb-56 flex h-[85vh] items-center justify-center bg-hero bg-cover bg-bottom bg-no-repeat py-0 dark:bg-none xl:py-4 "
+      className="mb-56 flex h-[85vh] scroll-mt-16 items-center justify-center bg-hero bg-cover bg-bottom bg-no-repeat py-0 dark:bg-none xl:py-4"
     >
       <div className="container mx-auto">
         <div className="relative flex justify-between gap-x-8 ">
