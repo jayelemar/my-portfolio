@@ -14,7 +14,7 @@ const Contact = () => {
         {/* header */}
         <ContactHeader />
 
-        <div className="flex  flex-col gap-x-6 md:mx-0 md:flex-row md:items-center md:justify-between xl:mx-10">
+        <div className="lg  flex flex-col gap-x-6  md:mx-0 md:flex-row md:items-center md:justify-between xl:mx-10">
           {/* text & illustration*/}
           <ContactInfo />
           {/* form */}
