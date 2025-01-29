@@ -47,7 +47,7 @@ const AboutTabs: FC<AboutTabsProps> = ({ skillSet, getData }) => {
             </div>
           </TabsContent>
           <TabsContent value="info">
-            <AboutInfo containerStyles="xl:min-h-[360px]" />
+            <AboutInfo containerStyles="min-h-[280px] xl:min-h-[360px]" />
           </TabsContent>
         </div>
       </Tabs>
