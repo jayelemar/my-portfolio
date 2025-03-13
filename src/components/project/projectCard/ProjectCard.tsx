@@ -21,6 +21,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, containerStyles }) => {
     name,
     description,
     github,
+    figma,
   } = project;
   return (
     <motion.div
@@ -45,6 +46,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, containerStyles }) => {
           description={description}
           link={link}
           github={github}
+          figma={figma}
         />
       </Card>
     </motion.div>

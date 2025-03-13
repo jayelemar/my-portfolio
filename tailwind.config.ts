@@ -1,14 +1,14 @@
-import { url } from "inspector"
-import type { Config } from "tailwindcss"
+import { url } from "inspector";
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -20,7 +20,7 @@ const config = {
     },
     extend: {
       screens: {
-        'xs': '480px',  
+        xs: "480px",
       },
       colors: {
         border: "hsl(var(--border))",
@@ -59,7 +59,7 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        light_cream: '#fef9f5',
+        light_cream: "#fef9f5",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -81,14 +81,13 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       backgroundImage: {
-        hero: 'url(/hero/hero-bg.png)',
-        dots_light: 'url(/dots-light.svg)',
-        dots_dark: 'url(/dots-dark.svg)',
-        
-      }
+        hero: "url(/hero/hero-bg.png)",
+        dots_light: "url(/dots-light.svg)",
+        dots_dark: "url(/dots-dark.svg)",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;

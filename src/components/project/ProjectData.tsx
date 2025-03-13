@@ -5,7 +5,8 @@ export type ProjectType = {
   name: string;
   description: string;
   link: string;
-  github: string;
+  github?: string;
+  figma?: string;
 };
 
 export const projectData: ProjectType[] = [
@@ -28,6 +29,16 @@ export const projectData: ProjectType[] = [
       "A full stack leave management system using Vite, React, Tailwind CSS, React Hook Form, Zustand, Express.JS and MongoDB",
     link: "https://leave-management-app-client.vercel.app/",
     github: "https://github.com/jayelemar/leave-management-app-client",
+  },
+  {
+    desktopImage: "/work/4.png",
+    mobileImage: "/work/anime-mobile.png",
+    category: "Figma",
+    name: "Figma to Landing Page",
+    description: "A anime figma design conversion to a website landing page",
+    link: "https://lws-exam.vercel.app/",
+    figma:
+      "https://www.figma.com/design/qlfZvhc4LlyWG4R9lidRPR/Test?node-id=28-122&t=ngfzJp3xDrXIP4QH-0",
   },
   {
     desktopImage: "/work/3.png",
