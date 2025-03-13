@@ -1,14 +1,15 @@
 import React, { FC } from "react";
 import { Badge } from "../../ui/badge";
 import Link from "next/link";
-import { FiGithub, FiLink } from "react-icons/fi";
+import { FiFigma, FiGithub, FiLink } from "react-icons/fi";
 
 type ProjectCardBodyType = {
   category: string;
   name: string;
   description: string;
   link: string;
-  github: string;
+  github?: string;
+  figma?: string;
 };
 
 const ProjectCardBody: FC<ProjectCardBodyType> = ({
@@ -17,6 +18,7 @@ const ProjectCardBody: FC<ProjectCardBodyType> = ({
   description,
   link,
   github,
+  figma,
 }) => {
   return (
     <div className=" h-full px-8 pb-16 pt-0 xl:w-full">
@@ -38,14 +40,26 @@ const ProjectCardBody: FC<ProjectCardBodyType> = ({
           >
             Demo <FiLink />
           </Link>
-          <Link
-            href={github}
-            target="_blank"
-            className="rounded-full bg-muted p-2 text-muted-foreground hover:scale-125"
-            aria-label="Click to see the Github Repot"
-          >
-            <FiGithub />
-          </Link>
+          {github && (
+            <Link
+              href={github}
+              target="_blank"
+              className="rounded-full bg-muted p-2 text-muted-foreground hover:scale-125"
+              aria-label="Click to see the Github Repot"
+            >
+              <FiGithub />
+            </Link>
+          )}
+          {figma && (
+            <Link
+              href={figma}
+              target="_blank"
+              className="rounded-full bg-muted p-1.5 text-muted-foreground hover:scale-125"
+              aria-label="Click to see the Github Repot"
+            >
+              <FiFigma size={18} strokeWidth={2} />
+            </Link>
+          )}
         </div>
       </div>
     </div>

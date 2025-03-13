@@ -14,6 +14,7 @@ import {
   SiJest,
   SiFigma,
   SiRedux,
+  SiPostgresql,
 } from "react-icons/si";
 import { GrMysql } from "react-icons/gr";
 import { TbBrandNextjs } from "react-icons/tb";
@@ -121,8 +122,8 @@ export const skillSet: SkillSetProps[] = [
       },
 
       {
-        name: "MySQL",
-        imgPath: <GrMysql size={40} />,
+        name: "PostgreSQL",
+        imgPath: <SiPostgresql size={40} />,
         color: "text-[#015c87]",
       },
       {
