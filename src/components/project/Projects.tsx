@@ -13,6 +13,7 @@ const Projects = () => {
 
   const { scrollYProgress } = useScroll({
     target: targetRef,
+    offset: ["start start", "end end"],
   });
 
   const [scrollDistance, setScrollDistance] = useState(0);
@@ -46,7 +47,8 @@ const Projects = () => {
         </div>
 
         {/* Desktop horizontal carousel */}
-        <section ref={targetRef} className="relative hidden h-[300vh] lg:block">
+
+        <section ref={targetRef} className="relative hidden h-[700vh] lg:block">
           <div
             ref={containerRef}
             className="sticky top-0 flex h-screen flex-col overflow-hidden"
