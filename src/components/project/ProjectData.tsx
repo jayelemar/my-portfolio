@@ -7,23 +7,56 @@ export type ProjectType = {
   link: string;
   github?: string;
   figma?: string;
+  isProject?: boolean;
 };
 
 export const projectData: ProjectType[] = [
   {
+    desktopImage: "/work/Duty_Free_Desktop3.png",
+    mobileImage: "/work/Duty_Free_Mobile.png",
+    category: "React.js",
+    name: "Duty Free Philippines",
+    description:
+      "E-commerce platform for Duty Free Philippines. The platform is built with Laravel and React js. It has a feature to manage the products, orders, and other necessary information needed for the operation of the store.",
+    link: "https://shop.dutyfree.gov.ph",
+    isProject: true,
+  },
+  {
+    desktopImage: "/work/Futr_Desktop5.png",
+    mobileImage: "/work/Futr_Mobile.png",
+    category: "Next.js",
+    name: "Futr",
+    description:
+      "a decentralized social media application designed for Web3 enthusiasts to engage, predict trends, and interact. Built using Next.js for the frontend and NestJS for the backend, the platform integrates real-time communication, user profiles, and interactive prediction features tailored for topics around the world.",
+    link: "https://beta.futr.gg",
+    isProject: true,
+  },
+  {
+    desktopImage: "/work/BackToTheFutr_Desktop2.png",
+    mobileImage: "/work/BackToTheFutr_Mobile.png",
+    category: "Next.js",
+    name: "Back To The Futr",
+    description:
+      "BackToTheFutr.com is the official hub for the Back to the Future franchise—offering canon news, upcoming events, licensed merchandise, film updates, cast announcements, curated collectibles, screenings, and fan experiences directly from the creators.",
+    link: "https://www.backtothefutr.com",
+    isProject: true,
+  },
+
+  {
     desktopImage: "/work/1.png",
     mobileImage: "/work/bike-me-mobile.png",
-    category: "NextJS",
+    category: "Next.js",
     name: "Bike Me",
     description:
       "A full stack e-commerce bike store using NextJS, React, Tailwind CSS,  Sanity.io and Stripe ",
     link: "https://bike-me.vercel.app/",
     github: "https://github.com/jayelemar/bike-shop-app.git",
   },
+
   {
     desktopImage: "/work/2.png",
     mobileImage: "/work/leave-mobile.png",
-    category: "Vite",
+    category: "React.js",
     name: "Leave Management System",
     description:
       "A full stack leave management system using Vite, React, Tailwind CSS, React Hook Form, Zustand, Express.JS and MongoDB",

@@ -10,6 +10,7 @@ type ProjectCardBodyType = {
   link: string;
   github?: string;
   figma?: string;
+  isProject?: boolean;
 };
 
 const ProjectCardBody: FC<ProjectCardBodyType> = ({
@@ -19,10 +20,12 @@ const ProjectCardBody: FC<ProjectCardBodyType> = ({
   link,
   github,
   figma,
+  isProject,
 }) => {
   return (
     <div className=" h-full px-8 pb-16 pt-0 xl:w-full">
-      <Badge className="absolute left-5 top-4 mb-2 bg-green-400 text-sm font-medium uppercase">
+      {/* <Badge className="absolute left-5 top-4 mb-2 bg-green-400 text-sm font-medium uppercase"> */}
+      <Badge className="absolute left-5 top-4 mb-2  bg-black/50 text-sm font-light  text-background">
         {category}
       </Badge>
       <h1 className="h4 mb-1 text-primary">{name}</h1>
@@ -38,7 +41,7 @@ const ProjectCardBody: FC<ProjectCardBodyType> = ({
             className="flex items-center justify-center gap-1 rounded-full bg-primary px-3 py-1  text-sm font-medium text-muted hover:scale-110"
             aria-label="Click to see the Linked Project"
           >
-            Demo <FiLink />
+            {isProject ? "Live" : "Demo"} <FiLink />
           </Link>
           {github && (
             <Link
