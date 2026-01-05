@@ -10,19 +10,11 @@ import {
   MessageSquare,
   User,
 } from "lucide-react";
-import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../ui/form";
-import toast from "react-hot-toast";
+import { Form } from "../ui/form";
 import InputField from "../form-elements/InputField";
 import TextAreaField from "../form-elements/TextAreaField";
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -37,8 +29,6 @@ const formSchema = z.object({
 });
 
 const ContactForm = () => {
-  // const { mutate: FormSubmitMutation, isPending, isSuccess } = useFormSubmit();
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -51,33 +41,20 @@ const ContactForm = () => {
   const isPending = form.formState.isSubmitting;
   const isSuccess = form.formState.isSubmitSuccessful;
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log({ values });
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    try {
+      const res = await fetch("/api/discord", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
-    // Use toast.promise to handle loading and success/error states
-    await toast.promise(
-      new Promise(async (resolve, reject) => {
-        try {
-          // Simulate loading (optional)
-          await new Promise((resolve) => setTimeout(resolve, 2000));
-
-          // Resolve the promise to indicate success
-          resolve("Message sent successfully");
-          form.reset();
-        } catch (error) {
-          console.error("Error sending email:", error);
-
-          // Reject the promise to indicate failure
-          reject(new Error("Failed to send message. Please try again later."));
-        }
-      }),
-      {
-        loading: "Sending your message...",
-        success: (message) => `${message}`,
-        error: (error) =>
-          `❌ ${error.message || "Something went wrong. Please try again."}`,
-      },
-    );
+      if (!res.ok) {
+        throw new Error("Failed to send message");
+      }
+    } catch (error: any) {
+      toast.error(error.message || "Something went wrong!");
+    }
   };
 
   return (
