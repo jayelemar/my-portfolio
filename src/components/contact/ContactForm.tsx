@@ -15,6 +15,9 @@ import { Form } from "../ui/form";
 import InputField from "../form-elements/InputField";
 import TextAreaField from "../form-elements/TextAreaField";
 import toast from "react-hot-toast";
+import { useState } from "react";
+
+const MAX_MESSAGES = 3;
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -29,6 +32,8 @@ const formSchema = z.object({
 });
 
 const ContactForm = () => {
+  const [sendCount, setSendCount] = useState(0);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -42,6 +47,11 @@ const ContactForm = () => {
   const isSuccess = form.formState.isSubmitSuccessful;
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    if (sendCount >= MAX_MESSAGES) {
+      toast.error("You have reached the maximum number of messages!");
+      return;
+    }
+
     try {
       const res = await fetch("/api/discord", {
         method: "POST",
@@ -52,6 +62,10 @@ const ContactForm = () => {
       if (!res.ok) {
         throw new Error("Failed to send message");
       }
+
+      setSendCount((prev) => prev + 1);
+      toast.success("Message sent successfully!");
+      form.reset();
     } catch (error: any) {
       toast.error(error.message || "Something went wrong!");
     }
@@ -100,19 +114,16 @@ const ContactForm = () => {
 
             <Button
               type="submit"
-              disabled={isPending || isSuccess}
-              className="flex w-full items-center gap-1 rounded-full sm:max-w-48 xl:max-w-[400px] "
+              disabled={isPending || sendCount >= 3}
+              className="flex w-full items-center gap-1 rounded-full sm:max-w-48 xl:max-w-[400px]"
             >
               {isPending ? (
                 <>
                   <span>Loading</span>
                   <Loader2 className="animate-spin" size={20} />
                 </>
-              ) : isSuccess ? (
-                <span className="flex gap-2">
-                  <span>Message Sent</span>
-                  <Check size={20} />
-                </span>
+              ) : sendCount >= 3 ? (
+                <span>Limit Reached</span>
               ) : (
                 <>
                   <span>Let&apos;s Talk</span>
