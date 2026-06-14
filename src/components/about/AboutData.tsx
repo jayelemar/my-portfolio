@@ -15,6 +15,7 @@ import {
   SiFigma,
   SiRedux,
   SiPostgresql,
+  SiNestjs,
 } from "react-icons/si";
 import { GrMysql } from "react-icons/gr";
 import { TbBrandNextjs } from "react-icons/tb";
@@ -113,6 +114,10 @@ export const skillSet: SkillSetProps[] = [
       {
         name: "Express.js",
         imgPath: <SiExpress size={40} />,
+      },
+      {
+        name: "Nest.js",
+        imgPath: <SiNestjs size={40} color="#E0234E" />,
       },
 
       {
