@@ -1,3 +1,5 @@
+export type ProjectStatus = "active" | "inactive" | "demo";
+
 export type ProjectType = {
   desktopImage: string;
   mobileImage: string;
@@ -7,10 +9,20 @@ export type ProjectType = {
   link: string;
   github?: string;
   figma?: string;
-  isProject?: boolean;
+  status: ProjectStatus;
 };
 
 export const projectData: ProjectType[] = [
+  {
+    desktopImage: "/work/Gondoor_Desktop.png",
+    mobileImage: "/work/Gondoor_Mobile.png",
+    category: "AI Platform",
+    name: "Gondoor",
+    description:
+      "Gondoor is an AI-powered business operating platform that enables entrepreneurs to launch, manage, and scale businesses using autonomous AI agents. The platform can assist with business creation, operations, customer management, content generation, and growth across multiple industries including software, services, commerce, and local businesses.",
+    link: "https://gondoor.app/en",
+    status: "active",
+  },
   {
     desktopImage: "/work/Duty_Free_Desktop3.png",
     mobileImage: "/work/Duty_Free_Mobile.png",
@@ -19,7 +31,7 @@ export const projectData: ProjectType[] = [
     description:
       "E-commerce platform for Duty Free Philippines. The platform is built with Laravel and React js. It has a feature to manage the products, orders, and other necessary information needed for the operation of the store.",
     link: "https://shop.dutyfree.gov.ph",
-    isProject: true,
+    status: "active",
   },
   {
     desktopImage: "/work/Futr_Desktop5.png",
@@ -29,7 +41,7 @@ export const projectData: ProjectType[] = [
     description:
       "a decentralized social media application designed for Web3 enthusiasts to engage, predict trends, and interact. Built using Next.js for the frontend and NestJS for the backend, the platform integrates real-time communication, user profiles, and interactive prediction features tailored for topics around the world.",
     link: "https://beta.futr.gg",
-    isProject: true,
+    status: "inactive",
   },
   {
     desktopImage: "/work/BackToTheFutr_Desktop2.png",
@@ -39,7 +51,7 @@ export const projectData: ProjectType[] = [
     description:
       "BackToTheFutr.com is the official hub for the Back to the Future franchise—offering canon news, upcoming events, licensed merchandise, film updates, cast announcements, curated collectibles, screenings, and fan experiences directly from the creators.",
     link: "https://www.backtothefutr.com",
-    isProject: true,
+    status: "inactive",
   },
 
   {
@@ -51,6 +63,7 @@ export const projectData: ProjectType[] = [
       "A full stack e-commerce bike store using NextJS, React, Tailwind CSS,  Sanity.io and Stripe ",
     link: "https://bike-me.vercel.app/",
     github: "https://github.com/jayelemar/bike-shop-app.git",
+    status: "demo",
   },
 
   {
@@ -62,6 +75,7 @@ export const projectData: ProjectType[] = [
       "A full stack leave management system using Vite, React, Tailwind CSS, React Hook Form, Zustand, Express.JS and MongoDB",
     link: "https://leave-management-app-client.vercel.app/",
     github: "https://github.com/jayelemar/leave-management-app-client",
+    status: "demo",
   },
   {
     desktopImage: "/work/4.png",
@@ -72,6 +86,7 @@ export const projectData: ProjectType[] = [
     link: "https://lws-exam.vercel.app/",
     figma:
       "https://www.figma.com/design/qlfZvhc4LlyWG4R9lidRPR/Test?node-id=28-122&t=ngfzJp3xDrXIP4QH-0",
+    status: "demo",
   },
   {
     desktopImage: "/work/3.png",
@@ -82,5 +97,6 @@ export const projectData: ProjectType[] = [
       "A static site using NextJS, Tailwind CSS, Nodemailer and React Hook Form.",
     link: "https://elemar.site/",
     github: "https://github.com/jayelemar/my-portfolio",
+    status: "demo",
   },
 ];

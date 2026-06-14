@@ -2,6 +2,8 @@ import React, { FC } from "react";
 import { Badge } from "../../ui/badge";
 import Link from "next/link";
 import { FiFigma, FiGithub, FiLink } from "react-icons/fi";
+import { ProjectStatus } from "../ProjectData";
+import { cn } from "@/lib/utils";
 
 type ProjectCardBodyType = {
   category: string;
@@ -10,9 +12,23 @@ type ProjectCardBodyType = {
   link: string;
   github?: string;
   figma?: string;
-  isProject?: boolean;
+  status: ProjectStatus;
 };
 
+const PROJECT_STATUS = {
+  active: {
+    label: "Live",
+    className: "flex",
+  },
+  inactive: {
+    label: "Inactive",
+    className: "hidden",
+  },
+  demo: {
+    label: "Demo",
+    className: "flex",
+  },
+} as const;
 const ProjectCardBody: FC<ProjectCardBodyType> = ({
   category,
   name,
@@ -20,8 +36,9 @@ const ProjectCardBody: FC<ProjectCardBodyType> = ({
   link,
   github,
   figma,
-  isProject,
+  status,
 }) => {
+  const statusConfig = PROJECT_STATUS[status];
   return (
     <div className=" h-full px-8 pb-16 pt-0 xl:w-full">
       {/* <Badge className="absolute left-5 top-4 mb-2 bg-green-400 text-sm font-medium uppercase"> */}
@@ -29,7 +46,7 @@ const ProjectCardBody: FC<ProjectCardBodyType> = ({
         {category}
       </Badge>
       <h1 className="h4 mb-1 text-primary">{name}</h1>
-      <p className="mb-3 line-clamp-2 text-base text-muted-foreground sm:line-clamp-none xl:line-clamp-2">
+      <p className="mb-3 line-clamp-2 text-base text-muted-foreground sm:line-clamp-none xl:line-clamp-2 xl:min-h-12">
         {description}
       </p>
       <div className="flex">
@@ -38,10 +55,13 @@ const ProjectCardBody: FC<ProjectCardBodyType> = ({
           <Link
             href={link}
             target="_blank"
-            className="flex items-center justify-center gap-1 rounded-full bg-primary px-3 py-1  text-sm font-medium text-muted hover:scale-110"
+            className={cn(
+              statusConfig.className,
+              " items-center justify-center gap-1 rounded-full bg-primary px-3 py-1  text-sm font-medium text-muted hover:scale-110",
+            )}
             aria-label="Click to see the Linked Project"
           >
-            {isProject ? "Live" : "Demo"} <FiLink />
+            {statusConfig.label} <FiLink />
           </Link>
           {github && (
             <Link
