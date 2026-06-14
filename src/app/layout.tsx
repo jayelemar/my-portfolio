@@ -11,37 +11,48 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "Jay Elemar Termulo | Frontend Developer",
+    default: "Jay Elemar Termulo | Full Stack Developer",
     template: "%s | Jay Elemar Termulo",
   },
+
   description:
-    "Frontend Developer specializing in React, Next.js, Tailwind CSS, and modern web technologies. View projects, experience, and open-source work by Jay Elemar Termulo.",
+    "Full Stack Developer specializing in frontend development with React, Next.js, TypeScript, and modern web technologies. Experienced in building scalable web applications, APIs, and intuitive user experiences.",
+
   keywords: [
     "Jay Elemar Termulo",
+    "Full Stack Developer",
+    "Frontend Specialist",
     "Frontend Developer",
-    "Web Developer",
-    "Next.js Developer",
+    "Backend Developer",
     "React Developer",
+    "Next.js Developer",
+    "TypeScript Developer",
+    "Node.js Developer",
     "JavaScript Developer",
+    "Web Developer",
     "Portfolio",
     "Tailwind CSS",
     "UI Developer",
+    "API Development",
+    "Software Engineer",
   ],
+
   authors: [{ name: "Jay Elemar Termulo" }],
   creator: "Jay Elemar Termulo",
 
   openGraph: {
-    title: "Jay Elemar Termulo | Frontend Developer",
+    title:
+      "Jay Elemar Termulo | Full Stack Developer specializing in Frontend Development",
     description:
-      "Frontend Developer specializing in React, Next.js, and modern UI development. Explore projects, skills, and open-source contributions.",
+      "Full Stack Developer focused on crafting exceptional frontend experiences with React, Next.js, and TypeScript while building scalable backend systems and APIs.",
     url: "https://www.elemar.site",
     siteName: "Jay Elemar Termulo Portfolio",
     images: [
       {
-        url: "/about/developer.png", // recommended 1200x630
+        url: "/about/developer.png",
         width: 1200,
         height: 630,
-        alt: "Jay Elemar Termulo - Frontend Developer Portfolio",
+        alt: "Jay Elemar Termulo - Full Stack Developer Portfolio",
       },
     ],
     locale: "en_US",
@@ -50,9 +61,10 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Jay Elemar Termulo | Frontend Developer",
+    title:
+      "Jay Elemar Termulo | Full Stack Developer specializing in Frontend Development",
     description:
-      "Frontend Developer focused on React, Next.js, and clean UI/UX. Check out my portfolio and projects.",
+      "Building modern web applications with React, Next.js, TypeScript, Node.js, and scalable backend solutions.",
     images: ["/about/developer.png"],
   },
 
