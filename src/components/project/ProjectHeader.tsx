@@ -23,7 +23,7 @@ const ProjectHeader = () => {
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.2 }}
-        className="text-center xl:mb-0 xl:text-left"
+        className="whitespace-nowrap text-center xl:mb-0 xl:text-left"
       >
         Check out some of my works
       </motion.p>
