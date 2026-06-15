@@ -35,7 +35,7 @@ const Projects = () => {
     >
       <div className="container mx-auto flex flex-col gap-2">
         {/* Mobile / tablet view */}
-        <div className="grid grid-cols-2 gap-8 lg:hidden">
+        <div className="grid grid-cols-2 gap-2 lg:hidden lg:gap-8">
           <ProjectHeader />
           {projectData.map((project, index) => (
             <ProjectCard
