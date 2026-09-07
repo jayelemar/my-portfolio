@@ -47,7 +47,7 @@ const ProjectCardHeader: FC<ProjectCardHeader> = ({
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,hsl(var(--primary)/0.18),transparent_42%)]" />
 
-      <div className="absolute left-[5%] top-[14%] aspect-[16/10] w-[84%] overflow-hidden rounded-xl border border-black/10 bg-white shadow-2xl transition-transform duration-500 ease-out group-hover:scale-[1.03] dark:border-white/10">
+      <div className="absolute left-[5%] top-[6%] aspect-[16/10] w-[84%] overflow-hidden rounded-xl border border-black/10 bg-white shadow-2xl transition-transform duration-500 ease-out group-hover:scale-[1.03] dark:border-white/10 lg:top-[14%]">
         <div className="flex h-6 items-center gap-1.5 border-b border-black/10 bg-neutral-100 px-3 dark:border-white/10 dark:bg-neutral-800">
           <span className="size-2 rounded-full bg-primary" />
           <span className="size-2 rounded-full bg-primary/60" />
