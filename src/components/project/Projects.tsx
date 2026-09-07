@@ -46,6 +46,16 @@ const Projects = () => {
   }, [featuredProjects.length]);
 
   const x = useTransform(scrollYProgress, [0, 1], [0, -scrollDistance]);
+  const rightFadeOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.96, 1],
+    [1, 1, 0],
+  );
+  const leftFadeOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.04, 1],
+    [0, 1, 1],
+  );
 
   const renderMoreWork = (layout: "grid" | "carousel") => (
     <div className="mt-16 lg:mt-[calc(21rem_-_50vh)]">
@@ -158,6 +168,18 @@ const Projects = () => {
                     />
                   ))}
                 </motion.div>
+
+                <motion.div
+                  aria-hidden="true"
+                  style={{ opacity: rightFadeOpacity }}
+                  className="pointer-events-none absolute inset-y-0 right-0 z-10 w-14 bg-gradient-to-l from-background via-background/70 to-transparent xl:w-16"
+                />
+
+                <motion.div
+                  aria-hidden="true"
+                  style={{ opacity: leftFadeOpacity }}
+                  className="pointer-events-none absolute inset-y-0 left-0 z-10 w-14 bg-gradient-to-r from-background via-background/70 to-transparent xl:w-16"
+                />
               </div>
             </div>
           </div>
