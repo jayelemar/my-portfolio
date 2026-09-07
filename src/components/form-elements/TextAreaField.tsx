@@ -6,8 +6,7 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import { LucideProps, MessageSquare, User } from "lucide-react";
-import { Input } from "../ui/input";
+import { LucideProps } from "lucide-react";
 import { Control, FieldValues, Path } from "react-hook-form";
 import { Textarea } from "../ui/textarea";
 import { cn } from "@/lib/utils";
@@ -18,7 +17,7 @@ type TextAreaFieldProps<T extends FieldValues> = {
   label: string;
   containerStyles: string;
   icon: ComponentType<LucideProps>;
-} & ComponentProps<"input">;
+} & ComponentProps<"textarea">;
 
 export default function TextAreaField<T extends FieldValues>({
   control,
@@ -26,6 +25,7 @@ export default function TextAreaField<T extends FieldValues>({
   label,
   containerStyles,
   icon: Icon,
+  ...textareaProps
 }: TextAreaFieldProps<T>) {
   return (
     <div className={cn("relative", containerStyles)}>
@@ -40,6 +40,7 @@ export default function TextAreaField<T extends FieldValues>({
             <FormControl>
               <Textarea
                 className="min-h-[130px] rounded-2xl px-8 py-5 text-base lg:min-h-[180px]"
+                {...textareaProps}
                 {...field}
               />
             </FormControl>

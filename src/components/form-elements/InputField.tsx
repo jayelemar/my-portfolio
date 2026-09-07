@@ -24,6 +24,7 @@ export default function InputField<T extends FieldValues>({
   label,
   type,
   icon: Icon,
+  ...inputProps
 }: InputFieldProps<T>) {
   return (
     <FormField
@@ -39,6 +40,7 @@ export default function InputField<T extends FieldValues>({
               <Input
                 type={type}
                 className="h-[54px] rounded-2xl px-8 text-base "
+                {...inputProps}
                 {...field}
               />
               <Icon className=" absolute bottom-4 right-6" size={20} />

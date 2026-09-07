@@ -10,7 +10,7 @@ import ContactHeader from "./ContactHeader";
 const Contact = () => {
   return (
     <section id="contact" className="scroll-mt-12">
-      <div className="container mx-auto mb-16 xl:h-[55vh] ">
+      <div className="container mx-auto mb-16 xl:min-h-[55vh]">
         {/* header */}
         <ContactHeader />
 
@@ -23,7 +23,7 @@ const Contact = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.1 }}
-            className="md:basis-4/5"
+            className="md:basis-4/5 lg:min-h-[394px]"
           >
             <ContactForm />
           </motion.div>
