@@ -5,14 +5,13 @@ import { fadeIn } from "@/lib/variant";
 
 const ProjectHeader = () => {
   return (
-    // <div className="mx-auto mb-6 flex h-[15vh] w-full flex-col justify-center text-center xl:mx-0 xl:text-left ">
-    <div className="mx-auto mb-6 flex w-full flex-col justify-center text-center xl:relative xl:top-40 xl:mx-0 xl:mb-4 xl:h-auto xl:text-left">
+    <div className="mx-auto mb-6 flex w-full flex-col justify-center text-center lg:mx-0 lg:mb-8 lg:text-left">
       <motion.h2
         variants={fadeIn("up", 0.2)}
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.2 }}
-        className="relative mx-auto mb-4 flex w-max items-center justify-center gap-x-3 text-4xl font-bold xl:mx-0 xl:mb-2"
+        className="relative mx-auto mb-3 flex w-max items-center justify-center gap-x-3 text-4xl font-bold lg:mx-0 lg:mb-2"
       >
         <SiCodeforces size={35} className="text-primary" />
         My Projects
@@ -23,9 +22,9 @@ const ProjectHeader = () => {
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.2 }}
-        className="whitespace-nowrap text-center xl:mb-0 xl:text-left"
+        className="text-center text-muted-foreground lg:text-left"
       >
-        Check out some of my works
+        Selected work across product, commerce, and emerging technology.
       </motion.p>
     </div>
   );

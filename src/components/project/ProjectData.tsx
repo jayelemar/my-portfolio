@@ -6,6 +6,8 @@ export type ProjectType = {
   category: string;
   name: string;
   description: string;
+  technologies: string[];
+  featured: boolean;
   link: string;
   github?: string;
   figma?: string;
@@ -19,7 +21,9 @@ export const projectData: ProjectType[] = [
     category: "AI Platform",
     name: "Gondoor",
     description:
-      "Gondoor is an AI-powered business operating platform that enables entrepreneurs to launch, manage, and scale businesses using autonomous AI agents. The platform can assist with business creation, operations, customer management, content generation, and growth across multiple industries including software, services, commerce, and local businesses.",
+      "An AI-powered operations platform that helps entrepreneurs launch, manage, and grow businesses with autonomous agents.",
+    technologies: ["AI Agents", "Automation", "SaaS"],
+    featured: true,
     link: "https://gondoor.app/en",
     status: "active",
   },
@@ -29,7 +33,9 @@ export const projectData: ProjectType[] = [
     category: "React.js",
     name: "Duty Free Philippines",
     description:
-      "E-commerce platform for Duty Free Philippines. The platform is built with Laravel and React js. It has a feature to manage the products, orders, and other necessary information needed for the operation of the store.",
+      "An e-commerce platform for browsing products and managing the operational flow behind Duty Free Philippines.",
+    technologies: ["React", "Laravel", "E-commerce"],
+    featured: true,
     link: "https://shop.dutyfree.gov.ph",
     status: "active",
   },
@@ -39,7 +45,9 @@ export const projectData: ProjectType[] = [
     category: "Next.js",
     name: "Futr",
     description:
-      "a decentralized social media application designed for Web3 enthusiasts to engage, predict trends, and interact. Built using Next.js for the frontend and NestJS for the backend, the platform integrates real-time communication, user profiles, and interactive prediction features tailored for topics around the world.",
+      "A Web3 social platform for discussing global topics, predicting trends, and interacting with communities in real time.",
+    technologies: ["Next.js", "NestJS", "Web3"],
+    featured: true,
     link: "https://beta.futr.gg",
     status: "inactive",
   },
@@ -49,7 +57,9 @@ export const projectData: ProjectType[] = [
     category: "Next.js",
     name: "Back To The Futr",
     description:
-      "BackToTheFutr.com is the official hub for the Back to the Future franchise—offering canon news, upcoming events, licensed merchandise, film updates, cast announcements, curated collectibles, screenings, and fan experiences directly from the creators.",
+      "The official franchise hub for news, events, licensed merchandise, screenings, and fan experiences.",
+    technologies: ["Next.js", "Web Platform"],
+    featured: true,
     link: "https://www.backtothefutr.com",
     status: "inactive",
   },
@@ -60,7 +70,9 @@ export const projectData: ProjectType[] = [
     category: "Next.js",
     name: "Bike Me",
     description:
-      "A full stack e-commerce bike store using NextJS, React, Tailwind CSS,  Sanity.io and Stripe ",
+      "A full-stack bicycle store for browsing products and completing secure Stripe payments.",
+    technologies: ["Next.js", "Sanity", "Stripe"],
+    featured: false,
     link: "https://bike-me.vercel.app/",
     github: "https://github.com/jayelemar/bike-shop-app.git",
     status: "demo",
@@ -72,7 +84,9 @@ export const projectData: ProjectType[] = [
     category: "React.js",
     name: "Leave Management System",
     description:
-      "A full stack leave management system using Vite, React, Tailwind CSS, React Hook Form, Zustand, Express.JS and MongoDB",
+      "A full-stack workflow for creating, reviewing, and managing employee leave requests.",
+    technologies: ["React", "Express.js", "MongoDB"],
+    featured: false,
     link: "https://leave-management-app-client.vercel.app/",
     github: "https://github.com/jayelemar/leave-management-app-client",
     status: "demo",
@@ -82,7 +96,10 @@ export const projectData: ProjectType[] = [
     mobileImage: "/work/anime-mobile.png",
     category: "Figma",
     name: "Figma to Landing Page",
-    description: "A anime figma design conversion to a website landing page",
+    description:
+      "A responsive landing page implementation translated from an anime-inspired Figma design.",
+    technologies: ["Figma", "Responsive UI"],
+    featured: false,
     link: "https://lws-exam.vercel.app/",
     figma:
       "https://www.figma.com/design/qlfZvhc4LlyWG4R9lidRPR/Test?node-id=28-122&t=ngfzJp3xDrXIP4QH-0",
@@ -94,7 +111,9 @@ export const projectData: ProjectType[] = [
     category: "NextJS",
     name: "My Portfolio",
     description:
-      "A static site using NextJS, Tailwind CSS, Nodemailer and React Hook Form.",
+      "A personal portfolio built with Next.js, Tailwind CSS, and a verified email contact flow.",
+    technologies: ["Next.js", "Tailwind CSS", "React Hook Form"],
+    featured: false,
     link: "https://elemar.site/",
     github: "https://github.com/jayelemar/my-portfolio",
     status: "demo",

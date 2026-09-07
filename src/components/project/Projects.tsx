@@ -1,7 +1,14 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import React, { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import ProjectCard from "./projectCard/ProjectCard";
 import { projectData } from "./ProjectData";
 import ProjectHeader from "./ProjectHeader";
@@ -10,6 +17,8 @@ const Projects = () => {
   const targetRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const motionRef = useRef<HTMLDivElement | null>(null);
+  const featuredProjects = projectData.filter((project) => project.featured);
+  const otherProjects = projectData.filter((project) => !project.featured);
 
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -19,61 +28,142 @@ const Projects = () => {
   const [scrollDistance, setScrollDistance] = useState(0);
 
   useEffect(() => {
-    if (containerRef.current && motionRef.current) {
+    const calculateScrollDistance = () => {
+      if (!containerRef.current || !motionRef.current) return;
+
       const totalWidth = motionRef.current.scrollWidth;
       const visibleWidth = containerRef.current.offsetWidth;
-      setScrollDistance(totalWidth - visibleWidth);
-    }
-  }, [projectData.length]);
+      setScrollDistance(Math.max(0, totalWidth - visibleWidth));
+    };
+
+    calculateScrollDistance();
+
+    const resizeObserver = new ResizeObserver(calculateScrollDistance);
+    if (containerRef.current) resizeObserver.observe(containerRef.current);
+    if (motionRef.current) resizeObserver.observe(motionRef.current);
+
+    return () => resizeObserver.disconnect();
+  }, [featuredProjects.length]);
 
   const x = useTransform(scrollYProgress, [0, 1], [0, -scrollDistance]);
 
-  return (
-    <section
-      id="projects"
-      className="relative mb-44 scroll-mt-16 xl:mb-48 xl:scroll-mt-24"
-    >
-      <div className="container mx-auto flex flex-col gap-2">
-        {/* Mobile / tablet view */}
-        <div className="grid grid-cols-2 gap-2 lg:hidden lg:gap-8">
-          <ProjectHeader />
-          {projectData.map((project, index) => (
+  const renderMoreWork = (layout: "grid" | "carousel") => (
+    <div className="mt-16 lg:mt-[calc(21rem_-_50vh)]">
+      <div className="mb-8 flex items-end justify-between gap-6">
+        <div>
+          <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+            More work
+          </p>
+          <h3 className="text-3xl font-bold tracking-tight">
+            More things I’ve built
+          </h3>
+        </div>
+        <span
+          className={`hidden text-sm text-muted-foreground sm:block ${
+            layout === "carousel" ? "lg:pr-28" : ""
+          }`}
+        >
+          Experiments and personal projects
+        </span>
+      </div>
+
+      {layout === "carousel" ? (
+        <Carousel
+          opts={{ align: "start", slidesToScroll: 1, loop: true }}
+          className="w-full"
+          aria-label="More projects"
+        >
+          <CarouselContent className="ml-0">
+            {otherProjects.map((project, index) => (
+              <CarouselItem
+                key={project.name}
+                className="px-3"
+                style={{ flexBasis: "33.333333%" }}
+                aria-label={`${index + 1} of ${otherProjects.length}`}
+              >
+                <ProjectCard
+                  project={project}
+                  index={featuredProjects.length + index}
+                  variant="compact"
+                  animationDelay={0.1 + index * 0.05}
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="-top-16 left-auto right-12 size-10 translate-y-0 border-primary/30 bg-background text-primary shadow-sm hover:bg-primary/10 hover:text-primary" />
+          <CarouselNext
+            variant="default"
+            className="-top-16 right-0 size-10 translate-y-0 border border-primary bg-primary text-primary-foreground shadow-sm hover:bg-primary/90"
+          />
+        </Carousel>
+      ) : (
+        <div className="grid gap-5 md:grid-cols-2">
+          {otherProjects.map((project, index) => (
             <ProjectCard
-              key={index}
+              key={project.name}
               project={project}
-              containerStyles="col-span-2 md:max-w-4xl"
+              index={featuredProjects.length + index}
+              variant="compact"
+              animationDelay={0.1 + index * 0.05}
             />
           ))}
         </div>
+      )}
+    </div>
+  );
 
-        {/* Desktop horizontal carousel */}
+  return (
+    <section id="projects" className="relative mb-44 scroll-mt-24 xl:mb-48">
+      <div className="container mx-auto lg:hidden">
+        <div>
+          <ProjectHeader />
+          <div className="grid gap-5">
+            {featuredProjects.map((project, index) => (
+              <ProjectCard
+                key={project.name}
+                project={project}
+                index={index}
+                variant="featured"
+              />
+            ))}
+          </div>
+          {renderMoreWork("grid")}
+        </div>
+      </div>
 
-        <section ref={targetRef} className="relative hidden h-[700vh] lg:block">
-          <div
-            ref={containerRef}
-            className="sticky top-0 flex h-screen flex-col overflow-hidden"
-          >
-            {/* Header stays sticky until carousel ends */}
-            <div className="sticky top-0 z-20 bg-neutral-900/0">
+      <div className="hidden lg:block">
+        <section
+          ref={targetRef}
+          className="relative"
+          style={{ height: `${featuredProjects.length * 100 + 80}vh` }}
+        >
+          <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+            <div className="container mx-auto">
               <ProjectHeader />
-            </div>
 
-            <motion.div
-              ref={motionRef}
-              style={{ x }}
-              className="mt-44 flex gap-8 px-8"
-            >
-              {projectData.map((project, index) => (
-                <ProjectCard
-                  key={index}
-                  project={project}
-                  containerStyles="w-[70vw] max-w-3xl flex-shrink-0"
-                  animationDelay={index === 1 ? 0.45 : 0.2}
-                />
-              ))}
-            </motion.div>
+              <div ref={containerRef} className="relative overflow-hidden">
+                <motion.div
+                  ref={motionRef}
+                  style={{ x }}
+                  className="flex gap-16 pr-[14%]"
+                >
+                  {featuredProjects.map((project, index) => (
+                    <ProjectCard
+                      key={project.name}
+                      project={project}
+                      index={index}
+                      variant="featured"
+                      containerStyles="w-[86%] flex-shrink-0"
+                      animationDelay={index === 0 ? 0.1 : 0.2}
+                    />
+                  ))}
+                </motion.div>
+              </div>
+            </div>
           </div>
         </section>
+
+        <div className="container mx-auto">{renderMoreWork("carousel")}</div>
       </div>
     </section>
   );
