@@ -10,9 +10,14 @@ import { fadeIn } from "@/lib/variant";
 type ProjectCardProps = {
   project: ProjectType;
   containerStyles: string;
+  animationDelay?: number;
 };
 
-const ProjectCard: FC<ProjectCardProps> = ({ project, containerStyles }) => {
+const ProjectCard: FC<ProjectCardProps> = ({
+  project,
+  containerStyles,
+  animationDelay = 0.2,
+}) => {
   const {
     desktopImage,
     mobileImage,
@@ -27,7 +32,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project, containerStyles }) => {
   return (
     <motion.div
       className={containerStyles}
-      variants={fadeIn("left", 0.2)}
+      variants={fadeIn("left", animationDelay)}
       initial="hidden"
       whileInView={"show"}
       viewport={{ once: false, amount: 0.2 }}

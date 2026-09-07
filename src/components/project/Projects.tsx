@@ -68,6 +68,7 @@ const Projects = () => {
                   key={index}
                   project={project}
                   containerStyles="w-[70vw] max-w-3xl flex-shrink-0"
+                  animationDelay={index === 1 ? 0.45 : 0.2}
                 />
               ))}
             </motion.div>
