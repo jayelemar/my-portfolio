@@ -1,25 +1,30 @@
 import { HomeIcon, MailIcon, PhoneCall, User2 } from "lucide-react";
 import {
-  SiCss3,
-  SiGit,
-  SiGithub,
-  SiHtml5,
-  SiJavascript,
+  SiDocker,
+  SiExpo,
+  SiFastapi,
+  SiGithubactions,
+  SiNestjs,
+  SiPostgresql,
+  SiPython,
   SiReact,
+  SiRedis,
+  SiSupabase,
   SiTailwindcss,
   SiTypescript,
-  SiExpress,
-  SiPrisma,
-  SiMongodb,
-  SiJest,
-  SiFigma,
-  SiRedux,
-  SiPostgresql,
-  SiNestjs,
 } from "react-icons/si";
-import { GrMysql } from "react-icons/gr";
-import { TbBrandNextjs } from "react-icons/tb";
+import {
+  TbBrandNextjs,
+  TbBrandOpenai,
+  TbBrandReactNative,
+} from "react-icons/tb";
 import { FaNodeJs } from "react-icons/fa";
+import {
+  JavaScriptIcon,
+  LangGraphIcon,
+  PlaywrightIcon,
+  VitestIcon,
+} from "./SkillBrandIcons";
 
 export type infoProps = {
   icon: React.ReactElement;
@@ -58,102 +63,118 @@ export type SkillSetProps = {
 
 export const skillSet: SkillSetProps[] = [
   {
-    title: "Frontend",
+    title: "Web",
     data: [
       {
-        name: "HTML",
-        imgPath: <SiHtml5 size={40} />,
-        color: "text-[#dd4b25]",
+        name: "JavaScript",
+        imgPath: <JavaScriptIcon />,
       },
       {
-        name: "CSS",
-        imgPath: <SiCss3 size={40} />,
-        color: "text-[#2862e9]",
-      },
-      {
-        name: "Javascript",
-        imgPath: <SiJavascript size={40} />,
-        color: "text-[#efd81d]",
-      },
-      {
-        name: "React.js",
-        imgPath: <SiReact size={40} />,
-        color: "text-[#00d1f7]",
-      },
-      {
-        name: "Typescript",
+        name: "TypeScript",
         imgPath: <SiTypescript size={40} />,
-        color: "text-[#0076c6]",
+        color: "text-[#0072b1] dark:text-[#58a6d8]",
+      },
+      {
+        name: "React",
+        imgPath: <SiReact size={40} />,
+        color: "text-[#087ea4] dark:text-[#61dafb]",
       },
       {
         name: "Next.js",
         imgPath: <TbBrandNextjs size={40} />,
-        color: "dark:text-white",
+        color: "text-foreground",
       },
-
       {
-        name: "Tailwind",
+        name: "Tailwind CSS",
         imgPath: <SiTailwindcss size={40} />,
-        color: "text-[#08b1cf]",
-      },
-      {
-        name: "Redux TLK",
-        imgPath: <SiRedux size={40} />,
-        color: "text-[#7248b6]",
+        color: "text-[#0e7490] dark:text-[#38bdf8]",
       },
     ],
   },
   {
-    title: "Backend",
+    title: "Mobile & Server",
     data: [
       {
-        name: "NodeJS",
+        name: "React Native",
+        imgPath: <TbBrandReactNative size={40} />,
+        color: "text-[#087ea4] dark:text-[#61dafb]",
+      },
+      {
+        name: "Expo",
+        imgPath: <SiExpo size={40} />,
+        color: "text-foreground",
+      },
+      {
+        name: "Node.js",
         imgPath: <FaNodeJs size={40} />,
-        color: "text-[#509941]",
+        color: "text-[#2f7629] dark:text-[#68a063]",
       },
       {
-        name: "Express.js",
-        imgPath: <SiExpress size={40} />,
+        name: "NestJS",
+        imgPath: <SiNestjs size={40} />,
+        color: "text-[#c51a3a] dark:text-[#ea2852]",
       },
       {
-        name: "Nest.js",
-        imgPath: <SiNestjs size={40} color="#E0234E" />,
+        name: "Python",
+        imgPath: <SiPython size={40} />,
+        color: "text-[#2f6592] dark:text-[#ffd343]",
       },
-
+    ],
+  },
+  {
+    title: "AI & Data",
+    data: [
       {
-        name: "Prisma",
-        imgPath: <SiPrisma size={40} />,
-        color: "",
+        name: "FastAPI",
+        imgPath: <SiFastapi size={40} />,
+        color: "text-[#00796b] dark:text-[#39b5a5]",
       },
-
       {
-        name: "PostgreSQL",
+        name: "OpenAI API",
+        imgPath: <TbBrandOpenai size={40} />,
+        color: "text-foreground",
+      },
+      {
+        name: "LangGraph",
+        imgPath: <LangGraphIcon />,
+      },
+      {
+        name: "Postgres/pgvector",
         imgPath: <SiPostgresql size={40} />,
-        color: "text-[#015c87]",
+        color: "text-[#315e86] dark:text-[#5e9dcc]",
       },
       {
-        name: "MongoDB",
-        imgPath: <SiMongodb size={40} />,
-        color: "text-[#599636]",
+        name: "Redis",
+        imgPath: <SiRedis size={40} />,
+        color: "text-[#a42a1a] dark:text-[#ff4438]",
+      },
+    ],
+  },
+  {
+    title: "Quality & Delivery",
+    data: [
+      {
+        name: "Docker",
+        imgPath: <SiDocker size={40} />,
+        color: "text-[#086da5] dark:text-[#2496ed]",
       },
       {
-        name: "Git",
-        imgPath: <SiGit size={40} />,
-        color: "text-[#e84d31]",
+        name: "Supabase",
+        imgPath: <SiSupabase size={40} />,
+        color: "text-[#238636] dark:text-[#3ecf8e]",
       },
       {
-        name: "Github",
-        imgPath: <SiGithub size={40} />,
+        name: "Vitest",
+        imgPath: <VitestIcon />,
       },
       {
-        name: "Jest",
-        imgPath: <SiJest size={40} />,
-        color: "text-[#c03b13]",
+        name: "Playwright",
+        imgPath: <PlaywrightIcon />,
       },
       {
-        name: "Figma",
-        imgPath: <SiFigma size={40} />,
-        color: "",
+        name: "GitHub Actions",
+        imgPath: <SiGithubactions size={40} />,
+        color: "text-[#0969da] dark:text-[#58a6ff]",
       },
     ],
   },

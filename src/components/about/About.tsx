@@ -1,7 +1,7 @@
 "use client";
 
 import { CircleUserRound } from "lucide-react";
-import { SkillSetProps, skillSet } from "./AboutData";
+import { skillSet } from "./AboutData";
 import AboutTabs from "./AboutTabs";
 import AboutImage from "./AboutImage";
 import { Suspense } from "react";
@@ -10,13 +10,6 @@ import { motion } from "framer-motion";
 import { fadeIn } from "@/lib/variant";
 
 const About = () => {
-  const getData = (
-    arr: SkillSetProps[],
-    title: string,
-  ): SkillSetProps | undefined => {
-    return arr.find((item) => item.title === title);
-  };
-
   return (
     <section
       id="about"
@@ -39,7 +32,7 @@ const About = () => {
             <AboutImage />
           </Suspense>
           {/* Tabs */}
-          <AboutTabs skillSet={skillSet} getData={getData} />
+          <AboutTabs skillSet={skillSet} />
         </div>
       </div>
     </section>
