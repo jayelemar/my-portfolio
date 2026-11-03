@@ -91,7 +91,7 @@ const AboutSkillList = ({
         initial={false}
         animate={controls}
         custom={0}
-        className="about-skills-intro text-base leading-7 text-forest-ink"
+        className="about-skills-intro text-sm leading-6 text-forest-ink sm:text-base sm:leading-7"
       >
         Here are the technologies I’ve worked with.
       </motion.p>
@@ -108,7 +108,7 @@ const AboutSkillList = ({
             custom={
               aboutSkillTiming.introDuration + index * aboutSkillTiming.stagger
             }
-            className="flex min-h-24 min-w-0 flex-col items-center gap-2 text-center"
+            className="flex min-h-20 min-w-0 flex-col items-center gap-2 text-center sm:min-h-24"
           >
             <span
               aria-hidden="true"
@@ -119,7 +119,7 @@ const AboutSkillList = ({
             >
               {imgPath}
             </span>
-            <span className="max-w-32 text-sm font-medium leading-5 text-muted-foreground">
+            <span className="max-w-32 text-[13px] font-medium leading-4 text-muted-foreground sm:text-sm sm:leading-5">
               {name.includes("/") ? (
                 <>
                   {name.split("/")[0]}/<wbr />

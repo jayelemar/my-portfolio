@@ -74,7 +74,7 @@ const About = () => {
       ref={sectionRef}
       id="about"
       aria-labelledby="about-heading"
-      className="relative mb-24 flex min-h-[calc(100svh-4.75rem)] scroll-mt-20 items-center py-8 lg:mb-32 lg:pb-12"
+      className="relative mb-24 flex min-h-[calc(100svh-4.75rem)] scroll-mt-20 items-center py-6 sm:py-8 lg:mb-32 lg:pb-12"
     >
       <div className="container mx-auto">
         <motion.h2
@@ -82,11 +82,11 @@ const About = () => {
           variants={aboutItemReveal}
           initial={false}
           animate={entranceControls}
-          className="mb-10 flex items-center justify-center gap-3 text-center text-4xl font-bold tracking-[-0.03em] md:text-5xl"
+          className="mb-6 flex items-center justify-center gap-2 text-center text-3xl font-bold tracking-[-0.03em] sm:mb-10 sm:gap-3 sm:text-4xl md:text-5xl"
         >
           <UserRound
             aria-hidden="true"
-            className="size-9 shrink-0 text-forest-ink md:size-11"
+            className="size-7 shrink-0 text-forest-ink sm:size-9 md:size-11"
           />
           About Me
         </motion.h2>
