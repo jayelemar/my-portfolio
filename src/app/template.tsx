@@ -1,38 +1,30 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion'
-// hooks
-import useScrollProgress from '@/hooks/useScrollProgress';
-import { ReactNode } from 'react';
-import { transform } from 'next/dist/build/swc';
-// variants
+import { motion } from "framer-motion";
+import { ReactNode } from "react";
+
 const variants = {
-  hideen: { opacity: 0 },
+  hidden: { opacity: 0 },
   enter: { opacity: 1 },
+};
 
-}
-const Template = ( { children } : { children: ReactNode}) => {
-  const completion = useScrollProgress()
+const Template = ({ children }: { children: ReactNode }) => {
   return (
-    <>
-    <motion.main 
-      variants={variants} 
-      initial='hidden'
-      animate='enter'
+    <motion.div
+      className="overflow-x-clip"
+      variants={variants}
+      initial="hidden"
+      animate="enter"
       transition={{
-        type: 'linear',
+        type: "tween",
+        ease: "linear",
         delay: 0.2,
-        duration: 0.4
+        duration: 0.4,
       }}
     >
-      { children }
-    </motion.main>
-    {/* completion bar */}
-    <span 
-      style={{transform: `translateY(${completion - 100}%)` }}
-      className='fixed z-50 bg-primary w-1 top-0 right-0 bottom-0 transition-all duration-700'></span>
-    </>
-  )
-}
+      {children}
+    </motion.div>
+  );
+};
 
-export default Template
+export default Template;
