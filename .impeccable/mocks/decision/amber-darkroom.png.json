@@ -1,0 +1,12 @@
+{
+  "prompt": "High-fidelity landscape desktop portfolio website for Jay Elemar Termulo, rendered edge to edge with crisp readable text, no browser or device frame. Hiring teams and freelance clients meet Jay, understand his focus, then inspect genuine work.\n\nIdentity-first opening: the oversized name “Jay Elemar Termulo” spans the entire page, intersected by ONE central enamel-white bordered photographic print of the supplied portrait. Preserve his face, glasses and identity exactly. Show a photograph developing into view on an amber ground. The name and central photographic print form one dominant integrated composition, followed by a quiet horizontal caption rail: “Full stack developer with a frontend focus”, “React / Next.js / TypeScript”, “Contact Me”, “Download CV”. No duplicate skill badges. Projects begin at the lower edge: “Selected projects”, “01 Gondoor”, “02 Duty Free Philippines”, authentic supplied screenshot excerpts and “View project” links. Navigation reads “About”, “Projects”, “Contact”. No extra slogans or claims.\n\nFirst two references supply style inspiration adapted into a working website; never copy their layout, content, timers, control panels or lab props. Third image is Jay; fourth and fifth are project evidence.\n\nFor Experience, the work itself leads from the first viewport. A user- or brief-pinned decision beats the roll, always. The world may be the carrier of the page, never a picture of it: a viewport painted whole as an object with no working parts is a picture of the world, not its website. Material coverage is wanted; one dominant move, remaining regions hold still. A split hero (copy on one side, product on the other, badge row under it) or centered headline over equal cards is the template whatever world paints it. Navigation, text, primary action stay readable.\n\nIdentity-first is the user's exception; project evidence begins below.",
+  "approved": false,
+  "tool": "image_gen",
+  "references": [
+    ".impeccable/mocks/decision/references/darkroom-board.webp",
+    ".impeccable/mocks/decision/references/darkroom-hero.webp",
+    "public/about/jay-elemar-termulo.jpg",
+    "public/work/Gondoor_Desktop.png",
+    "public/work/Duty_Free_Desktop3.png"
+  ]
+}

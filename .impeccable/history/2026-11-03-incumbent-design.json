@@ -1,0 +1,784 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-03T03:21:46.666Z",
+  "title": "Design System: Jay Elemar Termulo Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Leaf Green",
+        "tonalRamp": [
+          "oklch(15.00% 0.0772 149.20)",
+          "oklch(26.43% 0.1255 149.20)",
+          "oklch(37.86% 0.1578 149.20)",
+          "oklch(49.29% 0.1700 149.20)",
+          "oklch(60.71% 0.1605 149.20)",
+          "oklch(72.14% 0.1305 149.20)",
+          "oklch(83.57% 0.0839 149.20)",
+          "oklch(95.00% 0.0266 149.20)"
+        ]
+      },
+      "primary-dark": {
+        "role": "primary",
+        "displayName": "Leaf Green — dark",
+        "tonalRamp": [
+          "oklch(15.00% 0.0872 149.58)",
+          "oklch(26.43% 0.1418 149.58)",
+          "oklch(37.86% 0.1783 149.58)",
+          "oklch(49.29% 0.1920 149.58)",
+          "oklch(60.71% 0.1813 149.58)",
+          "oklch(72.14% 0.1474 149.58)",
+          "oklch(83.57% 0.0948 149.58)",
+          "oklch(95.00% 0.0300 149.58)"
+        ]
+      },
+      "primary-foreground": {
+        "role": "primary",
+        "displayName": "Action Text",
+        "tonalRamp": [
+          "oklch(15.00% 0.0068 12.40)",
+          "oklch(26.43% 0.0110 12.40)",
+          "oklch(37.86% 0.0138 12.40)",
+          "oklch(49.29% 0.0149 12.40)",
+          "oklch(60.71% 0.0141 12.40)",
+          "oklch(72.14% 0.0114 12.40)",
+          "oklch(83.57% 0.0074 12.40)",
+          "oklch(95.00% 0.0023 12.40)"
+        ]
+      },
+      "primary-foreground-dark": {
+        "role": "primary",
+        "displayName": "Action Text — dark",
+        "tonalRamp": [
+          "oklch(15.00% 0.0285 152.95)",
+          "oklch(26.43% 0.0464 152.95)",
+          "oklch(37.86% 0.0583 152.95)",
+          "oklch(49.29% 0.0628 152.95)",
+          "oklch(60.71% 0.0593 152.95)",
+          "oklch(72.14% 0.0482 152.95)",
+          "oklch(83.57% 0.0310 152.95)",
+          "oklch(95.00% 0.0098 152.95)"
+        ]
+      },
+      "forest-ink": {
+        "role": "primary",
+        "displayName": "Forest Ink",
+        "tonalRamp": [
+          "oklch(15.00% 0.0509 151.38)",
+          "oklch(26.43% 0.0828 151.38)",
+          "oklch(37.86% 0.1041 151.38)",
+          "oklch(49.29% 0.1122 151.38)",
+          "oklch(60.71% 0.1059 151.38)",
+          "oklch(72.14% 0.0861 151.38)",
+          "oklch(83.57% 0.0554 151.38)",
+          "oklch(95.00% 0.0176 151.38)"
+        ]
+      },
+      "forest-ink-dark": {
+        "role": "primary",
+        "displayName": "Forest Ink — dark",
+        "tonalRamp": [
+          "oklch(15.00% 0.0518 154.69)",
+          "oklch(26.43% 0.0842 154.69)",
+          "oklch(37.86% 0.1059 154.69)",
+          "oklch(49.29% 0.1140 154.69)",
+          "oklch(60.71% 0.1077 154.69)",
+          "oklch(72.14% 0.0876 154.69)",
+          "oklch(83.57% 0.0563 154.69)",
+          "oklch(95.00% 0.0178 154.69)"
+        ]
+      },
+      "mint-100": {
+        "role": "primary",
+        "displayName": "Mint 100",
+        "tonalRamp": [
+          "oklch(15.00% 0.0197 156.74)",
+          "oklch(26.43% 0.0320 156.74)",
+          "oklch(37.86% 0.0403 156.74)",
+          "oklch(49.29% 0.0434 156.74)",
+          "oklch(60.71% 0.0409 156.74)",
+          "oklch(72.14% 0.0333 156.74)",
+          "oklch(83.57% 0.0214 156.74)",
+          "oklch(95.00% 0.0068 156.74)"
+        ]
+      },
+      "mint-200": {
+        "role": "primary",
+        "displayName": "Mint 200",
+        "tonalRamp": [
+          "oklch(15.00% 0.0366 155.99)",
+          "oklch(26.43% 0.0595 155.99)",
+          "oklch(37.86% 0.0748 155.99)",
+          "oklch(49.29% 0.0805 155.99)",
+          "oklch(60.71% 0.0760 155.99)",
+          "oklch(72.14% 0.0618 155.99)",
+          "oklch(83.57% 0.0398 155.99)",
+          "oklch(95.00% 0.0126 155.99)"
+        ]
+      },
+      "mint-300": {
+        "role": "primary",
+        "displayName": "Mint 300",
+        "tonalRamp": [
+          "oklch(15.00% 0.0619 154.45)",
+          "oklch(26.43% 0.1006 154.45)",
+          "oklch(37.86% 0.1265 154.45)",
+          "oklch(49.29% 0.1362 154.45)",
+          "oklch(60.71% 0.1286 154.45)",
+          "oklch(72.14% 0.1046 154.45)",
+          "oklch(83.57% 0.0672 154.45)",
+          "oklch(95.00% 0.0213 154.45)"
+        ]
+      },
+      "forest-950": {
+        "role": "primary",
+        "displayName": "Forest 950",
+        "tonalRamp": [
+          "oklch(15.00% 0.0285 152.93)",
+          "oklch(26.43% 0.0464 152.93)",
+          "oklch(37.86% 0.0583 152.93)",
+          "oklch(49.29% 0.0628 152.93)",
+          "oklch(60.71% 0.0593 152.93)",
+          "oklch(72.14% 0.0482 152.93)",
+          "oklch(83.57% 0.0310 152.93)",
+          "oklch(95.00% 0.0098 152.93)"
+        ]
+      },
+      "forest-900": {
+        "role": "primary",
+        "displayName": "Forest 900",
+        "tonalRamp": [
+          "oklch(15.00% 0.0407 152.54)",
+          "oklch(26.43% 0.0661 152.54)",
+          "oklch(37.86% 0.0832 152.54)",
+          "oklch(49.29% 0.0896 152.54)",
+          "oklch(60.71% 0.0846 152.54)",
+          "oklch(72.14% 0.0688 152.54)",
+          "oklch(83.57% 0.0442 152.54)",
+          "oklch(95.00% 0.0140 152.54)"
+        ]
+      },
+      "forest-800": {
+        "role": "primary",
+        "displayName": "Forest 800",
+        "tonalRamp": [
+          "oklch(15.00% 0.0492 151.33)",
+          "oklch(26.43% 0.0800 151.33)",
+          "oklch(37.86% 0.1005 151.33)",
+          "oklch(49.29% 0.1083 151.33)",
+          "oklch(60.71% 0.1022 151.33)",
+          "oklch(72.14% 0.0832 151.33)",
+          "oklch(83.57% 0.0535 151.33)",
+          "oklch(95.00% 0.0169 151.33)"
+        ]
+      },
+      "background": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "tonalRamp": [
+          "oklch(15.00% 0.0000 89.88)",
+          "oklch(26.43% 0.0000 89.88)",
+          "oklch(37.86% 0.0000 89.88)",
+          "oklch(49.29% 0.0000 89.88)",
+          "oklch(60.71% 0.0000 89.88)",
+          "oklch(72.14% 0.0000 89.88)",
+          "oklch(83.57% 0.0000 89.88)",
+          "oklch(95.00% 0.0000 89.88)"
+        ]
+      },
+      "background-dark": {
+        "role": "neutral",
+        "displayName": "Warm Charcoal",
+        "tonalRamp": [
+          "oklch(15.00% 0.0019 49.31)",
+          "oklch(26.43% 0.0030 49.31)",
+          "oklch(37.86% 0.0038 49.31)",
+          "oklch(49.29% 0.0041 49.31)",
+          "oklch(60.71% 0.0039 49.31)",
+          "oklch(72.14% 0.0032 49.31)",
+          "oklch(83.57% 0.0020 49.31)",
+          "oklch(95.00% 0.0006 49.31)"
+        ]
+      },
+      "foreground-dark": {
+        "role": "neutral",
+        "displayName": "Foreground Dark",
+        "tonalRamp": [
+          "oklch(15.00% 0.0000 89.88)",
+          "oklch(26.43% 0.0000 89.88)",
+          "oklch(37.86% 0.0000 89.88)",
+          "oklch(49.29% 0.0000 89.88)",
+          "oklch(60.71% 0.0000 89.88)",
+          "oklch(72.14% 0.0000 89.88)",
+          "oklch(83.57% 0.0000 89.88)",
+          "oklch(95.00% 0.0000 89.88)"
+        ]
+      },
+      "cream": {
+        "role": "neutral",
+        "displayName": "Warm Cream",
+        "tonalRamp": [
+          "oklch(15.00% 0.0034 61.46)",
+          "oklch(26.43% 0.0056 61.46)",
+          "oklch(37.86% 0.0070 61.46)",
+          "oklch(49.29% 0.0075 61.46)",
+          "oklch(60.71% 0.0071 61.46)",
+          "oklch(72.14% 0.0058 61.46)",
+          "oklch(83.57% 0.0037 61.46)",
+          "oklch(95.00% 0.0012 61.46)"
+        ]
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Card Surface",
+        "tonalRamp": [
+          "oklch(15.00% 0.0000 89.88)",
+          "oklch(26.43% 0.0000 89.88)",
+          "oklch(37.86% 0.0000 89.88)",
+          "oklch(49.29% 0.0000 89.88)",
+          "oklch(60.71% 0.0000 89.88)",
+          "oklch(72.14% 0.0000 89.88)",
+          "oklch(83.57% 0.0000 89.88)",
+          "oklch(95.00% 0.0000 89.88)"
+        ]
+      },
+      "card-dark": {
+        "role": "neutral",
+        "displayName": "Card Surface — dark",
+        "tonalRamp": [
+          "oklch(15.00% 0.0028 56.04)",
+          "oklch(26.43% 0.0045 56.04)",
+          "oklch(37.86% 0.0057 56.04)",
+          "oklch(49.29% 0.0061 56.04)",
+          "oklch(60.71% 0.0058 56.04)",
+          "oklch(72.14% 0.0047 56.04)",
+          "oklch(83.57% 0.0030 56.04)",
+          "oklch(95.00% 0.0010 56.04)"
+        ]
+      },
+      "secondary": {
+        "role": "neutral",
+        "displayName": "Secondary Surface",
+        "tonalRamp": [
+          "oklch(15.00% 0.0006 286.38)",
+          "oklch(26.43% 0.0010 286.38)",
+          "oklch(37.86% 0.0012 286.38)",
+          "oklch(49.29% 0.0013 286.38)",
+          "oklch(60.71% 0.0013 286.38)",
+          "oklch(72.14% 0.0010 286.38)",
+          "oklch(83.57% 0.0007 286.38)",
+          "oklch(95.00% 0.0002 286.38)"
+        ]
+      },
+      "secondary-dark": {
+        "role": "neutral",
+        "displayName": "Secondary Surface — dark",
+        "tonalRamp": [
+          "oklch(15.00% 0.0025 286.03)",
+          "oklch(26.43% 0.0040 286.03)",
+          "oklch(37.86% 0.0051 286.03)",
+          "oklch(49.29% 0.0055 286.03)",
+          "oklch(60.71% 0.0052 286.03)",
+          "oklch(72.14% 0.0042 286.03)",
+          "oklch(83.57% 0.0027 286.03)",
+          "oklch(95.00% 0.0009 286.03)"
+        ]
+      },
+      "secondary-foreground": {
+        "role": "neutral",
+        "displayName": "Secondary Foreground",
+        "tonalRamp": [
+          "oklch(15.00% 0.0027 285.88)",
+          "oklch(26.43% 0.0043 285.88)",
+          "oklch(37.86% 0.0055 285.88)",
+          "oklch(49.29% 0.0059 285.88)",
+          "oklch(60.71% 0.0055 285.88)",
+          "oklch(72.14% 0.0045 285.88)",
+          "oklch(83.57% 0.0029 285.88)",
+          "oklch(95.00% 0.0009 285.88)"
+        ]
+      },
+      "secondary-foreground-dark": {
+        "role": "neutral",
+        "displayName": "Secondary Foreground Dark",
+        "tonalRamp": [
+          "oklch(15.00% 0.0000 89.88)",
+          "oklch(26.43% 0.0000 89.88)",
+          "oklch(37.86% 0.0000 89.88)",
+          "oklch(49.29% 0.0000 89.88)",
+          "oklch(60.71% 0.0000 89.88)",
+          "oklch(72.14% 0.0000 89.88)",
+          "oklch(83.57% 0.0000 89.88)",
+          "oklch(95.00% 0.0000 89.88)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted Surface",
+        "tonalRamp": [
+          "oklch(15.00% 0.0006 286.38)",
+          "oklch(26.43% 0.0010 286.38)",
+          "oklch(37.86% 0.0012 286.38)",
+          "oklch(49.29% 0.0013 286.38)",
+          "oklch(60.71% 0.0013 286.38)",
+          "oklch(72.14% 0.0010 286.38)",
+          "oklch(83.57% 0.0007 286.38)",
+          "oklch(95.00% 0.0002 286.38)"
+        ]
+      },
+      "muted-dark": {
+        "role": "neutral",
+        "displayName": "Muted Surface — dark",
+        "tonalRamp": [
+          "oklch(15.00% 0.0000 89.88)",
+          "oklch(26.43% 0.0000 89.88)",
+          "oklch(37.86% 0.0000 89.88)",
+          "oklch(49.29% 0.0000 89.88)",
+          "oklch(60.71% 0.0000 89.88)",
+          "oklch(72.14% 0.0000 89.88)",
+          "oklch(83.57% 0.0000 89.88)",
+          "oklch(95.00% 0.0000 89.88)"
+        ]
+      },
+      "muted-foreground": {
+        "role": "neutral",
+        "displayName": "Supporting Text",
+        "tonalRamp": [
+          "oklch(15.00% 0.0062 285.94)",
+          "oklch(26.43% 0.0101 285.94)",
+          "oklch(37.86% 0.0127 285.94)",
+          "oklch(49.29% 0.0137 285.94)",
+          "oklch(60.71% 0.0129 285.94)",
+          "oklch(72.14% 0.0105 285.94)",
+          "oklch(83.57% 0.0068 285.94)",
+          "oklch(95.00% 0.0021 285.94)"
+        ]
+      },
+      "muted-foreground-dark": {
+        "role": "neutral",
+        "displayName": "Supporting Text — dark",
+        "tonalRamp": [
+          "oklch(15.00% 0.0058 286.07)",
+          "oklch(26.43% 0.0095 286.07)",
+          "oklch(37.86% 0.0119 286.07)",
+          "oklch(49.29% 0.0129 286.07)",
+          "oklch(60.71% 0.0121 286.07)",
+          "oklch(72.14% 0.0099 286.07)",
+          "oklch(83.57% 0.0063 286.07)",
+          "oklch(95.00% 0.0020 286.07)"
+        ]
+      },
+      "accent": {
+        "role": "neutral",
+        "displayName": "Hover Surface",
+        "tonalRamp": [
+          "oklch(15.00% 0.0006 286.38)",
+          "oklch(26.43% 0.0010 286.38)",
+          "oklch(37.86% 0.0012 286.38)",
+          "oklch(49.29% 0.0013 286.38)",
+          "oklch(60.71% 0.0013 286.38)",
+          "oklch(72.14% 0.0010 286.38)",
+          "oklch(83.57% 0.0007 286.38)",
+          "oklch(95.00% 0.0002 286.38)"
+        ]
+      },
+      "accent-dark": {
+        "role": "neutral",
+        "displayName": "Hover Surface — dark",
+        "tonalRamp": [
+          "oklch(15.00% 0.0029 34.30)",
+          "oklch(26.43% 0.0046 34.30)",
+          "oklch(37.86% 0.0058 34.30)",
+          "oklch(49.29% 0.0063 34.30)",
+          "oklch(60.71% 0.0059 34.30)",
+          "oklch(72.14% 0.0048 34.30)",
+          "oklch(83.57% 0.0031 34.30)",
+          "oklch(95.00% 0.0010 34.30)"
+        ]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "tonalRamp": [
+          "oklch(15.00% 0.0018 286.32)",
+          "oklch(26.43% 0.0030 286.32)",
+          "oklch(37.86% 0.0038 286.32)",
+          "oklch(49.29% 0.0040 286.32)",
+          "oklch(60.71% 0.0038 286.32)",
+          "oklch(72.14% 0.0031 286.32)",
+          "oklch(83.57% 0.0020 286.32)",
+          "oklch(95.00% 0.0006 286.32)"
+        ]
+      },
+      "border-dark": {
+        "role": "neutral",
+        "displayName": "Hairline — dark",
+        "tonalRamp": [
+          "oklch(15.00% 0.0025 286.03)",
+          "oklch(26.43% 0.0040 286.03)",
+          "oklch(37.86% 0.0051 286.03)",
+          "oklch(49.29% 0.0055 286.03)",
+          "oklch(60.71% 0.0052 286.03)",
+          "oklch(72.14% 0.0042 286.03)",
+          "oklch(83.57% 0.0027 286.03)",
+          "oklch(95.00% 0.0009 286.03)"
+        ]
+      },
+      "destructive": {
+        "role": "destructive",
+        "displayName": "Validation Red",
+        "tonalRamp": [
+          "oklch(15.00% 0.0943 25.33)",
+          "oklch(26.43% 0.1534 25.33)",
+          "oklch(37.86% 0.1928 25.33)",
+          "oklch(49.29% 0.2077 25.33)",
+          "oklch(60.71% 0.1961 25.33)",
+          "oklch(72.14% 0.1595 25.33)",
+          "oklch(83.57% 0.1025 25.33)",
+          "oklch(95.00% 0.0325 25.33)"
+        ]
+      },
+      "destructive-dark": {
+        "role": "destructive",
+        "displayName": "Validation Red — dark",
+        "tonalRamp": [
+          "oklch(15.00% 0.0604 25.72)",
+          "oklch(26.43% 0.0982 25.72)",
+          "oklch(37.86% 0.1235 25.72)",
+          "oklch(49.29% 0.1330 25.72)",
+          "oklch(60.71% 0.1256 25.72)",
+          "oklch(72.14% 0.1022 25.72)",
+          "oklch(83.57% 0.0657 25.72)",
+          "oklch(95.00% 0.0208 25.72)"
+        ]
+      },
+      "destructive-foreground": {
+        "role": "destructive",
+        "displayName": "Destructive Foreground",
+        "tonalRamp": [
+          "oklch(15.00% 0.0000 89.88)",
+          "oklch(26.43% 0.0000 89.88)",
+          "oklch(37.86% 0.0000 89.88)",
+          "oklch(49.29% 0.0000 89.88)",
+          "oklch(60.71% 0.0000 89.88)",
+          "oklch(72.14% 0.0000 89.88)",
+          "oklch(83.57% 0.0000 89.88)",
+          "oklch(95.00% 0.0000 89.88)"
+        ]
+      },
+      "destructive-foreground-dark": {
+        "role": "destructive",
+        "displayName": "Destructive Foreground Dark",
+        "tonalRamp": [
+          "oklch(15.00% 0.0058 17.38)",
+          "oklch(26.43% 0.0094 17.38)",
+          "oklch(37.86% 0.0118 17.38)",
+          "oklch(49.29% 0.0127 17.38)",
+          "oklch(60.71% 0.0120 17.38)",
+          "oklch(72.14% 0.0098 17.38)",
+          "oklch(83.57% 0.0063 17.38)",
+          "oklch(95.00% 0.0020 17.38)"
+        ]
+      },
+      "ring": {
+        "role": "neutral",
+        "displayName": "Focus Green",
+        "tonalRamp": [
+          "oklch(15.00% 0.0772 149.20)",
+          "oklch(26.43% 0.1255 149.20)",
+          "oklch(37.86% 0.1578 149.20)",
+          "oklch(49.29% 0.1700 149.20)",
+          "oklch(60.71% 0.1605 149.20)",
+          "oklch(72.14% 0.1305 149.20)",
+          "oklch(83.57% 0.0839 149.20)",
+          "oklch(95.00% 0.0266 149.20)"
+        ]
+      },
+      "ring-dark": {
+        "role": "neutral",
+        "displayName": "Focus Green — dark",
+        "tonalRamp": [
+          "oklch(15.00% 0.0622 150.05)",
+          "oklch(26.43% 0.1012 150.05)",
+          "oklch(37.86% 0.1272 150.05)",
+          "oklch(49.29% 0.1370 150.05)",
+          "oklch(60.71% 0.1294 150.05)",
+          "oklch(72.14% 0.1052 150.05)",
+          "oklch(83.57% 0.0676 150.05)",
+          "oklch(95.00% 0.0214 150.05)"
+        ]
+      },
+      "demo-status": {
+        "role": "status",
+        "displayName": "Demo Amber",
+        "tonalRamp": [
+          "oklch(15.00% 0.0746 84.43)",
+          "oklch(26.43% 0.1214 84.43)",
+          "oklch(37.86% 0.1526 84.43)",
+          "oklch(49.29% 0.1644 84.43)",
+          "oklch(60.71% 0.1552 84.43)",
+          "oklch(72.14% 0.1262 84.43)",
+          "oklch(83.57% 0.0811 84.43)",
+          "oklch(95.00% 0.0257 84.43)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero headline; responsive sizes are documented in Typography."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings with local responsive overrides."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Shared card-title primitive."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default body text."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Lightweight hero introduction."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Default button and compact interface labels."
+      },
+      "navigation": {
+        "displayName": "Navigation",
+        "purpose": "Desktop navigation labels."
+      },
+      "metadata": {
+        "displayName": "Metadata",
+        "purpose": "Project categories, status, and technology tags."
+      },
+      "index": {
+        "displayName": "Index",
+        "purpose": "Monospace project numbering."
+      }
+    },
+    "shadows": [
+      {
+        "name": "small",
+        "value": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+        "purpose": "Shared card primitive and carousel controls; project shells override to none."
+      },
+      {
+        "name": "raised",
+        "value": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+        "purpose": "Scrolled header and navigation sheet."
+      },
+      {
+        "name": "preview",
+        "value": "0 25px 50px -12px rgb(0 0 0 / 0.25)",
+        "purpose": "Project screenshot frames."
+      }
+    ],
+    "motion": [
+      {
+        "name": "reveal-distance",
+        "value": "40px",
+        "purpose": "Shared directional entrance displacement."
+      },
+      {
+        "name": "reveal-duration",
+        "value": "1.2s",
+        "purpose": "Shared reveal entrance duration."
+      },
+      {
+        "name": "reveal-easing",
+        "value": "cubic-bezier(0.25, 0.25, 0.25, 0.75)",
+        "purpose": "Shared reveal entrance easing."
+      },
+      {
+        "name": "about-distance",
+        "value": "16px",
+        "purpose": "Gentler about-section reveal displacement."
+      },
+      {
+        "name": "about-duration",
+        "value": "500ms",
+        "purpose": "About reveal duration; reduced-motion variant uses 80ms without displacement or delay."
+      },
+      {
+        "name": "about-easing",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "About content and underline reveals."
+      },
+      {
+        "name": "about-accent-duration",
+        "value": "450ms",
+        "purpose": "About heading accent reveal; reduced-motion variant uses zero duration."
+      },
+      {
+        "name": "preview-transform",
+        "value": "500ms ease-out",
+        "purpose": "Preview hover scale to 1.03 and phone lift."
+      },
+      {
+        "name": "route-fade",
+        "value": "400ms linear 200ms",
+        "purpose": "Route content opacity transition."
+      },
+      {
+        "name": "sheet-open",
+        "value": "500ms",
+        "purpose": "Navigation sheet entrance."
+      },
+      {
+        "name": "sheet-close",
+        "value": "300ms",
+        "purpose": "Navigation sheet exit."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "xs",
+        "value": "480px"
+      },
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      },
+      {
+        "name": "2xl",
+        "value": "1536px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Shared primary variant; page-specific pill and size overrides are documented separately.",
+      "html": "<button class=\"ds-button-primary\" type=\"button\">Contact Me</button>",
+      "css": ".ds-button-primary{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;font-family:inherit;font-size:14px;line-height:20px;font-weight:500;border:0;border-radius:calc(var(--radius, 8px) - 2px);height:40px;padding:8px 16px;background:hsl(var(--primary, 142.1 76.2% 36.3%));color:hsl(var(--primary-foreground, 355.7 100% 97.3%));cursor:pointer;transition:color 150ms cubic-bezier(0.4,0,0.2,1),background-color 150ms cubic-bezier(0.4,0,0.2,1)}.ds-button-primary:hover{background:hsl(var(--primary, 142.1 76.2% 36.3%) / 0.9);}.ds-button-primary:focus-visible{outline:none;box-shadow:0 0 0 2px hsl(var(--background, 0 0% 100%)),0 0 0 4px hsl(var(--ring, 142.1 76.2% 36.3%))}.ds-button-primary:disabled{pointer-events:none;opacity:0.5}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Shared secondary variant; page-specific pill and size overrides are documented separately.",
+      "html": "<button class=\"ds-button-secondary\" type=\"button\">Secondary action</button>",
+      "css": ".ds-button-secondary{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;font-family:inherit;font-size:14px;line-height:20px;font-weight:500;border:0;border-radius:calc(var(--radius, 8px) - 2px);height:40px;padding:8px 16px;background:hsl(var(--secondary, 240 4.8% 95.9%));color:hsl(var(--secondary-foreground, 240 5.9% 10%));cursor:pointer;transition:color 150ms cubic-bezier(0.4,0,0.2,1),background-color 150ms cubic-bezier(0.4,0,0.2,1)}.ds-button-secondary:hover{background:hsl(var(--secondary, 240 4.8% 95.9%) / 0.8);}.ds-button-secondary:focus-visible{outline:none;box-shadow:0 0 0 2px hsl(var(--background, 0 0% 100%)),0 0 0 4px hsl(var(--ring, 142.1 76.2% 36.3%))}.ds-button-secondary:disabled{pointer-events:none;opacity:0.5}"
+    },
+    {
+      "name": "Destructive Button",
+      "kind": "button",
+      "refersTo": "button-destructive",
+      "description": "Shared destructive variant; page-specific pill and size overrides are documented separately.",
+      "html": "<button class=\"ds-button-destructive\" type=\"button\">Destructive action</button>",
+      "css": ".ds-button-destructive{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;font-family:inherit;font-size:14px;line-height:20px;font-weight:500;border:0;border-radius:calc(var(--radius, 8px) - 2px);height:40px;padding:8px 16px;background:hsl(var(--destructive, 0 84.2% 60.2%));color:hsl(var(--destructive-foreground, 0 0% 98%));cursor:pointer;transition:color 150ms cubic-bezier(0.4,0,0.2,1),background-color 150ms cubic-bezier(0.4,0,0.2,1)}.ds-button-destructive:hover{background:hsl(var(--destructive, 0 84.2% 60.2%) / 0.9);}.ds-button-destructive:focus-visible{outline:none;box-shadow:0 0 0 2px hsl(var(--background, 0 0% 100%)),0 0 0 4px hsl(var(--ring, 142.1 76.2% 36.3%))}.ds-button-destructive:disabled{pointer-events:none;opacity:0.5}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Shared outline variant; page-specific pill and size overrides are documented separately.",
+      "html": "<button class=\"ds-button-outline\" type=\"button\">Outline action</button>",
+      "css": ".ds-button-outline{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;font-family:inherit;font-size:14px;line-height:20px;font-weight:500;border:1px solid hsl(var(--input, 240 5.9% 90%));border-radius:calc(var(--radius, 8px) - 2px);height:40px;padding:8px 16px;background:hsl(var(--background, 0 0% 100%));color:inherit;cursor:pointer;transition:color 150ms cubic-bezier(0.4,0,0.2,1),background-color 150ms cubic-bezier(0.4,0,0.2,1)}.ds-button-outline:hover{background:hsl(var(--accent, 240 4.8% 95.9%));color:hsl(var(--accent-foreground, 240 5.9% 10%));}.ds-button-outline:focus-visible{outline:none;box-shadow:0 0 0 2px hsl(var(--background, 0 0% 100%)),0 0 0 4px hsl(var(--ring, 142.1 76.2% 36.3%))}.ds-button-outline:disabled{pointer-events:none;opacity:0.5}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Shared ghost variant; page-specific pill and size overrides are documented separately.",
+      "html": "<button class=\"ds-button-ghost\" type=\"button\">Resend code</button>",
+      "css": ".ds-button-ghost{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;font-family:inherit;font-size:14px;line-height:20px;font-weight:500;border:0;border-radius:calc(var(--radius, 8px) - 2px);height:40px;padding:8px 16px;background:transparent;color:inherit;cursor:pointer;transition:color 150ms cubic-bezier(0.4,0,0.2,1),background-color 150ms cubic-bezier(0.4,0,0.2,1)}.ds-button-ghost:hover{background:hsl(var(--accent, 240 4.8% 95.9%));color:hsl(var(--accent-foreground, 240 5.9% 10%));}.ds-button-ghost:focus-visible{outline:none;box-shadow:0 0 0 2px hsl(var(--background, 0 0% 100%)),0 0 0 4px hsl(var(--ring, 142.1 76.2% 36.3%))}.ds-button-ghost:disabled{pointer-events:none;opacity:0.5}"
+    },
+    {
+      "name": "Link Button",
+      "kind": "button",
+      "refersTo": "button-link",
+      "description": "Shared link variant; page-specific pill and size overrides are documented separately.",
+      "html": "<button class=\"ds-button-link\" type=\"button\">Update email or message</button>",
+      "css": ".ds-button-link{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;font-family:inherit;font-size:14px;line-height:20px;font-weight:500;border:0;border-radius:calc(var(--radius, 8px) - 2px);height:40px;padding:8px 16px;background:transparent;color:hsl(var(--primary, 142.1 76.2% 36.3%));cursor:pointer;transition:color 150ms cubic-bezier(0.4,0,0.2,1),background-color 150ms cubic-bezier(0.4,0,0.2,1)}.ds-button-link:hover{background:transparent;text-decoration:underline;text-underline-offset:4px;}.ds-button-link:focus-visible{outline:none;box-shadow:0 0 0 2px hsl(var(--background, 0 0% 100%)),0 0 0 4px hsl(var(--ring, 142.1 76.2% 36.3%))}.ds-button-link:disabled{pointer-events:none;opacity:0.5}"
+    },
+    {
+      "name": "Contact Field",
+      "kind": "input",
+      "refersTo": "input-contact",
+      "description": "Contact form field with a floating border label, trailing icon, and theme focus ring.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-field-label\" for=\"ds-contact-name\">Name:</label><input class=\"ds-field-input\" id=\"ds-contact-name\" type=\"text\" autocomplete=\"name\" maxlength=\"80\"><svg class=\"ds-field-icon\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\"/><circle cx=\"12\" cy=\"7\" r=\"4\"/></svg></div>",
+      "css": ".ds-field{position:relative;width:min(100%,400px);padding-top:8px}.ds-field-label{position:absolute;top:0;left:24px;z-index:1;padding:0 4px;background:hsl(var(--background, 0 0% 100%));color:hsl(var(--muted-foreground, 240 3.8% 46.1%));font-size:14px;line-height:20px;font-weight:500}.ds-field-input{display:block;width:100%;max-width:100%;height:54px;padding:8px 32px;font-family:inherit;font-size:16px;line-height:24px;border:1px solid hsl(var(--input, 240 5.9% 90%));border-radius:16px;background:hsl(var(--background, 0 0% 100%));color:inherit}.ds-field-input::placeholder{color:hsl(var(--muted-foreground, 240 3.8% 46.1%))}.ds-field-input:focus-visible{outline:none;box-shadow:0 0 0 2px hsl(var(--background, 0 0% 100%)),0 0 0 4px hsl(var(--ring, 142.1 76.2% 36.3%))}.ds-field-input:disabled{cursor:not-allowed;opacity:0.5}.ds-field-icon{position:absolute;bottom:16px;right:24px;pointer-events:none}"
+    },
+    {
+      "name": "Desktop Navigation",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Capitalized navigation with the active item in Leaf Green and a two-pixel underline.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Portfolio\"><button class=\"ds-nav-item ds-nav-active\" type=\"button\" aria-current=\"page\">Home</button><button class=\"ds-nav-item\" type=\"button\">About</button><button class=\"ds-nav-item\" type=\"button\">My Projects</button><button class=\"ds-nav-item\" type=\"button\">Contact</button></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:40px}.ds-nav-item{position:relative;padding:0;border:0;background:transparent;color:inherit;font-family:inherit;font-size:18px;line-height:28px;font-weight:500;text-transform:capitalize;white-space:nowrap;cursor:pointer;transition:color 300ms}.ds-nav-item:hover{color:hsl(var(--primary, 142.1 76.2% 36.3%) / 0.6)}.ds-nav-item:focus-visible{outline:auto 1px}.ds-nav-active{color:hsl(var(--primary, 142.1 76.2% 36.3%))}.ds-nav-active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:hsl(var(--primary, 142.1 76.2% 36.3%))}"
+    },
+    {
+      "name": "Technology Chip",
+      "kind": "chip",
+      "refersTo": "technology-chip",
+      "description": "Noninteractive project technology label with a muted surface and compact corners.",
+      "html": "<span class=\"ds-chip\">Next.js</span>",
+      "css": ".ds-chip{display:inline-block;padding:4px 10px;border-radius:calc(var(--radius, 8px) - 2px);background:hsl(var(--muted, 240 4.8% 95.9%));color:hsl(var(--muted-foreground, 240 3.8% 46.1%));font-family:inherit;font-size:12px;line-height:16px;font-weight:500}"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": "project-card",
+      "description": "Project content shell with subdued border, green title, explicit status text, and no shell shadow. Framed imagery is a separate composition.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-card-meta\"><span class=\"ds-card-category\">AI Platform</span><span class=\"ds-card-status\"><i class=\"ds-card-dot\" aria-hidden=\"true\"></i>Live</span><span class=\"ds-card-index\">01</span></div><h3 class=\"ds-card-title\">Gondoor</h3><p class=\"ds-card-description\">An AI-powered operations platform that helps entrepreneurs launch, manage, and grow businesses with autonomous agents.</p><span class=\"ds-card-tag\">Automation</span><div class=\"ds-card-actions\"><a class=\"ds-card-link\" href=\"https://gondoor.app/en\" target=\"_blank\" rel=\"noopener noreferrer\">Visit live site<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M7 17 17 7M7 7h10v10\"/></svg></a></div></article>",
+      "css": ".ds-card{max-width:400px;overflow:hidden;padding:20px;border:1px solid hsl(var(--border, 240 5.9% 90%) / 0.6);border-radius:var(--radius, 8px);background:hsl(var(--card, 0 0% 100%) / 0.7);box-shadow:none;font-family:inherit}.ds-card-meta{display:flex;align-items:center;gap:8px;margin-bottom:16px;color:hsl(var(--muted-foreground, 240 3.8% 46.1%));font-size:12px;line-height:16px;font-weight:500}.ds-card-category{padding:4px 12px;border:1px solid hsl(var(--border, 240 5.9% 90%));border-radius:9999px;background:hsl(var(--background, 0 0% 100%) / 0.7)}.ds-card-status{display:inline-flex;align-items:center;gap:6px}.ds-card-dot{display:inline-block;width:8px;height:8px;border-radius:9999px;background:hsl(var(--primary, 142.1 76.2% 36.3%))}.ds-card-index{margin-left:auto;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-weight:400;opacity:0.7}.ds-card-title{margin:0;color:hsl(var(--primary, 142.1 76.2% 36.3%));font-size:24px;line-height:32px;font-weight:700;letter-spacing:-0.025em}.ds-card-description{margin:12px 0 16px;color:hsl(var(--muted-foreground, 240 3.8% 46.1%));font-size:16px;line-height:1.625}.ds-card-tag{display:inline-block;padding:4px 10px;border-radius:6px;background:hsl(var(--muted, 240 4.8% 95.9%));color:hsl(var(--muted-foreground, 240 3.8% 46.1%));font-size:12px;line-height:16px;font-weight:500}.ds-card-actions{padding-top:20px}.ds-card-link{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:8px 16px;border-radius:9999px;background:hsl(var(--primary, 142.1 76.2% 36.3%));color:hsl(var(--primary-foreground, 355.7 100% 97.3%));font-size:14px;line-height:20px;font-weight:600;text-decoration:none;transition:transform 150ms}.ds-card-link:hover{transform:translateY(-2px)}.ds-card-link:focus-visible{outline:none;box-shadow:0 0 0 2px hsl(var(--background, 0 0% 100%)),0 0 0 4px hsl(var(--ring, 142.1 76.2% 36.3%))}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Developer’s Workbench",
+    "overview": "An approachable, capable portfolio with open spacing, direct typography, green accents, and clear project demonstrations. The workbench metaphor describes the implemented system: personal identity gives the work a human author, and project screenshots supply concrete evidence of what he builds.\n\nComponents feel refined and restrained, with quiet boundaries, clear states, and generous spacing. Depth is layered: page surfaces stay calm while screenshot frames and the scrolled header receive structural shadows. Light and dark themes retain the same hierarchy and geometry.",
+    "keyCharacteristics": [
+      "A consistent green accent, supported by quieter green text and mint surfaces.",
+      "One primary sans-serif family, with bold headings and muted explanatory copy.",
+      "Pill actions, rounded fields, fine borders, and framed desktop/mobile project imagery.",
+      "Spacious sections with responsive stacking and deliberate reveal motion."
+    ],
+    "rules": [
+      {
+        "name": "The Semantic Pair Rule",
+        "body": "Resolve background, text, border, and focus colors through their matching theme roles. A light-theme action foreground must not be carried into dark mode independently of its background.",
+        "section": "colors"
+      },
+      {
+        "name": "The Quiet Surface Rule",
+        "body": "Keep project-card shells free of shadows; put the existing preview elevation on the framed imagery inside them.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use the matching semantic color roles for each theme.",
+      "Do keep Inter as the primary family and reserve monospace for project indices.",
+      "Do distinguish pill actions, category pills, and rectangular technology tags.",
+      "Do keep project shells quiet and preview imagery visibly layered.",
+      "Do preserve visible focus treatments and pair project-status color with text.",
+      "Do follow each component's existing responsive behavior when refining it."
+    ],
+    "donts": [
+      "Don't promote the malformed light foreground or red card/popover foregrounds into brand tokens.",
+      "Don't collapse secondary, muted, and accent roles because their light values happen to match.",
+      "Don't apply portrait shapes or horizontal showcase scrolling to unrelated surfaces by default.",
+      "Don't replace real screenshots, identity assets, or technology marks with generic stand-ins.",
+      "Don't describe missing focus, contrast, or reduced-motion coverage as verified compliance."
+    ]
+  }
+}
