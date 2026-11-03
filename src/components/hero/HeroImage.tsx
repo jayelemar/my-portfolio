@@ -16,7 +16,7 @@ const HeroImage = () => {
           initial={reduceMotion ? false : "hidden"}
           whileInView="show"
           viewport={{ once: false, amount: 0.2 }}
-          className="absolute inset-x-0 bottom-0 top-20 -z-10 bg-gradient-to-tr from-green-100 via-green-200 to-green-300 dark:from-green-950 dark:via-green-900 dark:to-green-800"
+          className="absolute inset-x-0 bottom-0 top-20 -z-10 bg-gradient-to-tr from-green-100 via-green-200 to-green-300 dark:from-green-950 dark:via-green-800 dark:to-green-400"
           style={{ borderRadius: "58% 42% 46% 54% / 40% 42% 58% 60%" }}
         />
         <motion.div
