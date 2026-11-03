@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FiArrowUpRight, FiFigma, FiGithub } from "react-icons/fi";
 import { ProjectStatus } from "../ProjectData";
 import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
 
 type ProjectCardBodyType = {
   category: string;
@@ -63,9 +64,9 @@ const ProjectCardBody: FC<ProjectCardBodyType> = ({
         )}
       >
         <div className="flex items-center gap-2">
-          <span className="rounded-full border bg-background/70 px-3 py-1 text-xs font-medium text-muted-foreground">
-            {category}
-          </span>
+          <Badge variant="category" asChild>
+            <span>{category}</span>
+          </Badge>
           <span className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
             <span
               className={cn("size-2 rounded-full", statusConfig.dotClassName)}
@@ -109,12 +110,9 @@ const ProjectCardBody: FC<ProjectCardBodyType> = ({
         aria-label="Technologies used"
       >
         {technologies.map((technology) => (
-          <li
-            key={technology}
-            className="rounded-md bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground"
-          >
-            {technology}
-          </li>
+          <Badge key={technology} variant="technology" asChild>
+            <li>{technology}</li>
+          </Badge>
         ))}
       </ul>
 
