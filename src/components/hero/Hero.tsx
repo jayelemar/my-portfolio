@@ -9,7 +9,7 @@ const Hero = () => {
   return (
     <section
       id="/"
-      className="mb-56 flex h-[85vh] scroll-mt-16 items-center justify-center  bg-cover bg-bottom bg-no-repeat py-0 dark:bg-none xl:py-4"
+      className="mb-8 flex min-h-[calc(100svh-5.75rem)] scroll-mt-16 items-center justify-center py-16 xl:min-h-[max(42rem,calc(100svh-5.75rem))]"
     >
       <div className="container mx-auto">
         <div className="relative flex justify-between gap-x-8 ">

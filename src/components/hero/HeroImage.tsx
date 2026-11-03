@@ -8,7 +8,7 @@ const HeroImage = () => {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="absolute right-0 top-1/2 hidden h-[520px] w-[500px] -translate-y-1/2 xl:block 2xl:h-[560px] 2xl:w-[540px]">
+    <div className="absolute right-0 top-1/2 -mt-6 hidden h-[520px] w-[500px] -translate-y-1/2 xl:block 2xl:h-[560px] 2xl:w-[540px]">
       <div className="relative isolate h-full w-full">
         <motion.div
           aria-hidden="true"
