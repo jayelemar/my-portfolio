@@ -8,10 +8,9 @@ import { fadeIn } from "@/lib/variant";
 
 type AboutTabsProps = {
   skillSet: SkillSetProps[];
-  getData: (arr: SkillSetProps[], title: string) => SkillSetProps | undefined;
 };
 
-const AboutTabs: FC<AboutTabsProps> = ({ skillSet, getData }) => {
+const AboutTabs: FC<AboutTabsProps> = ({ skillSet }) => {
   return (
     <motion.div
       variants={fadeIn("up", 0.6)}
@@ -40,10 +39,10 @@ const AboutTabs: FC<AboutTabsProps> = ({ skillSet, getData }) => {
               viewport={{ once: false, amount: 0.2 }}
               className="h-[345px] text-balance text-[15px] text-primary xl:h-[255px] xl:text-base"
             >
-              Here are the techonologies I worked with.
+              Here are the technologies I’ve worked with.
             </motion.span>
             <div className="mt-2 flex flex-col justify-center text-center xl:text-left">
-              <AboutSkillList skillSet={skillSet} getData={getData} />
+              <AboutSkillList skillSet={skillSet} />
             </div>
           </TabsContent>
           <TabsContent value="info">

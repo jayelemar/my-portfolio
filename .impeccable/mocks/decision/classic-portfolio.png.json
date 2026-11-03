@@ -1,0 +1,11 @@
+{
+  "prompt": "A high-fidelity landscape desktop personal portfolio homepage for Jay Elemar Termulo, rendered edge to edge as the actual website with crisp readable interface text, no browser frame or surrounding scene. Hiring teams and prospective freelance clients should immediately understand who Jay is, see his face, and reach his work or contact details.\n\nThis is the classic personal portfolio direction: white surfaces, deep charcoal #111827 text, and confident blue #2563EB used for actions. Excellent accessible contemporary sans-serif typography, generous but purposeful spacing, and a calm professional hierarchy make the familiar format feel carefully finished. The signature is clarity and exceptional proportion.\n\nLead with a side-by-side introduction and the real portrait from image 1, preserving his face, glasses, hairstyle, and formal clothing. Text reads \u201cJay Elemar Termulo\u201d, \u201cFull stack developer with a frontend focus\u201d, and \u201cReact / Next.js / TypeScript\u201d. Include an honest short introduction about building web experiences, then prominent \u201cContact Me\u201d and secondary \u201cDownload CV\u201d actions. The header has his name and navigation \u201cAbout\u201d, \u201cProjects\u201d, \u201cContact\u201d.\n\nBelow the introduction, begin a two-column grid under \u201cSelected projects\u201d. Show \u201cGondoor\u201d using image 2 as its actual screenshot, and \u201cDuty Free Philippines\u201d using image 3 as its actual screenshot. Faithfully reproduce the supplied project imagery rather than redesigning those websites. Keep project information subordinate to the personal introduction. No invented metrics, awards, testimonials, or employment claims. Show enough of the project region to prove this is a functional portfolio homepage.",
+  "approved": false,
+  "generatedAt": "2026-11-03T03:33:01.456Z",
+  "directionApproved": false,
+  "implementationApproved": false,
+  "selection": "canon",
+  "selectedAs": "superseded exploration",
+  "rejected": true,
+  "rejectionReason": "User explicitly requested the existing green theme instead."
+}
