@@ -10,6 +10,7 @@ import ScrollToTop from "@/components/common/ScrollToTop";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.elemar.site"),
   title: {
     default: "Jay Elemar Termulo | Full Stack Developer",
     template: "%s | Jay Elemar Termulo",
@@ -47,14 +48,6 @@ export const metadata: Metadata = {
       "Full Stack Developer focused on crafting exceptional frontend experiences with React, Next.js, and TypeScript while building scalable backend systems and APIs.",
     url: "https://www.elemar.site",
     siteName: "Jay Elemar Termulo Portfolio",
-    images: [
-      {
-        url: "/about/developer.png",
-        width: 1200,
-        height: 630,
-        alt: "Jay Elemar Termulo - Full Stack Developer Portfolio",
-      },
-    ],
     locale: "en_US",
     type: "website",
   },
@@ -65,7 +58,14 @@ export const metadata: Metadata = {
       "Jay Elemar Termulo | Full Stack Developer specializing in Frontend Development",
     description:
       "Building modern web applications with React, Next.js, TypeScript, Node.js, and scalable backend solutions.",
-    images: ["/about/developer.png"],
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Jay Elemar Termulo - Full Stack Developer Portfolio",
+      },
+    ],
   },
 
   robots: {
