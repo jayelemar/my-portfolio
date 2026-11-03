@@ -1,90 +1,78 @@
 "use client";
-import React, { FC, memo } from "react";
+
+import { FC } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Logo from "../common/Logo";
 import Socials from "../common/Socials";
-
-import { Sheet, SheetContent } from "../ui/sheet";
+import { Sheet, SheetContent, SheetDescription, SheetTitle } from "../ui/sheet";
 import { useMobileNavStore } from "@/store/MobileNavStore";
 import { links } from "./NavData";
-import { motion } from "framer-motion";
-
 import { NavProps } from "./Nav";
-import { Link } from "react-scroll";
-import { containerVariant, fadeIn, itemVariant } from "@/lib/variant";
 import { cn } from "@/lib/utils";
+import { scrollToHome, scrollToSection } from "@/lib/navigation";
 
-const MobileNav: FC<NavProps> = ({
-  containerStyles,
-  linkStyles,
-  activeLinkStyles,
-}) => {
+const MobileNav: FC<NavProps> = ({ containerStyles, linkStyles }) => {
   const { isOpen, setIsOpen } = useMobileNavStore();
-  const handleNavClick = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    setIsOpen(false); // Close mobile nav if open
-  };
+  const pathname = usePathname();
 
   return (
-    <div className="">
-      <Sheet open={isOpen} onOpenChange={handleNavClick}>
-        <SheetContent>
-          <div className="flex h-5/6 flex-col items-center justify-between">
-            <Logo />
-            <nav>
-              <motion.nav
-                variants={containerVariant}
-                initial="hidden"
-                whileInView={"show"}
-                viewport={{ once: false, amount: 0.3 }}
-                className={containerStyles}
-              >
-                <button
-                  onClick={scrollToTop}
-                  className={cn("cursor-pointer", linkStyles)}
-                >
-                  Home
-                </button>
-
-                {links.map((link, index) => (
-                  <motion.div variants={itemVariant} key={index}>
-                    <Link
-                      to={link.path}
-                      smooth={true}
-                      duration={300}
-                      offset={link.offset}
-                      activeClass={activeLinkStyles}
-                      spy={true}
-                      hashSpy={true}
-                      spyThrottle={500}
-                      ignoreCancelEvents={false}
-                      className={linkStyles}
-                      onClick={() => setIsOpen(false)}
-                    >
-                      <span className="cursor-pointer capitalize">
-                        {link.name}
-                      </span>
-                    </Link>
-                  </motion.div>
-                ))}
-              </motion.nav>
-            </nav>
-            <motion.div
-              variants={fadeIn("up", 0.4)}
-              initial="hidden"
-              whileInView={"show"}
-              viewport={{ once: false, amount: 0.2 }}
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
+      <SheetContent
+        id="mobile-navigation"
+        onCloseAutoFocus={(event) => {
+          event.preventDefault();
+          document.getElementById("mobile-navigation-trigger")?.focus();
+        }}
+      >
+        <SheetTitle className="sr-only">Site navigation</SheetTitle>
+        <SheetDescription className="sr-only">
+          Explore Jay Elemar’s introduction, work, and contact details.
+        </SheetDescription>
+        <div className="flex h-5/6 flex-col items-center justify-between">
+          <Logo />
+          <nav aria-label="Main navigation" className={containerStyles}>
+            <Link
+              href="/"
+              onClick={() => setIsOpen(false)}
+              onNavigate={(event) => {
+                if (pathname === "/") {
+                  event.preventDefault();
+                  scrollToHome();
+                }
+              }}
+              className={cn(
+                "inline-flex min-h-11 items-center rounded-sm",
+                linkStyles,
+              )}
             >
-              <Socials containerStyles="flex gap-x-4" iconStyles="text-3xl" />
-            </motion.div>
-          </div>
-        </SheetContent>
-      </Sheet>
-    </div>
+              Home
+            </Link>
+            {links.map((link) => (
+              <Link
+                key={link.path}
+                href={`${pathname === "/" ? "" : "/"}#${link.path}`}
+                onClick={() => setIsOpen(false)}
+                onNavigate={(event) => {
+                  if (pathname === "/") {
+                    event.preventDefault();
+                    scrollToSection(link.path);
+                  }
+                }}
+                className={cn(
+                  "inline-flex min-h-11 items-center rounded-sm capitalize",
+                  linkStyles,
+                )}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </nav>
+          <Socials containerStyles="flex gap-x-4" iconStyles="text-3xl" />
+        </div>
+      </SheetContent>
+    </Sheet>
   );
 };
 
-export default memo(MobileNav);
+export default MobileNav;

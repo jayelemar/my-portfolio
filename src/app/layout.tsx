@@ -81,13 +81,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body id="top" className={inter.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >
+          <a
+            href="#main-content"
+            className="sr-only fixed left-4 top-4 z-[100] rounded-full bg-primary px-5 py-3 text-primary-foreground focus:not-sr-only"
+          >
+            Skip to content
+          </a>
           <Header />
           {children}
           <ScrollToTop />

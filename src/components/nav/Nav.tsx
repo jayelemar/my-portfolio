@@ -1,15 +1,13 @@
-import { FC, memo } from "react";
-import { motion } from "framer-motion";
+"use client";
+
+import { FC } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useScrollToSection } from "@/hooks/useScrollToSection";
-import { containerVariant2, itemVariant2 } from "@/lib/variant";
+import { motion, useReducedMotion } from "framer-motion";
 
-export type LinkType = {
-  path: string;
-  name: string;
-};
-
-export const links: LinkType[] = [
+export const links = [
   { path: "/", name: "home" },
   { path: "about", name: "about" },
   { path: "projects", name: "my projects" },
@@ -28,43 +26,45 @@ const Nav: FC<NavProps> = ({
   activeLinkStyles,
 }) => {
   const { activeSection, scrollToElement } = useScrollToSection(links);
-
+  const pathname = usePathname();
+  const reduceMotion = useReducedMotion();
   return (
-    <motion.nav
-      variants={containerVariant2}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: false, amount: 0.3 }}
-      className={containerStyles}
-    >
-      {links.map((link, index) => (
-        <motion.div variants={itemVariant2} key={index}>
-          <motion.button
-            onClick={() => {
+    <nav aria-label="Main navigation" className={containerStyles}>
+      {links.map((link) => (
+        <Link
+          key={link.path}
+          href={
+            link.path === "/"
+              ? "/"
+              : `${pathname === "/" ? "" : "/"}#${link.path}`
+          }
+          onNavigate={(event) => {
+            if (pathname === "/") {
+              event.preventDefault();
               scrollToElement(link.path);
-            }}
-            className={cn(
-              "group relative cursor-pointer capitalize transition-colors duration-300",
-              linkStyles,
-              activeSection === link.path && `${activeLinkStyles}`,
-            )}
-          >
-            {link.name}
-            {activeSection === link.path && (
-              <motion.span
-                layout
-                className="absolute bottom-0 left-0 h-[2px] bg-primary"
-                initial={{ width: 0 }}
-                animate={{ width: "100%" }}
-                exit={{ width: 0 }}
-                transition={{ duration: 0.5 }}
-              />
-            )}
-          </motion.button>
-        </motion.div>
+            }
+          }}
+          aria-current={activeSection === link.path ? "location" : undefined}
+          className={cn(
+            "group relative inline-flex min-h-11 items-center rounded-sm capitalize transition-colors duration-150",
+            linkStyles,
+            activeSection === link.path && activeLinkStyles,
+          )}
+        >
+          {link.name}
+          {activeSection === link.path && (
+            <motion.span
+              aria-hidden="true"
+              className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-primary"
+              initial={reduceMotion ? false : { scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: reduceMotion ? 0 : 0.5, ease: "easeOut" }}
+            />
+          )}
+        </Link>
       ))}
-    </motion.nav>
+    </nav>
   );
 };
 
-export default memo(Nav);
+export default Nav;
