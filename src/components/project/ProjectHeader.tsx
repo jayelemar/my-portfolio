@@ -1,28 +1,31 @@
-import React from "react";
-import { SiCodeforces } from "react-icons/si";
-import { motion } from "framer-motion";
-import { fadeIn } from "@/lib/variant";
+"use client";
+import { motion, type AnimationControls } from "framer-motion";
+import { FolderCode } from "lucide-react";
+import { projectEntrance, projectTiming } from "./useProjectEntrance";
 
-const ProjectHeader = () => {
+const ProjectHeader = ({ controls }: { controls: AnimationControls }) => {
   return (
-    <div className="mx-auto mb-6 flex w-full flex-col justify-center text-center lg:mx-0 lg:mb-8 lg:text-left">
+    <div className="mx-auto mb-6 flex w-full flex-col items-center text-center sm:mb-8">
       <motion.h2
-        variants={fadeIn("up", 0.2)}
-        initial="hidden"
-        whileInView={"show"}
-        viewport={{ once: false, amount: 0.2 }}
-        className="relative mx-auto mb-3 flex w-max items-center justify-center gap-x-3 text-4xl font-bold lg:mx-0 lg:mb-2"
+        id="projects-heading"
+        variants={projectEntrance}
+        initial={false}
+        animate={controls}
+        className="mb-3 flex items-center justify-center gap-2 text-3xl font-bold tracking-[-0.03em] sm:gap-3 sm:text-4xl md:text-5xl"
       >
-        <SiCodeforces size={35} className="text-primary" />
+        <FolderCode
+          aria-hidden="true"
+          className="size-7 shrink-0 text-forest-ink sm:size-9 md:size-11"
+        />
         My Projects
       </motion.h2>
 
       <motion.p
-        variants={fadeIn("up", 0.4)}
-        initial="hidden"
-        whileInView={"show"}
-        viewport={{ once: false, amount: 0.2 }}
-        className="text-center text-muted-foreground lg:text-left"
+        variants={projectEntrance}
+        initial={false}
+        animate={controls}
+        custom={projectTiming.description}
+        className="max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base"
       >
         Selected work across product, commerce, and emerging technology.
       </motion.p>

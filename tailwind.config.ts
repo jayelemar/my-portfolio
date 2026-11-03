@@ -31,6 +31,7 @@ const config = {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          hover: "hsl(var(--primary-hover))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -60,6 +61,10 @@ const config = {
           foreground: "hsl(var(--card-foreground))",
         },
         light_cream: "#fef9f5",
+        "forest-ink": "rgb(var(--forest-ink) / <alpha-value>)",
+      },
+      height: {
+        "contact-field": "3.375rem",
       },
       borderRadius: {
         lg: "var(--radius)",

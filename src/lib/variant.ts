@@ -7,7 +7,7 @@ export const fadeIn = (direction: string, delay: number) => {
       transition: {
         type: "tween",
         duration: 1.4,
-        delay: delay,
+        delay: Math.min(delay, 0.3),
         ease: [0.25, 0.6, 0.3, 0.8],
       },
     },
@@ -17,8 +17,8 @@ export const fadeIn = (direction: string, delay: number) => {
       opacity: 1,
       transition: {
         type: "tween",
-        duration: 1.2,
-        delay: delay,
+        duration: 0.5,
+        delay: Math.min(delay, 0.3),
         ease: [0.25, 0.25, 0.25, 0.75],
       },
     },

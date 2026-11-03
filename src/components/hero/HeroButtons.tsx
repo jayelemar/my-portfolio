@@ -3,45 +3,52 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { Download, Send } from "lucide-react";
-import { motion } from "framer-motion";
-import { fadeIn } from "@/lib/variant";
 import { DOWNLOAD_CV } from "@/lib/constant";
+import { motion, type AnimationControls } from "framer-motion";
+import { heroReveal, heroTiming } from "./heroMotion";
 
-const HeroButtons = () => {
+const HeroButtons = ({ controls }: { controls: AnimationControls }) => {
   return (
-    <div className="mx-auto mb-12 flex w-full flex-col gap-3 xs:mb-0 lg:mb-12 lg:flex-row lg:justify-center xl:mx-0 xl:mb-5 xl:justify-start">
+    <div
+      onFocusCapture={() => controls.set("visible")}
+      className="mx-auto mb-12 flex w-full flex-col gap-3 xs:mb-0 lg:mb-12 lg:flex-row lg:justify-center xl:mx-0 xl:mb-5 xl:justify-start"
+    >
       <motion.div
-        variants={fadeIn("up", 1.2)}
-        initial="hidden"
-        whileInView={"show"}
-        viewport={{ once: false, amount: 0.2 }}
+        variants={heroReveal}
+        initial={false}
+        animate={controls}
+        custom={{ delay: heroTiming.buttonsDelay }}
       >
-        <Link href="#contact">
-          <Button className="w-44 gap-2 rounded-full text-base hover:scale-105">
+        <Button
+          asChild
+          className="h-11 w-44 gap-2 rounded-full text-base motion-safe:hover:scale-105"
+        >
+          <Link href="#contact">
             Contact Me <Send size={18} />
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </motion.div>
 
       <motion.div
-        variants={fadeIn("up", 1.2)}
-        initial="hidden"
-        whileInView={"show"}
-        viewport={{ once: false, amount: 0.2 }}
+        variants={heroReveal}
+        initial={false}
+        animate={controls}
+        custom={{ delay: heroTiming.buttonsDelay + heroTiming.controlStagger }}
       >
-        <Link
-          // href="https://drive.google.com/file/d/1oVPaUUjUkGoW4d-7V_6mqMb0FqYNZP5j/view?usp=sharing"
-          href={DOWNLOAD_CV}
-          download
-          target="_blank"
+        <Button
+          asChild
+          variant={"secondary"}
+          className="btn-secondary h-11 w-44 gap-2 rounded-full text-base"
         >
-          <Button
-            variant={"secondary"}
-            className="btn-secondary w-44 gap-2 rounded-full text-base"
+          <Link
+            href={DOWNLOAD_CV}
+            download
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Download CV <Download size={18} />
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </motion.div>
     </div>
   );

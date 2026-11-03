@@ -1,15 +1,10 @@
 import { ComponentProps, ComponentType } from "react";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../ui/form";
+import { FormField } from "../ui/form";
 import { LucideProps } from "lucide-react";
 import { Control, FieldValues, Path } from "react-hook-form";
 import { Textarea } from "../ui/textarea";
 import { cn } from "@/lib/utils";
+import FieldFrame, { contactFieldStyles } from "./FieldFrame";
 
 type TextAreaFieldProps<T extends FieldValues> = {
   control: Control<T>;
@@ -17,6 +12,7 @@ type TextAreaFieldProps<T extends FieldValues> = {
   label: string;
   containerStyles: string;
   icon: ComponentType<LucideProps>;
+  description?: string;
 } & ComponentProps<"textarea">;
 
 export default function TextAreaField<T extends FieldValues>({
@@ -24,31 +20,34 @@ export default function TextAreaField<T extends FieldValues>({
   name,
   label,
   containerStyles,
-  icon: Icon,
+  icon,
+  className,
+  description,
   ...textareaProps
 }: TextAreaFieldProps<T>) {
   return (
-    <div className={cn("relative", containerStyles)}>
-      <FormField
-        control={control}
-        name={name}
-        render={({ field }) => (
-          <FormItem className="flex w-full flex-col items-start justify-center">
-            <FormLabel className="absolute left-6 top-0 z-10 bg-background px-1 text-muted-foreground">
-              {label}
-            </FormLabel>
-            <FormControl>
-              <Textarea
-                className="min-h-[130px] rounded-2xl px-8 py-5 text-base lg:min-h-[180px]"
-                {...textareaProps}
-                {...field}
-              />
-            </FormControl>
-            <FormMessage className="absolute -bottom-5 left-[28px] w-full text-xs" />
-          </FormItem>
-        )}
-      />
-      <Icon className=" absolute right-6 top-8" size={20} />
-    </div>
+    <FormField
+      control={control}
+      name={name}
+      render={({ field }) => (
+        <FieldFrame
+          label={label}
+          icon={icon}
+          multiline
+          className={containerStyles}
+          description={description}
+        >
+          <Textarea
+            className={cn(
+              contactFieldStyles,
+              "min-h-[130px] py-5 lg:min-h-[180px]",
+              className,
+            )}
+            {...textareaProps}
+            {...field}
+          />
+        </FieldFrame>
+      )}
+    />
   );
 }

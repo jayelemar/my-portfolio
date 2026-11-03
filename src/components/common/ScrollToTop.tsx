@@ -23,7 +23,9 @@ const ScrollToTop = () => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "instant"
+        : "smooth",
     });
   };
 
@@ -31,8 +33,10 @@ const ScrollToTop = () => {
     <>
       {isVisible && (
         <button
+          type="button"
+          aria-label="Back to top"
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 hidden rounded-full bg-primary/80 p-2 text-white  shadow-lg hover:bg-primary focus:outline-none sm:block"
+          className="fixed bottom-8 right-8 z-20 hidden rounded-full bg-primary p-2 text-primary-foreground shadow-lg hover:bg-primary-hover sm:block"
         >
           <TbSquareRoundedArrowUp size={35} />
         </button>

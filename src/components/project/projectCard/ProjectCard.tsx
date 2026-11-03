@@ -1,33 +1,31 @@
 "use client";
 import { Card } from "../../ui/card";
-import { FC } from "react";
-import { ProjectType } from "../ProjectData";
+import type { FC } from "react";
+import { motion, type AnimationControls } from "framer-motion";
+import { projectEntrance } from "../useProjectEntrance";
+import type { ProjectType } from "../ProjectData";
 import ProjectCardHeader from "./ProjectCardHeader";
 import ProjectCardBody from "./ProjectCardBody";
-import { motion, useReducedMotion } from "framer-motion";
-import { fadeIn } from "@/lib/variant";
 import { cn } from "@/lib/utils";
 
 type ProjectCardProps = {
   project: ProjectType;
-  index: number;
+  index?: number;
   variant?: "featured" | "compact";
   containerStyles?: string;
-  animationDelay?: number;
+  entrance?: { controls: AnimationControls; delay: number };
 };
 
 const ProjectCard: FC<ProjectCardProps> = ({
   project,
-  index,
   variant = "featured",
   containerStyles,
-  animationDelay = 0.2,
+  entrance,
 }) => {
   const {
     desktopImage,
     mobileImage,
     link,
-    category,
     name,
     description,
     technologies,
@@ -36,15 +34,14 @@ const ProjectCard: FC<ProjectCardProps> = ({
     status,
   } = project;
 
-  const shouldReduceMotion = useReducedMotion();
-
   return (
-    <motion.div
-      className={cn("h-full", containerStyles)}
-      variants={fadeIn("left", animationDelay)}
-      initial={shouldReduceMotion ? false : "hidden"}
-      whileInView={shouldReduceMotion ? undefined : "show"}
-      viewport={{ once: true, amount: 0.2 }}
+    <motion.article
+      initial={false}
+      animate={entrance?.controls}
+      variants={entrance ? projectEntrance : undefined}
+      custom={entrance?.delay}
+      aria-label={name}
+      className={cn("h-full min-w-0", containerStyles)}
     >
       <Card
         className={cn(
@@ -55,7 +52,6 @@ const ProjectCard: FC<ProjectCardProps> = ({
         )}
       >
         <ProjectCardBody
-          category={category}
           name={name}
           description={description}
           technologies={technologies}
@@ -63,7 +59,6 @@ const ProjectCard: FC<ProjectCardProps> = ({
           github={github}
           figma={figma}
           status={status}
-          index={index}
           variant={variant}
         />
         <div
@@ -80,7 +75,7 @@ const ProjectCard: FC<ProjectCardProps> = ({
           />
         </div>
       </Card>
-    </motion.div>
+    </motion.article>
   );
 };
 

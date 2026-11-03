@@ -27,7 +27,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main>
+    <main id="main-content" tabIndex={-1}>
       <Hero />
       <Suspense fallback={<Spinner />}>
         <About />

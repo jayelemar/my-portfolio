@@ -1,11 +1,10 @@
-import React from "react";
+import Projects from "@/components/project/Projects";
 
 export default function ProjectsPage() {
   return (
-    <section className="relative">
-      <div className="item-center container mx-auto flex flex-col justify-center">
-        <div className="flex flex-col">Project Page</div>
-      </div>
-    </section>
+    <main id="main-content" tabIndex={-1}>
+      <h1 className="sr-only">Jay Elemar’s projects</h1>
+      <Projects />
+    </main>
   );
 }

@@ -1,5 +1,6 @@
 import { useMobileNavStore } from "@/store/MobileNavStore";
 import { useEffect, useState } from "react";
+import { scrollToSection } from "@/lib/navigation";
 
 export const useScrollToSection = (links: { path: string; name: string }[]) => {
   const { setIsOpen } = useMobileNavStore();
@@ -22,7 +23,8 @@ export const useScrollToSection = (links: { path: string; name: string }[]) => {
       });
     };
 
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -30,11 +32,8 @@ export const useScrollToSection = (links: { path: string; name: string }[]) => {
   }, [links]);
 
   const scrollToElement = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsOpen(false); // close mobile nav after scroll
-    }
+    scrollToSection(id);
+    setIsOpen(false);
   };
 
   return { activeSection, scrollToElement };
