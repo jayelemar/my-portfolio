@@ -30,6 +30,11 @@ export const useScrollToSection = (links: { path: string; name: string }[]) => {
   }, [links]);
 
   const scrollToElement = (id: string) => {
+    if (id === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setIsOpen(false);
+      return;
+    }
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
