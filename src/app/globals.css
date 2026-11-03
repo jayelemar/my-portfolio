@@ -110,4 +110,118 @@
   }
 }
 
+.about-content .about-tabs-segmented {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto 24px;
+  padding: 4px;
+  gap: 4px;
+  border: 0;
+  border-radius: 12px;
+  background: hsl(var(--border));
+}
 
+.dark .about-content .about-tabs-segmented {
+  background: hsl(var(--secondary));
+}
+
+.about-tabs-segmented > button {
+  position: relative;
+  min-width: 0;
+  min-height: 44px;
+  height: 44px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  box-shadow: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: hsl(var(--muted-foreground));
+}
+
+.about-tabs-segmented > button[data-state="active"] {
+  color: rgb(var(--forest-ink));
+  background: transparent;
+  box-shadow: none;
+  font-weight: 600;
+}
+
+.about-tabs-segmented > button:hover {
+  color: hsl(var(--foreground));
+}
+
+.about-tabs-highlight {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 8px;
+  background: hsl(var(--background));
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.08);
+}
+
+.about-tabs-label {
+  position: relative;
+  z-index: 1;
+}
+
+.about-content,
+.about-skills {
+  --skills-columns: 2;
+  --skills-gap: 1rem;
+  --skills-icon-size: 2.5rem;
+  --skills-leading-inset: max(
+    0px,
+    calc(
+      (100% - (var(--skills-columns) - 1) * var(--skills-gap)) /
+        var(--skills-columns) / 2 - var(--skills-icon-size) / 2
+    )
+  );
+}
+
+.about-skills-intro {
+  margin-bottom: 40px;
+  padding-inline-start: var(--skills-leading-inset);
+}
+
+.about-selected-work {
+  margin-top: 8px;
+  margin-inline-start: var(--skills-leading-inset);
+}
+
+.about-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--skills-columns), minmax(0, 1fr));
+  gap: 24px var(--skills-gap);
+}
+
+.about-skills-icon {
+  width: var(--skills-icon-size);
+  height: var(--skills-icon-size);
+}
+
+@media (min-width: 480px) {
+  .about-content,
+  .about-skills {
+    --skills-columns: 3;
+  }
+}
+
+@media (min-width: 768px) {
+  .about-content,
+  .about-skills {
+    --skills-columns: 4;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-content,
+  .about-skills {
+    --skills-columns: 5;
+    --skills-gap: 2rem;
+    --skills-icon-size: 3rem;
+  }
+}
