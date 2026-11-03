@@ -273,7 +273,9 @@ const ContactForm = () => {
                 ) : (
                   <RotateCcw size={16} />
                 )}
-                Resend code
+                {resendSeconds > 0
+                  ? `Resend in ${resendSeconds}s`
+                  : "Resend code"}
               </Button>
             )}
 
@@ -349,14 +351,19 @@ const ContactForm = () => {
             control={form.control}
             name="message"
             label="Message:"
+            description="At least 20 characters and 3 words. Up to 2,000 characters."
             icon={MessageSquare}
             maxLength={2_000}
           />
 
+          <p className="mb-4 max-w-lg text-sm leading-relaxed text-muted-foreground">
+            Next, we’ll email you a 6-digit code. Confirm your email to send
+            your message.
+          </p>
           <Button
             type="submit"
             disabled={form.formState.isSubmitting}
-            className="flex w-full items-center gap-1 rounded-full sm:max-w-64 xl:max-w-[400px]"
+            className="flex min-h-11 w-full items-center gap-2 rounded-full sm:max-w-sm xl:max-w-[400px]"
           >
             {form.formState.isSubmitting ? (
               <>
@@ -365,7 +372,7 @@ const ContactForm = () => {
               </>
             ) : (
               <>
-                <span>Send Message</span>
+                <span>Get verification code</span>
                 <ArrowRightIcon size={20} />
               </>
             )}
