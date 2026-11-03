@@ -29,24 +29,32 @@ import {
 export type infoProps = {
   icon: React.ReactElement;
   text: string;
+  label: string;
+  href?: string;
 };
 
 export const info: infoProps[] = [
   {
     icon: <User2 size={23} />,
     text: "Jay Elemar Termulo",
+    label: "Name",
   },
   {
     icon: <PhoneCall size={20} />,
     text: "+63 969 256 1601",
+    label: "Phone",
+    href: "tel:+639692561601",
   },
   {
     icon: <MailIcon size={20} />,
     text: "jetermulo@gmail.com",
+    label: "Email",
+    href: "mailto:jetermulo@gmail.com",
   },
   {
     icon: <HomeIcon size={20} />,
     text: "Bulacan, Philippines",
+    label: "Location",
   },
 ];
 
@@ -63,7 +71,7 @@ export type SkillSetProps = {
 
 export const skillSet: SkillSetProps[] = [
   {
-    title: "Web",
+    title: "Frontend",
     data: [
       {
         name: "JavaScript",
@@ -89,11 +97,6 @@ export const skillSet: SkillSetProps[] = [
         imgPath: <SiTailwindcss size={40} />,
         color: "text-[#0e7490] dark:text-[#38bdf8]",
       },
-    ],
-  },
-  {
-    title: "Mobile & Server",
-    data: [
       {
         name: "React Native",
         imgPath: <TbBrandReactNative size={40} />,
@@ -104,6 +107,11 @@ export const skillSet: SkillSetProps[] = [
         imgPath: <SiExpo size={40} />,
         color: "text-foreground",
       },
+    ],
+  },
+  {
+    title: "Backend & AI",
+    data: [
       {
         name: "Node.js",
         imgPath: <FaNodeJs size={40} />,
@@ -119,11 +127,6 @@ export const skillSet: SkillSetProps[] = [
         imgPath: <SiPython size={40} />,
         color: "text-[#2f6592] dark:text-[#ffd343]",
       },
-    ],
-  },
-  {
-    title: "AI & Data",
-    data: [
       {
         name: "FastAPI",
         imgPath: <SiFastapi size={40} />,
@@ -151,7 +154,7 @@ export const skillSet: SkillSetProps[] = [
     ],
   },
   {
-    title: "Quality & Delivery",
+    title: "Tools & Delivery",
     data: [
       {
         name: "Docker",

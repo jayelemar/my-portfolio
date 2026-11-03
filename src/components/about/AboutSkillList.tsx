@@ -1,44 +1,54 @@
 "use client";
 
-import { FC } from "react";
-import { SkillSetProps } from "./AboutData";
-import { motion } from "framer-motion";
-import { containerVariant, itemVariant } from "@/lib/variant";
+import { motion, useReducedMotion } from "framer-motion";
+import type { SkillSetProps } from "./AboutData";
+import { aboutReveal } from "./aboutMotion";
 
-export type AboutSkillListProps = {
-  skillSet: SkillSetProps[];
-};
+export type AboutSkillListProps = { skillSet: SkillSetProps[] };
 
-const AboutSkillList: FC<AboutSkillListProps> = ({ skillSet }) => {
+const AboutSkillList = ({ skillSet }: AboutSkillListProps) => {
+  const reduceMotion = useReducedMotion();
   return (
-    <motion.div
-      variants={containerVariant}
-      initial="hidden"
-      whileInView={"show"}
-      viewport={{ once: false, amount: 0.3 }}
-      className="relative right-0 grid w-full grid-cols-4 gap-x-3 gap-y-5 pt-2 sm:grid-cols-5 sm:gap-x-6 xl:right-10 xl:gap-x-4"
-    >
-      {skillSet
-        .flatMap(({ data }) => data)
-        .map(({ name, imgPath, color }) => (
-          <motion.div
-            variants={itemVariant}
-            key={name}
-            className="z-10 flex min-w-0 flex-col items-center justify-start gap-y-[7px] text-center"
-          >
-            <div
-              className={`${color ?? ""} transition-transform hover:scale-125`}
-            >
-              {imgPath}
-            </div>
-            <p className="w-full max-w-[88px] cursor-default whitespace-normal break-words text-center text-[10px] font-medium leading-tight text-muted-foreground">
-              {name.slice(0, name.indexOf("/") + 1)}
-              {name.includes("/") && <wbr />}
-              {name.slice(name.indexOf("/") + 1)}
-            </p>
-          </motion.div>
-        ))}
-    </motion.div>
+    <div>
+      {skillSet.map(({ title, data }, index) => (
+        <motion.section
+          key={title}
+          aria-label={title}
+          variants={aboutReveal}
+          custom={{ delay: 0.3 + index * 0.14, reduce: reduceMotion }}
+          className="grid gap-5 border-t border-border py-7 xl:grid-cols-[144px_minmax(0,1fr)] xl:gap-6"
+        >
+          <h4 className="text-base font-semibold leading-6 text-forest-ink">
+            {title}
+          </h4>
+          <ul className="flex min-w-0 max-w-[40rem] flex-wrap gap-x-6 gap-y-5">
+            {data.map(({ name, imgPath, color }) => (
+              <li
+                key={name}
+                className="flex min-w-0 max-w-full items-center gap-2"
+              >
+                <span
+                  aria-hidden="true"
+                  className={`flex size-6 shrink-0 items-center justify-center [&>svg]:max-h-6 [&>svg]:max-w-6 ${color ?? ""}`}
+                >
+                  {imgPath}
+                </span>
+                <span className="min-w-0 text-sm font-medium leading-6">
+                  {name.includes("/") ? (
+                    <>
+                      {name.split("/")[0]}/<wbr />
+                      {name.split("/")[1]}
+                    </>
+                  ) : (
+                    name
+                  )}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </motion.section>
+      ))}
+    </div>
   );
 };
 

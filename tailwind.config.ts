@@ -60,6 +60,7 @@ const config = {
           foreground: "hsl(var(--card-foreground))",
         },
         light_cream: "#fef9f5",
+        "forest-ink": "rgb(var(--forest-ink) / <alpha-value>)",
       },
       borderRadius: {
         lg: "var(--radius)",
