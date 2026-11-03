@@ -1,8 +1,26 @@
+import type { StaticImageData } from "next/image";
+import gondoorDesktop from "../../../public/work/Gondoor_Desktop.png";
+import gondoorMobile from "../../../public/work/Gondoor_Mobile.png";
+import dutyFreeDesktop from "../../../public/work/Duty_Free_Desktop3.png";
+import dutyFreeMobile from "../../../public/work/Duty_Free_Mobile.png";
+import futrDesktop from "../../../public/work/Futr_Desktop5.png";
+import futrMobile from "../../../public/work/Futr_Mobile.png";
+import backToTheFutrDesktop from "../../../public/work/BackToTheFutr_Desktop2.png";
+import backToTheFutrMobile from "../../../public/work/BackToTheFutr_Mobile.png";
+import bikeMeDesktop from "../../../public/work/1.png";
+import bikeMeMobile from "../../../public/work/bike-me-mobile.png";
+import leaveDesktop from "../../../public/work/2.png";
+import leaveMobile from "../../../public/work/leave-mobile.png";
+import figmaDesktop from "../../../public/work/4.png";
+import figmaMobile from "../../../public/work/anime-mobile.png";
+import portfolioDesktop from "../../../public/work/3.png";
+import portfolioMobile from "../../../public/work/port-mobile.png";
+
 export type ProjectStatus = "active" | "inactive" | "demo";
 
 export type ProjectType = {
-  desktopImage: string;
-  mobileImage: string;
+  desktopImage: StaticImageData;
+  mobileImage: StaticImageData;
   category: string;
   name: string;
   description: string;
@@ -16,8 +34,8 @@ export type ProjectType = {
 
 export const projectData: ProjectType[] = [
   {
-    desktopImage: "/work/Gondoor_Desktop.png",
-    mobileImage: "/work/Gondoor_Mobile.png",
+    desktopImage: gondoorDesktop,
+    mobileImage: gondoorMobile,
     category: "AI Platform",
     name: "Gondoor",
     description:
@@ -28,8 +46,8 @@ export const projectData: ProjectType[] = [
     status: "active",
   },
   {
-    desktopImage: "/work/Duty_Free_Desktop3.png",
-    mobileImage: "/work/Duty_Free_Mobile.png",
+    desktopImage: dutyFreeDesktop,
+    mobileImage: dutyFreeMobile,
     category: "React.js",
     name: "Duty Free Philippines",
     description:
@@ -40,8 +58,8 @@ export const projectData: ProjectType[] = [
     status: "active",
   },
   {
-    desktopImage: "/work/Futr_Desktop5.png",
-    mobileImage: "/work/Futr_Mobile.png",
+    desktopImage: futrDesktop,
+    mobileImage: futrMobile,
     category: "Next.js",
     name: "Futr",
     description:
@@ -52,8 +70,8 @@ export const projectData: ProjectType[] = [
     status: "inactive",
   },
   {
-    desktopImage: "/work/BackToTheFutr_Desktop2.png",
-    mobileImage: "/work/BackToTheFutr_Mobile.png",
+    desktopImage: backToTheFutrDesktop,
+    mobileImage: backToTheFutrMobile,
     category: "Next.js",
     name: "Back To The Futr",
     description:
@@ -65,8 +83,8 @@ export const projectData: ProjectType[] = [
   },
 
   {
-    desktopImage: "/work/1.png",
-    mobileImage: "/work/bike-me-mobile.png",
+    desktopImage: bikeMeDesktop,
+    mobileImage: bikeMeMobile,
     category: "Next.js",
     name: "Bike Me",
     description:
@@ -79,8 +97,8 @@ export const projectData: ProjectType[] = [
   },
 
   {
-    desktopImage: "/work/2.png",
-    mobileImage: "/work/leave-mobile.png",
+    desktopImage: leaveDesktop,
+    mobileImage: leaveMobile,
     category: "React.js",
     name: "Leave Management System",
     description:
@@ -92,8 +110,8 @@ export const projectData: ProjectType[] = [
     status: "demo",
   },
   {
-    desktopImage: "/work/4.png",
-    mobileImage: "/work/anime-mobile.png",
+    desktopImage: figmaDesktop,
+    mobileImage: figmaMobile,
     category: "Figma",
     name: "Figma to Landing Page",
     description:
@@ -106,9 +124,9 @@ export const projectData: ProjectType[] = [
     status: "demo",
   },
   {
-    desktopImage: "/work/3.png",
-    mobileImage: "/work/port-mobile.png",
-    category: "NextJS",
+    desktopImage: portfolioDesktop,
+    mobileImage: portfolioMobile,
+    category: "Next.js",
     name: "My Portfolio",
     description:
       "A personal portfolio built with Next.js, Tailwind CSS, and a verified email contact flow.",
