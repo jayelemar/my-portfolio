@@ -62,6 +62,9 @@ const config = {
         light_cream: "#fef9f5",
         "forest-ink": "rgb(var(--forest-ink) / <alpha-value>)",
       },
+      height: {
+        "contact-field": "3.375rem",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

@@ -219,7 +219,7 @@ const ContactForm = () => {
               maxLength={6}
               placeholder="000000"
               disabled={isVerifying || isExpired}
-              className="h-14 text-center text-2xl tracking-[0.5em] lg:h-[54px] lg:rounded-2xl lg:px-8 lg:pr-14"
+              className="h-14 text-center text-2xl tracking-[0.5em] lg:h-contact-field lg:rounded-2xl lg:px-8 lg:pr-14"
             />
             <MailCheck
               aria-hidden="true"
