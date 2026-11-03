@@ -5,7 +5,7 @@ import Socials from "../common/Socials";
 const Footer = () => {
   return (
     <footer className="bg-secondary py-12">
-      <div className="container mx-2 xl:mx-auto">
+      <div className="container mx-auto">
         <div className=" flex flex-col items-center justify-between">
           {/* socials */}
           <Socials
@@ -14,7 +14,7 @@ const Footer = () => {
           />
 
           {/* copyright */}
-          <div className="text-muted-foreground">
+          <div className="text-center text-muted-foreground">
             <p>
               Copyright &copy;{" "}
               <span className="whitespace-nowrap">Jay Elemar Termulo.</span>{" "}

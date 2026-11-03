@@ -1,7 +1,9 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   Carousel,
   CarouselContent,
@@ -12,180 +14,297 @@ import {
 import ProjectCard from "./projectCard/ProjectCard";
 import { projectData } from "./ProjectData";
 import ProjectHeader from "./ProjectHeader";
+import ProjectSelector from "./ProjectSelector";
+import ProjectReveal from "./ProjectReveal";
+import { scrollToSection } from "@/lib/navigation";
+import {
+  projectEntrance,
+  projectCarouselEntrance,
+  projectSlideEntrance,
+  projectTiming,
+  useProjectEntrance,
+} from "./useProjectEntrance";
+
+const featuredProjects = projectData.filter((project) => project.featured);
+const otherProjects = projectData.filter((project) => !project.featured);
 
 const Projects = () => {
-  const targetRef = useRef<HTMLDivElement | null>(null);
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const motionRef = useRef<HTMLDivElement | null>(null);
-  const featuredProjects = projectData.filter((project) => project.featured);
-  const otherProjects = projectData.filter((project) => !project.featured);
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const [activeProject, setActiveProject] = useState(0);
+  const requestedProject = useRef(0);
+  const navigating = useRef(false);
+  const settleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const { ref: stageRef, reduceMotion, visit } = useProjectEntrance();
 
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: ["start start", "end end"],
-  });
+  const showProject = useCallback((index: number, instant = false) => {
+    index = Math.max(0, Math.min(featuredProjects.length - 1, index));
+    const gallery = galleryRef.current;
+    const item = gallery?.children[index] as HTMLElement | undefined;
+    if (!gallery || !item) return;
+    requestedProject.current = index;
+    navigating.current = true;
+    setActiveProject(index);
+    gallery.scrollTo({
+      left:
+        item.getBoundingClientRect().left -
+        gallery.getBoundingClientRect().left +
+        gallery.scrollLeft,
+      behavior:
+        instant || window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "instant"
+          : "smooth",
+    });
+    if (settleTimer.current) clearTimeout(settleTimer.current);
+    settleTimer.current = setTimeout(() => {
+      navigating.current = false;
+    }, 150);
+  }, []);
 
-  const [scrollDistance, setScrollDistance] = useState(0);
+  const updateActiveProject = () => {
+    const gallery = galleryRef.current;
+    if (!gallery) return;
+    const items = Array.from(gallery.children) as HTMLElement[];
+    const left = gallery.getBoundingClientRect().left;
+    const closest = items.reduce(
+      (best, item, index) =>
+        Math.abs(item.getBoundingClientRect().left - left) <
+        Math.abs(items[best].getBoundingClientRect().left - left)
+          ? index
+          : best,
+      0,
+    );
+    if (navigating.current) {
+      if (settleTimer.current) clearTimeout(settleTimer.current);
+      settleTimer.current = setTimeout(() => {
+        navigating.current = false;
+        requestedProject.current = closest;
+        setActiveProject(closest);
+      }, 150);
+    } else {
+      requestedProject.current = closest;
+      setActiveProject(closest);
+    }
+  };
 
   useEffect(() => {
-    const calculateScrollDistance = () => {
-      if (!containerRef.current || !motionRef.current) return;
-
-      const totalWidth = motionRef.current.scrollWidth;
-      const visibleWidth = containerRef.current.offsetWidth;
-      setScrollDistance(Math.max(0, totalWidth - visibleWidth));
+    const gallery = galleryRef.current;
+    if (!gallery) return;
+    let frame = 0;
+    const resize = new ResizeObserver(() => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        if (window.matchMedia("(min-width: 1024px)").matches)
+          showProject(requestedProject.current, true);
+      });
+    });
+    resize.observe(gallery);
+    if (location.hash === "#projects") scrollToSection("projects");
+    return () => {
+      resize.disconnect();
+      cancelAnimationFrame(frame);
+      if (settleTimer.current) clearTimeout(settleTimer.current);
     };
+  }, [showProject]);
 
-    calculateScrollDistance();
-
-    const resizeObserver = new ResizeObserver(calculateScrollDistance);
-    if (containerRef.current) resizeObserver.observe(containerRef.current);
-    if (motionRef.current) resizeObserver.observe(motionRef.current);
-
-    return () => resizeObserver.disconnect();
-  }, [featuredProjects.length]);
-
-  const x = useTransform(scrollYProgress, [0, 1], [0, -scrollDistance]);
-  const rightFadeOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.96, 1],
-    [1, 1, 0],
-  );
-  const leftFadeOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.04, 1],
-    [0, 1, 1],
-  );
-
-  const renderMoreWork = (layout: "grid" | "carousel") => (
-    <div className="mt-16 lg:mt-[calc(21rem_-_50vh)]">
-      <div className="mb-8 flex items-end justify-between gap-6">
-        <div>
-          <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-            More work
-          </p>
-          <h3 className="text-3xl font-bold tracking-tight">
-            More things I’ve built
-          </h3>
-        </div>
-        <span
-          className={`hidden text-sm text-muted-foreground sm:block ${
-            layout === "carousel" ? "lg:pr-28" : ""
-          }`}
-        >
-          Experiments and personal projects
-        </span>
-      </div>
-
-      {layout === "carousel" ? (
-        <Carousel
-          opts={{ align: "start", slidesToScroll: 1, loop: true }}
-          className="w-full"
-          aria-label="More projects"
-        >
-          <CarouselContent className="ml-0">
-            {otherProjects.map((project, index) => (
-              <CarouselItem
-                key={project.name}
-                className="px-3"
-                style={{ flexBasis: "33.333333%" }}
-                aria-label={`${index + 1} of ${otherProjects.length}`}
-              >
-                <ProjectCard
-                  project={project}
-                  index={featuredProjects.length + index}
-                  variant="compact"
-                  animationDelay={0.1 + index * 0.05}
-                />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="-top-16 left-auto right-12 size-10 translate-y-0 border-primary/30 bg-background text-primary shadow-sm hover:bg-primary/10 hover:text-primary" />
-          <CarouselNext
-            variant="default"
-            className="-top-16 right-0 size-10 translate-y-0 border border-primary bg-primary text-primary-foreground shadow-sm hover:bg-primary/90"
-          />
-        </Carousel>
-      ) : (
-        <div className="grid gap-5 md:grid-cols-2">
-          {otherProjects.map((project, index) => (
-            <ProjectCard
-              key={project.name}
-              project={project}
-              index={featuredProjects.length + index}
-              variant="compact"
-              animationDelay={0.1 + index * 0.05}
-            />
-          ))}
-        </div>
-      )}
-    </div>
-  );
+  const interruptGallery = () => {
+    navigating.current = false;
+    if (settleTimer.current) clearTimeout(settleTimer.current);
+  };
 
   return (
-    <section id="projects" className="relative mb-44 scroll-mt-24 xl:mb-48">
-      <div className="container mx-auto lg:hidden">
-        <div>
-          <ProjectHeader />
-          <div className="grid gap-5">
-            {featuredProjects.map((project, index) => (
-              <ProjectCard
-                key={project.name}
-                project={project}
-                index={index}
-                variant="featured"
-              />
-            ))}
-          </div>
-          {renderMoreWork("grid")}
-        </div>
-      </div>
-
-      <div className="hidden lg:block">
-        <section
-          ref={targetRef}
-          className="relative"
-          style={{ height: `${featuredProjects.length * 100 + 80}vh` }}
+    <section
+      id="projects"
+      aria-labelledby="projects-heading"
+      className="mb-24 scroll-mt-20 xl:mb-32"
+    >
+      <div className="container mx-auto max-w-[1264px]">
+        <div
+          ref={stageRef}
+          className="flex min-h-[calc(100svh-4.75rem)] flex-col justify-center py-6 sm:py-8"
         >
-          <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-            <div className="container mx-auto">
-              <ProjectHeader />
-
-              <div ref={containerRef} className="relative overflow-hidden">
+          <ProjectReveal
+            sequence
+            reduceMotion={reduceMotion}
+            entranceKey={visit}
+          >
+            {(controls) => (
+              <>
+                <ProjectHeader controls={controls} />
                 <motion.div
-                  ref={motionRef}
-                  style={{ x }}
-                  className="flex gap-16 pr-[14%]"
+                  variants={projectEntrance}
+                  initial={false}
+                  animate={controls}
+                  custom={projectTiming.selectors}
+                  className="mb-6 hidden flex-wrap items-center justify-between gap-4 lg:flex"
                 >
-                  {featuredProjects.map((project, index) => (
+                  <ProjectSelector
+                    style="segmented"
+                    names={featuredProjects.map((project) => project.name)}
+                    active={activeProject}
+                    onSelect={showProject}
+                    reduceMotion={reduceMotion}
+                    controlsId="featured-projects"
+                  />
+                  <div className="flex items-center gap-3">
+                    <span
+                      className="min-w-12 text-center text-sm tabular-nums text-muted-foreground"
+                      role="status"
+                      aria-live="polite"
+                      aria-atomic="true"
+                    >
+                      {activeProject + 1} of {featuredProjects.length}
+                    </span>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="icon"
+                      className="size-11 rounded-full"
+                      aria-label="Previous featured project"
+                      aria-controls="featured-projects"
+                      disabled={activeProject === 0}
+                      onClick={() => showProject(requestedProject.current - 1)}
+                    >
+                      <ArrowLeft size={20} aria-hidden="true" />
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="icon"
+                      className="size-11 rounded-full"
+                      aria-label="Next featured project"
+                      aria-controls="featured-projects"
+                      disabled={activeProject === featuredProjects.length - 1}
+                      onClick={() => showProject(requestedProject.current + 1)}
+                    >
+                      <ArrowRight size={20} aria-hidden="true" />
+                    </Button>
+                  </div>
+                </motion.div>
+                <motion.div
+                  variants={projectSlideEntrance}
+                  initial={false}
+                  animate={controls}
+                  custom={projectTiming.slide}
+                >
+                  <div
+                    id="featured-projects"
+                    ref={galleryRef}
+                    onScroll={updateActiveProject}
+                    onWheel={interruptGallery}
+                    onTouchStart={interruptGallery}
+                    onPointerDown={interruptGallery}
+                    className="relative grid gap-5 lg:flex lg:snap-x lg:snap-mandatory lg:gap-8 lg:overflow-x-auto lg:overscroll-x-contain lg:pb-5"
+                    style={{
+                      scrollbarColor: "hsl(var(--border)) transparent",
+                      scrollbarWidth: "thin",
+                    }}
+                  >
+                    {featuredProjects.map((project, index) => (
+                      <div
+                        key={project.name}
+                        className="min-w-0 scroll-mt-20 lg:w-full lg:flex-none lg:snap-start"
+                      >
+                        <ProjectCard
+                          project={project}
+                          index={index}
+                          variant="featured"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              </>
+            )}
+          </ProjectReveal>
+        </div>
+
+        <ProjectReveal
+          sequence
+          className="mt-16"
+          reduceMotion={reduceMotion}
+          entranceKey={visit}
+        >
+          {(controls) => (
+            <>
+              <div className="mb-8 flex flex-col items-start gap-2 lg:pr-28">
+                <motion.h3
+                  variants={projectEntrance}
+                  initial={false}
+                  animate={controls}
+                  className="text-3xl font-bold tracking-tight"
+                >
+                  More things I’ve built
+                </motion.h3>
+                <motion.p
+                  variants={projectEntrance}
+                  initial={false}
+                  animate={controls}
+                  custom={projectTiming.description}
+                  className="text-sm text-muted-foreground"
+                >
+                  Experiments and personal projects
+                </motion.p>
+              </div>
+              <motion.div
+                variants={projectCarouselEntrance}
+                initial={false}
+                animate={controls}
+                custom={projectTiming.selectors}
+              >
+                <div className="grid gap-5 md:grid-cols-2 lg:hidden">
+                  {otherProjects.map((project, index) => (
                     <ProjectCard
                       key={project.name}
                       project={project}
-                      index={index}
-                      variant="featured"
-                      containerStyles="w-[86%] flex-shrink-0"
-                      animationDelay={index === 0 ? 0.1 : 0.2}
+                      index={featuredProjects.length + index}
+                      variant="compact"
+                      entrance={{
+                        controls,
+                        delay:
+                          projectTiming.selectors +
+                          index * projectTiming.cardStagger,
+                      }}
                     />
                   ))}
-                </motion.div>
-
-                <motion.div
-                  aria-hidden="true"
-                  style={{ opacity: rightFadeOpacity }}
-                  className="pointer-events-none absolute inset-y-0 right-0 z-10 w-14 bg-gradient-to-l from-background via-background/70 to-transparent xl:w-16"
-                />
-
-                <motion.div
-                  aria-hidden="true"
-                  style={{ opacity: leftFadeOpacity }}
-                  className="pointer-events-none absolute inset-y-0 left-0 z-10 w-14 bg-gradient-to-r from-background via-background/70 to-transparent xl:w-16"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <div className="container mx-auto">{renderMoreWork("carousel")}</div>
+                </div>
+                <Carousel
+                  opts={{
+                    align: "start",
+                    slidesToScroll: 1,
+                    loop: false,
+                    duration: reduceMotion ? 0 : 25,
+                  }}
+                  className="hidden w-full lg:block"
+                  aria-label="More projects"
+                >
+                  <CarouselContent className="-ml-6">
+                    {otherProjects.map((project, index) => (
+                      <CarouselItem
+                        key={project.name}
+                        className="basis-1/3 pl-6"
+                        aria-label={`${index + 1} of ${otherProjects.length}`}
+                      >
+                        <ProjectCard
+                          project={project}
+                          index={featuredProjects.length + index}
+                          variant="compact"
+                          entrance={{
+                            controls,
+                            delay:
+                              projectTiming.selectors +
+                              index * projectTiming.cardStagger,
+                          }}
+                        />
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="-top-16 left-auto right-14 size-11 translate-y-0 rounded-full" />
+                  <CarouselNext className="-top-16 right-0 size-11 translate-y-0 rounded-full" />
+                </Carousel>
+              </motion.div>
+            </>
+          )}
+        </ProjectReveal>
       </div>
     </section>
   );

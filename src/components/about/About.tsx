@@ -1,140 +1,105 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { GraduationCap } from "lucide-react";
-import { motion, useAnimationControls, useReducedMotion } from "framer-motion";
-import { info, skillSet } from "./AboutData";
-import AboutSkillList from "./AboutSkillList";
-import { aboutAccent, aboutReveal } from "./aboutMotion";
+import { UserRound } from "lucide-react";
+import { skillSet } from "./AboutData";
+import AboutTabs from "./AboutTabs";
+import { useEffect, useRef, useState } from "react";
+import {
+  motion,
+  useAnimationControls,
+  useInView,
+  useReducedMotion,
+} from "framer-motion";
+import { aboutItemReveal } from "./aboutMotion";
 
 const About = () => {
-  const reduceMotion = useReducedMotion();
-  const controls = useAnimationControls();
   const sectionRef = useRef<HTMLElement>(null);
+  const inView = useInView(sectionRef, { amount: 0.1 });
+  const reduceMotion = useReducedMotion();
+  const entranceControls = useAnimationControls();
+  const [replayKey, setReplayKey] = useState(0);
+  const [pageVisible, setPageVisible] = useState(true);
+  const active = inView && pageVisible;
 
   useEffect(() => {
-    const section = sectionRef.current;
-    if (!section || typeof IntersectionObserver === "undefined") return;
-    let armed = true;
-    let observer: IntersectionObserver;
-    const observe = () => {
-      observer?.disconnect();
-      const threshold = Math.min(
-        0.15,
-        (window.innerHeight * 0.25) / Math.max(section.offsetHeight, 1),
-      );
-      observer = new IntersectionObserver(
-        ([entry]) => {
-          if (!entry.isIntersecting) {
-            controls.stop();
-            controls.set("rest");
-            armed = true;
-          } else if (armed && entry.intersectionRatio >= threshold) {
-            armed = false;
-            controls.set("rest");
-            void controls.start("visible");
-          }
-        },
-        { threshold: [0, threshold] },
-      );
-      observer.observe(section);
+    const updateVisibility = () => setPageVisible(!document.hidden);
+    const replayNavigation = (event: MouseEvent) => {
+      if (
+        !inView ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      )
+        return;
+      const link =
+        event.target instanceof Element
+          ? event.target.closest<HTMLAnchorElement>("a[href]")
+          : null;
+      if (!link || (link.target && link.target !== "_self")) return;
+      const destination = new URL(link.href, window.location.href);
+      if (
+        destination.origin === window.location.origin &&
+        destination.pathname === window.location.pathname &&
+        destination.hash === "#about"
+      ) {
+        setReplayKey((key) => key + 1);
+      }
     };
-    observe();
-    const resizeObserver =
-      typeof ResizeObserver === "undefined"
-        ? null
-        : new ResizeObserver(observe);
-    resizeObserver?.observe(section);
-    window.addEventListener("resize", observe);
+    updateVisibility();
+    document.addEventListener("visibilitychange", updateVisibility);
+    document.addEventListener("click", replayNavigation);
     return () => {
-      observer.disconnect();
-      resizeObserver?.disconnect();
-      window.removeEventListener("resize", observe);
-      controls.stop();
+      document.removeEventListener("visibilitychange", updateVisibility);
+      document.removeEventListener("click", replayNavigation);
     };
-  }, [controls, reduceMotion]);
+  }, [inView]);
+
+  useEffect(() => {
+    entranceControls.stop();
+    if (reduceMotion) {
+      entranceControls.set("visible");
+    } else if (active) {
+      entranceControls.set("rest");
+      void entranceControls.start("visible");
+    } else {
+      entranceControls.set("rest");
+    }
+    return () => entranceControls.stop();
+  }, [active, entranceControls, reduceMotion, replayKey]);
 
   return (
-    <motion.section
+    <section
       ref={sectionRef}
       id="about"
       aria-labelledby="about-heading"
-      initial={false}
-      animate={controls}
-      variants={{ rest: {}, visible: {} }}
-      className="relative mb-24 scroll-mt-24 py-8 lg:mb-32 lg:py-12"
+      className="relative mb-24 flex min-h-[calc(100svh-4.75rem)] scroll-mt-20 items-center py-6 sm:py-8 lg:mb-32 lg:pb-12"
     >
       <div className="container mx-auto">
-        <h2
+        <motion.h2
           id="about-heading"
-          className="relative isolate mb-10 w-fit text-4xl font-bold tracking-[-0.03em] md:text-5xl"
+          variants={aboutItemReveal}
+          initial={false}
+          animate={entranceControls}
+          className="mb-6 flex items-center justify-center gap-2 text-center text-3xl font-bold tracking-[-0.03em] sm:mb-10 sm:gap-3 sm:text-4xl md:text-5xl"
         >
-          About me
-          <motion.span
+          <UserRound
             aria-hidden="true"
-            variants={aboutAccent}
-            custom={{ reduce: reduceMotion }}
-            className="absolute inset-x-0 bottom-0 -z-10 h-3 origin-left bg-[#ffeddf] dark:bg-[#353449]"
+            className="size-7 shrink-0 text-forest-ink sm:size-9 md:size-11"
           />
-        </h2>
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,360px)_minmax(0,1fr)] lg:gap-16">
-          <motion.div
-            variants={aboutReveal}
-            custom={{ delay: 0.12, reduce: reduceMotion }}
-            className="min-w-0"
-          >
-            <p className="text-[22px] font-medium leading-relaxed">
-              I’m Jay Elemar Termulo, a full stack developer with a focus on the
-              frontend.
-            </p>
-            <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-              I work with React, Next.js, and TypeScript, alongside building
-              APIs and backend systems. I’m interested in design, automation,
-              and modern web technologies.
-            </p>
-            <ul className="mt-8 space-y-3 text-sm">
-              {info
-                .filter(({ label }) => label !== "Name")
-                .map(({ icon, text, label, href }) => (
-                  <li key={label} className="flex min-w-0 items-center gap-3">
-                    <span
-                      aria-hidden="true"
-                      className="shrink-0 text-forest-ink"
-                    >
-                      {icon}
-                    </span>
-                    <span className="sr-only">{label}: </span>
-                    {href ? (
-                      <a
-                        href={href}
-                        className="flex min-h-11 min-w-0 items-center rounded-sm text-sm underline-offset-4 transition-colors duration-150 hover:text-forest-ink hover:underline focus-visible:text-forest-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current"
-                      >
-                        <span className="break-all">{text}</span>
-                      </a>
-                    ) : (
-                      <span>{text}</span>
-                    )}
-                  </li>
-                ))}
-              <li className="flex items-start gap-3 pt-2 leading-relaxed">
-                <GraduationCap
-                  aria-hidden="true"
-                  size={23}
-                  className="shrink-0 text-forest-ink"
-                />
-                <span>Bachelor of Science in Electronics Engineering</span>
-              </li>
-            </ul>
-          </motion.div>
-          <div className="min-w-0">
-            <h3 className="mb-6 text-xl font-semibold tracking-tight">
-              Skills &amp; technologies
-            </h3>
-            <AboutSkillList skillSet={skillSet} />
-          </div>
+          About Me
+        </motion.h2>
+        <div className="about-content mx-auto max-w-[960px]">
+          <AboutTabs
+            skillSet={skillSet}
+            entranceControls={entranceControls}
+            sectionActive={active}
+            replayKey={replayKey}
+          />
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 

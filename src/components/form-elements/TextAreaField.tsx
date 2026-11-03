@@ -12,6 +12,7 @@ type TextAreaFieldProps<T extends FieldValues> = {
   label: string;
   containerStyles: string;
   icon: ComponentType<LucideProps>;
+  description?: string;
 } & ComponentProps<"textarea">;
 
 export default function TextAreaField<T extends FieldValues>({
@@ -21,6 +22,7 @@ export default function TextAreaField<T extends FieldValues>({
   containerStyles,
   icon,
   className,
+  description,
   ...textareaProps
 }: TextAreaFieldProps<T>) {
   return (
@@ -33,6 +35,7 @@ export default function TextAreaField<T extends FieldValues>({
           icon={icon}
           multiline
           className={containerStyles}
+          description={description}
         >
           <Textarea
             className={cn(

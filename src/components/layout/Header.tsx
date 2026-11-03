@@ -16,20 +16,14 @@ const Header = () => {
   const [header, setHeader] = useState(false);
   const pathname = usePathname();
   useEffect(() => {
-    const scrollYPos = window.addEventListener("scroll", () => {
-      window.scrollY > 50 ? setHeader(true) : setHeader(false);
-    });
-
-    // remove event
-    return () => window.removeEventListener("scroll", () => scrollYPos);
+    const updateHeader = () => setHeader(window.scrollY > 50);
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+    return () => window.removeEventListener("scroll", updateHeader);
   }, []);
 
   // Mobile Nav Event
-  const { setIsOpen } = useMobileNavStore();
-  const handleClick = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
-    e.preventDefault();
-    setIsOpen(true);
-  };
+  const { isOpen, setIsOpen } = useMobileNavStore();
 
   return (
     <header
@@ -63,7 +57,7 @@ const Header = () => {
             >
               <Nav
                 containerStyles="flex justify-center items-center gap-10"
-                linkStyles="relative hover:text-primary/60 transition-all duration-300 text-lg font-medium"
+                linkStyles="relative hover:text-primary transition-all duration-300 text-lg font-medium"
                 activeLinkStyles="text-primary"
               />
             </motion.div>
@@ -84,11 +78,18 @@ const Header = () => {
               viewport={{ once: false, amount: 0.2 }}
               className="flex xl:hidden"
             >
-              <AlignJustify
-                size={30}
-                className="cursor-pointer lg:hidden"
-                onClick={handleClick}
-              />
+              <button
+                id="mobile-navigation-trigger"
+                type="button"
+                aria-label="Open navigation"
+                aria-expanded={isOpen}
+                aria-controls={isOpen ? "mobile-navigation" : undefined}
+                aria-haspopup="dialog"
+                className="inline-flex size-11 items-center justify-center rounded-full hover:bg-accent lg:hidden"
+                onClick={() => setIsOpen(true)}
+              >
+                <AlignJustify size={30} aria-hidden="true" />
+              </button>
               <MobileNav
                 containerStyles="flex flex-col gap-y-6 items-center"
                 linkStyles="text-2xl"

@@ -62,6 +62,7 @@ export type DataProps = {
   name: string;
   imgPath: React.ReactElement;
   color?: string;
+  isCore?: boolean;
 };
 
 export type SkillSetProps = {
@@ -74,23 +75,26 @@ export const skillSet: SkillSetProps[] = [
     title: "Frontend",
     data: [
       {
-        name: "JavaScript",
-        imgPath: <JavaScriptIcon />,
-      },
-      {
-        name: "TypeScript",
-        imgPath: <SiTypescript size={40} />,
-        color: "text-[#0072b1] dark:text-[#58a6d8]",
-      },
-      {
         name: "React",
         imgPath: <SiReact size={40} />,
         color: "text-[#087ea4] dark:text-[#61dafb]",
+        isCore: true,
       },
       {
         name: "Next.js",
         imgPath: <TbBrandNextjs size={40} />,
         color: "text-foreground",
+        isCore: true,
+      },
+      {
+        name: "TypeScript",
+        imgPath: <SiTypescript size={40} />,
+        color: "text-[#0072b1] dark:text-[#58a6d8]",
+        isCore: true,
+      },
+      {
+        name: "JavaScript",
+        imgPath: <JavaScriptIcon />,
       },
       {
         name: "Tailwind CSS",
@@ -125,7 +129,7 @@ export const skillSet: SkillSetProps[] = [
       {
         name: "Python",
         imgPath: <SiPython size={40} />,
-        color: "text-[#2f6592] dark:text-[#ffd343]",
+        color: "text-[#2f6592]",
       },
       {
         name: "FastAPI",
@@ -142,7 +146,7 @@ export const skillSet: SkillSetProps[] = [
         imgPath: <LangGraphIcon />,
       },
       {
-        name: "Postgres/pgvector",
+        name: "PostgreSQL",
         imgPath: <SiPostgresql size={40} />,
         color: "text-[#315e86] dark:text-[#5e9dcc]",
       },

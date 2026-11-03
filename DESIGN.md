@@ -2,8 +2,10 @@
 name: Jay Elemar Termulo Portfolio
 description: "The Developer’s Workbench: approachable, capable, and grounded in real work."
 colors:
-  primary: "hsl(142.1 76.2% 36.3%)"
+  primary: "hsl(142.4 71.8% 29.2%)"
   primary-dark: "hsl(142.1 70.6% 45.3%)"
+  primary-hover: "hsl(142.4 71.8% 24%)"
+  primary-hover-dark: "hsl(142.1 70.6% 50%)"
   primary-foreground: "hsl(355.7 100% 97.3%)"
   primary-foreground-dark: "hsl(144.9 80.4% 10%)"
   forest-ink: "rgb(40 119 67)"
@@ -26,17 +28,17 @@ colors:
   secondary-foreground-dark: "hsl(0 0% 98%)"
   muted: "hsl(240 4.8% 95.9%)"
   muted-dark: "hsl(0 0% 15%)"
-  muted-foreground: "hsl(240 3.8% 46.1%)"
+  muted-foreground: "hsl(240 5.2% 40%)"
   muted-foreground-dark: "hsl(240 5% 64.9%)"
   accent: "hsl(240 4.8% 95.9%)"
   accent-dark: "hsl(12 6.5% 15.1%)"
   border: "hsl(240 5.9% 90%)"
   border-dark: "hsl(240 3.7% 15.9%)"
-  destructive: "hsl(0 84.2% 60.2%)"
-  destructive-dark: "hsl(0 62.8% 30.6%)"
+  destructive: "hsl(0 72.2% 40.6%)"
+  destructive-dark: "hsl(0 90.6% 70.8%)"
   destructive-foreground: "hsl(0 0% 98%)"
-  destructive-foreground-dark: "hsl(0 85.7% 97.3%)"
-  ring: "hsl(142.1 76.2% 36.3%)"
+  destructive-foreground-dark: "hsl(0 74.7% 15.5%)"
+  ring: "hsl(142.4 71.8% 29.2%)"
   ring-dark: "hsl(142.4 71.8% 29.2%)"
   demo-status: "#fbbf24"
 typography:
@@ -127,7 +129,7 @@ Leaf Green supplies the main accent; Forest Ink supports quieter text and icons;
 
 **The Semantic Pair Rule.** Resolve background, text, border, and focus colors through their matching theme roles. A light-theme action foreground must not be carried into dark mode independently of its background.
 
-**Implementation exception:** the light `--foreground` is malformed (`#0 100% 50%`), so the browser currently falls back to black. Light `--card-foreground` and `--popover-foreground` resolve to red. They are unresolved implementation inconsistencies, not confirmed brand colors, and are deliberately excluded from normative frontmatter. Do not propagate them into new visual guidance. The configured `tertiary` role has no defined custom property and is not an established palette token.
+**Foreground roles:** light `foreground`, `card-foreground`, and `popover-foreground` use `240 10% 3.9%`. The formerly malformed/red foreground values have been corrected. The light primary now uses a darker green for readable normal-sized text and action labels. The configured `tertiary` role still has no defined custom property and is not an established palette token.
 
 ## Typography
 
@@ -137,8 +139,8 @@ The hierarchy uses weight and size within one family. It follows the existing Ta
 
 | Role | Observed use and responsive behavior |
 | --- | --- |
-| Display | Hero heading: bold (48px/48px) below `xl`, then (72px/80px), with tight tracking (−0.025em). |
-| Headline | Project section heading (36px/40px). About heading grows from (36px/40px) to (48px/48px) at `md`, with tracking (−0.03em). Contact heading uses (48px/48px). |
+| Display | Hero heading: bold, fluid from (36px) to (48px) below `xl`, then (72px/80px), with tight tracking (−0.025em). |
+| Headline | Project section heading (36px/40px). About heading grows from (36px/40px) to (48px/48px) at `md`, with tracking (−0.03em). Contact heading grows from (36px) to (48px) at `md`. |
 | Title | Shared card title: semibold (24px/24px), tight tracking. Featured project titles are bold and grow through (24px), (30px), and (36px). |
 | Body | Regular text (16px/24px); longer descriptions use relaxed leading (1.625). The about introduction is medium (22px) with relaxed leading. |
 | Lead | Hero introduction: light (20px/28px), constrained to the existing maximum width (32rem). |
@@ -153,13 +155,13 @@ The centered container has horizontal padding (32px). Its maximum widths follow 
 
 Spacing is based on the observed four-pixel utility steps, with larger separations between major sections. Preserve local responsive rules instead of applying a universal section-height formula:
 
-- Hero content centers below `xl`; the portrait is hidden. At `xl`, text aligns left beside the portrait. The current hero occupies (85vh).
+- Hero content centers below `xl`; the portrait is hidden. At `xl`, text aligns left beside the portrait. Minimum height is the smaller of (44rem) and (85svh), then (42rem) at `xl`, with (64px) vertical padding. The following gap is (64px), growing to (96px) at `xl`.
 - About content stacks below `lg`, then uses a fixed text column (360px) and a flexible skills column, with a desktop gap (64px). Skill groups divide with fine top borders; their labels gain a separate column at `xl`.
-- Featured projects stack below `lg`. At `lg`, a sticky viewport translates the track horizontally as the visitor scrolls vertically. Featured cards use a text/preview split (0.9fr/1.1fr), a minimum height (440px), and track gap (64px). This behavior belongs to this showcase, not every future screen.
+- Featured projects stack below `lg`. At `lg`, a native horizontal scroll-snap gallery uses full-width items, a (32px) gap, project-name jump buttons, previous/next controls, and current/total progress. It does not consume vertical scrolling. Featured cards retain a text/preview split (0.9fr/1.1fr) and minimum height (440px). Descriptions are fully readable at every width. Reduced-motion users receive immediate gallery navigation.
 - Supporting projects use one column on small screens, two at `md`, and a three-item carousel at `lg`.
 - Contact details and form stack on small screens and sit side by side from `md`. Name/email fields have their own responsive wrapping rules.
 
-The `/projects` route currently contains a placeholder. It is not evidence of a separate gallery layout.
+The `/projects` route reuses the homepage gallery inside its own main landmark. Navigation links return to homepage sections where appropriate.
 
 ## Elevation & Depth
 
@@ -185,9 +187,9 @@ The portrait's organic silhouette is a specific existing asset treatment, with e
 
 Refined actions with clear hierarchy. The shared primitive defaults to a medium corner (6px), height (40px), horizontal padding (16px), and vertical padding (8px). Its variants are primary, secondary, destructive, outline, ghost, and link; sizes include small (36px), large (44px), and square icon (40px).
 
-Primary and destructive hover fills use 90% opacity; secondary uses 80%. Outline and ghost hover on the accent surface; link adds an underline. Shared keyboard focus uses a two-pixel theme ring with a two-pixel background offset. Disabled controls reduce opacity to 50% and suppress pointer events.
+Primary hover fills use the theme’s opaque `primary-hover` role to preserve label contrast. Destructive hover fills use 90% opacity; secondary uses 80%. Outline and ghost hover on the accent surface; link adds an underline. Shared keyboard focus uses a two-pixel theme ring with a two-pixel background offset. Disabled controls reduce opacity to 50% and suppress pointer events.
 
-Page actions override the primitive with pill rounding. Hero actions also use a fixed width (176px), text (16px), and hover scale (1.05). The CV button overrides secondary colors with muted surface/text roles. Project action links use semibold text, pill rounding, and a small hover lift (2px). Do not apply every contextual override to the base primitive.
+Page actions override the primitive with pill rounding. Hero actions use one link per action, a fixed width (176px), height (44px), text (16px), and motion-safe hover scale (1.05). The CV button overrides secondary colors with muted surface/text roles. Project action links use semibold text, pill rounding, and a small hover lift (2px). Do not apply every contextual override to the base primitive.
 
 ### Chips and status
 
@@ -203,7 +205,7 @@ Browser frames, three green window dots, and a layered phone image form the dist
 
 The base input is (40px) tall with medium corners (6px), a one-pixel input border, and padding (8px 12px). Contact fields override to (54px), larger corners (16px), text (16px), and horizontal padding (32px). The shared field frame owns labels, icons, and validation placement; field height and Forest Ink are now named theme tokens. Labels sit over the top border on the page background; trailing icons sit inside the field. Textareas grow from a minimum (130px) to (180px) at `lg`.
 
-Focus uses the shared theme ring. Disabled inputs use 50% opacity and a blocked cursor. Form errors appear as small destructive text below fields; do not assume a red input-border state exists. The verification field uses centered digits with wide tracking, alongside pending, resend, expired, and confirmation states.
+Focus uses the shared theme ring. Disabled inputs use 50% opacity and a blocked cursor. Form errors appear in normal flow as destructive text below fields, allowing wrapping without overlapping the next control; do not assume a red input-border state exists. Message requirements and the emailed verification step appear before submission. Contact email and telephone details use the existing actionable destinations. The verification field uses centered digits with wide tracking, alongside pending, resend, expired, and confirmation states.
 
 ### Reuse and implementation
 
@@ -262,13 +264,13 @@ Use the adapters for ordinary contact fields; use `FieldFrame` directly only whe
 
 ### Navigation
 
-The sticky header contains the existing green `elemar` logo, desktop navigation from `lg`, and a circular theme control. The active desktop item uses green text and an animated underline (2px). Hover reduces the accent opacity. Below `lg`, navigation moves into a right-side sheet with a dark overlay, large links, and social icons. The sheet is full width on the narrowest screens, 75% from `xs`, and capped at (384px) from `sm`.
+The sticky header contains the existing green `elemar` logo, desktop navigation from `lg`, and a circular theme control. The active desktop anchor uses green text, a static underline (2px), and `aria-current`. Links and controls retain at least (44px) target height. Hover uses the primary accent. Below `lg`, a labeled native button opens a named right-side sheet with a dark overlay, large native section links, and distinctly named social links. Escape closes the sheet and restores trigger focus. The sheet is full width on the narrowest screens, 75% from `xs`, and capped at (384px) from `sm`.
 
 ### Motion
 
-The shared reveal moves content (40px) into place over (1.2s), with staggered delays. About uses a gentler reveal (16px, 500ms) and easing `cubic-bezier(0.16, 1, 0.3, 1)`, with replay when the section re-enters view. Its heading accent reveals over (450ms). Route content fades in over (400ms) after a (200ms) delay.
+The shared reveal moves content (40px) into place over (500ms), with delays capped at (300ms). Hero text is static apart from a one-time heading entrance; the portrait retains its authored entrance. Contact and project content are immediately visible, and the role is static rather than typewritten. About uses a gentler reveal (16px, 500ms) and easing `cubic-bezier(0.16, 1, 0.3, 1)`, with replay when the section re-enters view. Its heading accent reveals over (450ms). Route content fades in over (400ms) after a (200ms) delay.
 
-Reduced-motion handling is implemented for the about reveal, portrait entrances, and project-card entrances. It is not consistently applied to every reveal or the horizontal showcase; do not document complete reduced-motion support as already achieved.
+A shared MotionConfig respects the user’s reduced-motion preference for transforms. CSS suppresses animation and smooth scrolling under that preference; gallery controls and programmatic section scrolling also switch to immediate movement. Project cards have no entrance animation. This records implemented handling, not a claim of complete accessibility compliance.
 
 ## Do's and Don'ts
 
@@ -284,7 +286,7 @@ Reduced-motion handling is implemented for the about reveal, portrait entrances,
 
 ### Don't:
 
-- **Don't** promote the malformed light foreground or red card/popover foregrounds into brand tokens.
+- **Don't** reintroduce the formerly malformed light foreground or red card/popover foregrounds.
 - **Don't** collapse secondary, muted, and accent roles because their light values happen to match.
 - **Don't** apply portrait shapes or horizontal showcase scrolling to unrelated surfaces by default.
 - **Don't** replace real screenshots, identity assets, or technology marks with generic stand-ins.

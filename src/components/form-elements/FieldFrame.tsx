@@ -1,7 +1,13 @@
 import type { ComponentType, ReactElement } from "react";
 import type { LucideProps } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { FormControl, FormItem, FormLabel, FormMessage } from "../ui/form";
+import {
+  FormControl,
+  FormDescription,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../ui/form";
 
 /** Merge with cn so these styles override the base Input/Textarea utilities. */
 export const contactFieldStyles = "rounded-2xl px-8 text-base";
@@ -13,6 +19,7 @@ export type FieldFrameProps = {
   children: ReactElement;
   multiline?: boolean;
   className?: string;
+  description?: string;
 };
 
 /** Contact field framing. Must be rendered within Form and FormField. */
@@ -22,6 +29,7 @@ export default function FieldFrame({
   children,
   multiline = false,
   className,
+  description,
 }: FieldFrameProps) {
   return (
     <FormItem
@@ -38,11 +46,16 @@ export default function FieldFrame({
         aria-hidden="true"
         className={cn(
           "pointer-events-none absolute right-6 !mt-0",
-          multiline ? "top-8" : "bottom-4",
+          multiline ? "top-8" : "top-[25px]",
         )}
         size={20}
       />
-      <FormMessage className="absolute -bottom-5 left-[28px] w-full text-xs" />
+      {description && (
+        <FormDescription className="px-2 text-sm">
+          {description}
+        </FormDescription>
+      )}
+      <FormMessage className="px-2 text-sm" />
     </FormItem>
   );
 }

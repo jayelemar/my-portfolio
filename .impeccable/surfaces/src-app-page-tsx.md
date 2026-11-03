@@ -9,7 +9,7 @@ related_targets: ["src/components/hero/Hero.tsx","src/components/project/Project
 
 ## Scope
 
-Target: `src/app/page.tsx` (`/`). Mode: Experience, with the user's identity-first opening. This task documents the existing interface and corrects design guidance; no application redesign is requested.
+Target: `src/app/page.tsx` (`/`). Mode: Experience, with the user's identity-first opening. The green identity and identity-first opening remain authoritative. The critique remediation improves accessibility, contrast, gallery navigation, responsive text, and contact disclosure within that system.
 
 Hiring teams and prospective clients have equal priority. Visitors should understand who Jay is, assess his work, and reach his contact form or CV.
 
@@ -21,7 +21,7 @@ The generated white/blue classic preview and other replacement concepts are supe
 
 ## Current composition
 
-The opening introduces Jay, his frontend-focused full stack positioning, Contact Me and Download CV actions, and his existing portrait composition on desktop. The hero centers below `xl`, where the portrait is currently hidden. About, selected work, and contact follow. Preserve this responsive behavior during refinement unless the user requests a layout change.
+The opening introduces Jay, his frontend-focused full stack positioning, Contact Me and Download CV actions, and his existing portrait composition on desktop. The hero centers below `xl`, where the portrait is hidden. Featured projects stack on mobile and use a native horizontal gallery with direct navigation and progress on desktop. About, selected work, and contact follow. Preserve this responsive behavior during refinement unless the user requests a layout change.
 
 ## Content and behavior
 
