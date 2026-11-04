@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { Download, Send } from "lucide-react";
-import { DOWNLOAD_CV } from "@/lib/constant";
+import { CV_URL } from "@/lib/constant";
 import { motion, type AnimationControls } from "framer-motion";
 import { heroReveal, heroTiming } from "./heroMotion";
 
@@ -40,14 +40,9 @@ const HeroButtons = ({ controls }: { controls: AnimationControls }) => {
           variant={"secondary"}
           className="btn-secondary h-11 w-44 gap-2 rounded-full text-base"
         >
-          <Link
-            href={DOWNLOAD_CV}
-            download
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Download CV <Download size={18} />
-          </Link>
+          <a href={CV_URL} download="Jay_Termulo_CV.pdf">
+            Download CV <Download size={18} aria-hidden="true" />
+          </a>
         </Button>
       </motion.div>
     </div>
