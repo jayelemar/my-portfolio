@@ -1,8 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   contactRequestSchema,
-  contactResendSchema,
-  contactVerificationSchema,
+  contactSubmissionSchema,
 } from "./contact-schema";
 
 describe("contactRequestSchema", () => {
@@ -43,24 +42,29 @@ describe("contactRequestSchema", () => {
   });
 });
 
-describe("contact verification schemas", () => {
-  const challengeId = "1d449f88-75a0-4ad4-b1bb-12b19857598d";
-
-  it("only accepts six-digit verification codes", () => {
+describe("contactSubmissionSchema", () => {
+  const payload = {
+    name: "Valid Name",
+    email: "visitor@example.com",
+    message: "I would like to discuss a new website project.",
+    turnstileToken: "token",
+    submissionId: "1d449f88-75a0-4ad4-b1bb-12b19857598d",
+  };
+  it("requires a token and valid submission ID", () => {
+    expect(contactSubmissionSchema.safeParse(payload).success).toBe(true);
     expect(
-      contactVerificationSchema.safeParse({ challengeId, code: "123456" })
-        .success,
-    ).toBe(true);
-    expect(
-      contactVerificationSchema.safeParse({ challengeId, code: "12345a" })
+      contactSubmissionSchema.safeParse({ ...payload, turnstileToken: "" })
         .success,
     ).toBe(false);
-  });
-
-  it("requires a valid challenge id for resends", () => {
-    expect(contactResendSchema.safeParse({ challengeId }).success).toBe(true);
     expect(
-      contactResendSchema.safeParse({ challengeId: "not-a-uuid" }).success,
+      contactSubmissionSchema.safeParse({ ...payload, submissionId: "bad-id" })
+        .success,
+    ).toBe(false);
+    expect(
+      contactSubmissionSchema.safeParse({
+        ...payload,
+        turnstileToken: "x".repeat(2049),
+      }).success,
     ).toBe(false);
   });
 });

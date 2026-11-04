@@ -29,8 +29,8 @@ The site is an existing Next.js App Router application using React, TypeScript, 
 - Preserve Jay's identity, existing project content, CV link, and contact flow in future work unless he explicitly changes them.
 - Keep the distinction between live, archived, and demo projects. Archived entries currently omit the live-site action.
 - Preserve the externally hosted CV destination in `src/lib/constant.ts`.
-- The contact form uses an emailed six-digit verification code before forwarding a message to Discord. Challenges expire after 15 minutes; verification and resend limits apply.
-- Portfolio browsing does not require environment variables. Contact delivery requires the documented Resend, Upstash Redis, Discord, and verification-secret configuration.
+- The contact form sends messages directly to Discord after server-validated Cloudflare Turnstile checks. Hidden bot-trap, rate limits, and duplicate suppression apply; sender email ownership is unverified.
+- Portfolio browsing does not require environment variables. Contact delivery requires the documented Cloudflare Turnstile, Upstash Redis, and Discord configuration.
 - The existing application supports light and dark themes and responsive layouts.
 
 ## Brand Commitments
@@ -46,7 +46,7 @@ Jay explicitly confirmed the existing green theme as the visual direction. Prese
 - Portrait assets: `public/hero/` and `public/about/`.
 - Identity, contact details, and skills: `src/components/about/AboutData.tsx`; introduction and education: `src/components/about/About.tsx`.
 - CV destination: `src/lib/constant.ts`; social destinations: `src/components/common/Socials.tsx`.
-- Contact setup and verification behavior: `README.md` and `src/lib/contact-*.ts`.
+- Contact setup and spam protection: `README.md` and `src/lib/contact-*.ts`.
 
 Project-specific roles, measured outcomes, client endorsements, and testimonials have not been established in this product record. Future work must obtain evidence before adding such claims.
 
@@ -56,7 +56,7 @@ Project-specific roles, measured outcomes, client endorsements, and testimonials
 2. Keep the frontend-focused full stack positioning consistent with Jay's confirmed identity and work.
 3. Use existing projects and assets as evidence; obtain confirmation before adding claims.
 4. Keep access to the CV and a working contact path central to the visitor's evaluation.
-5. Preserve truthful project availability and the verified contact workflow.
+5. Preserve truthful project availability and the single-step contact workflow.
 
 ## Open Decisions
 

@@ -69,7 +69,6 @@ const testState = vi.hoisted(() => {
   return {
     values,
     redis,
-    resendSend: vi.fn(),
   };
 });
 
@@ -79,217 +78,145 @@ vi.mock("@upstash/redis", () => ({
   },
 }));
 
-vi.mock("resend", () => ({
-  Resend: function Resend() {
-    return { emails: { send: testState.resendSend } };
-  },
-}));
-
 const validContact = {
   name: "Test Visitor",
   email: "visitor@example.com",
   message: "I would like to discuss a new website project.",
   website: "",
+  turnstileToken: "test-token",
+  submissionId: "1d449f88-75a0-4ad4-b1bb-12b19857598d",
 };
+const verification = {
+  success: true,
+  hostname: "www.elemar.site",
+  action: "contact",
+};
+const webhook = "https://discord.example.com/webhook";
+const deliveries = () =>
+  vi.mocked(fetch).mock.calls.filter(([url]) => url === webhook);
+const fresh = () => ({ ...validContact, submissionId: crypto.randomUUID() });
 
-function extractLatestCode() {
-  const call = testState.resendSend.mock.calls.at(-1)?.[0] as
-    | { text?: string }
-    | undefined;
-  const code = call?.text?.match(/\b\d{6}\b/)?.[0];
-  if (!code)
-    throw new Error("Verification code was not included in the email.");
-  return code;
-}
-
-describe("contact verification service", () => {
+describe("direct contact delivery", () => {
   beforeEach(() => {
-    vi.resetModules();
     vi.clearAllMocks();
     testState.values.clear();
-    testState.resendSend.mockResolvedValue({
-      data: { id: "email_1" },
-      error: null,
-    });
     vi.stubEnv("UPSTASH_REDIS_REST_URL", "https://redis.example.com");
-    vi.stubEnv("UPSTASH_REDIS_REST_TOKEN", "test-redis-token");
-    vi.stubEnv("RESEND_API_KEY", "re_test_key");
-    vi.stubEnv(
-      "CONTACT_CODE_SECRET",
-      "a-long-random-test-secret-with-at-least-32-characters",
-    );
-    vi.stubEnv("DISCORD_WEBHOOK_URL", "https://discord.example.com/webhook");
+    vi.stubEnv("UPSTASH_REDIS_REST_TOKEN", "redis-test");
+    vi.stubEnv("TURNSTILE_SECRET_KEY", "secret-test");
+    vi.stubEnv("TURNSTILE_ALLOWED_HOSTNAMES", "elemar.site,www.elemar.site");
+    vi.stubEnv("DISCORD_WEBHOOK_URL", webhook);
+    vi.stubEnv("VERCEL_ENV", "preview");
     vi.stubGlobal(
       "fetch",
-      vi.fn().mockResolvedValue(new Response(null, { status: 204 })),
+      vi.fn(async (url) =>
+        url === webhook
+          ? new Response(null, { status: 204 })
+          : Response.json(verification),
+      ),
     );
   });
-
-  it("emails a code and only delivers the message after successful verification", async () => {
-    const { requestContactVerification, verifyContactCode } = await import(
-      "./contact-service.js"
-    );
-
-    const challenge = await requestContactVerification(validContact);
-    const code = extractLatestCode();
-
-    expect(testState.resendSend).toHaveBeenCalledTimes(1);
-    expect(fetch).not.toHaveBeenCalled();
-    const verificationEmail = testState.resendSend.mock.calls[0][0] as {
-      subject: string;
-      text: string;
-      html: string;
-    };
-    expect(verificationEmail.subject).toBe(
-      "One quick step to send your message",
-    );
-    expect(verificationEmail.text).toBe(`Thanks for reaching out!
-
-You’re almost done. Enter the verification code below on my portfolio to confirm your email and send your message.
-
-This quick check ensures I can reply to the right address while keeping unwanted messages away.
-
-${code}
-
-This code expires in 15 minutes. Your message will be delivered as soon as your email is confirmed.
-
-If you didn’t request this, you can safely ignore this email. No message will be sent.`);
-    expect(verificationEmail.html).toContain("<h2>Confirm your email</h2>");
-    expect(verificationEmail.html).toContain("Thanks for reaching out!");
-    expect(verificationEmail.html).toContain(
-      "You’re almost done. Enter the verification code below on my portfolio to confirm your email and send your message.",
-    );
-    expect(verificationEmail.html).toContain(
-      "This quick check ensures I can reply to the right address while keeping unwanted messages away.",
-    );
-    expect(verificationEmail.html).toContain(code);
-    expect(verificationEmail.html).toContain(
-      "This code expires in 15 minutes. Your message will be delivered as soon as your email is confirmed.",
-    );
-    expect(verificationEmail.html).toContain(
-      "If you didn’t request this, you can safely ignore this email. No message will be sent.",
-    );
-    expect(verificationEmail.text).not.toContain(validContact.message);
-    expect(verificationEmail.html).not.toContain(validContact.message);
-
-    await expect(
-      verifyContactCode(challenge.challengeId, code),
-    ).resolves.toEqual({
+  it("checks Turnstile before delivery and suppresses confirmed retries", async () => {
+    const { sendContactMessage } = await import("./contact-service.js");
+    await expect(sendContactMessage(validContact, "ip1")).resolves.toEqual({
       success: true,
     });
-    expect(fetch).toHaveBeenCalledTimes(1);
-
-    await expect(
-      verifyContactCode(challenge.challengeId, code),
-    ).rejects.toMatchObject({
-      status: 410,
+    await expect(sendContactMessage(validContact, "ip1")).resolves.toEqual({
+      success: true,
     });
-    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(deliveries()).toHaveLength(1);
+    expect(fetch).toHaveBeenCalledTimes(2);
+    const payload = JSON.parse(deliveries()[0][1]?.body as string);
+    expect(payload.allowed_mentions.parse).toEqual([]);
+    expect(payload.embeds[0].footer.text).toBe("Sender email is unverified");
+    expect(payload.content).toBe("New portfolio inquiry");
   });
-
-  it("does not email or store a honeypot submission", async () => {
-    const { requestContactVerification } = await import("./contact-service.js");
-
-    await requestContactVerification({
-      ...validContact,
-      website: "spam.example",
-    });
-
-    expect(testState.resendSend).not.toHaveBeenCalled();
+  it("silently discards honeypot submissions", async () => {
+    const { sendContactMessage } = await import("./contact-service.js");
+    await sendContactMessage({ ...validContact, website: "spam" }, "ip1");
     expect(fetch).not.toHaveBeenCalled();
-    expect(
-      [...testState.values.keys()].some((key) =>
-        key.startsWith("contact:challenge:"),
-      ),
-    ).toBe(false);
+    expect(testState.values.size).toBe(0);
   });
-
-  it("limits verification emails sent to the same address", async () => {
-    const { requestContactVerification } = await import("./contact-service.js");
-
-    await requestContactVerification(validContact);
-    await requestContactVerification(validContact);
-    await requestContactVerification(validContact);
-
-    await expect(
-      requestContactVerification(validContact),
-    ).rejects.toMatchObject({
+  it.each([
+    { success: false },
+    { ...verification, hostname: "attacker.example" },
+    { ...verification, action: "login" },
+  ])("rejects invalid tokens or context: %j", async (result) => {
+    vi.mocked(fetch).mockResolvedValue(Response.json(result));
+    const { sendContactMessage } = await import("./contact-service.js");
+    await expect(sendContactMessage(validContact, "ip1")).rejects.toMatchObject(
+      { status: 400 },
+    );
+    expect(deliveries()).toHaveLength(0);
+  });
+  it("fails closed on missing configuration or Turnstile outage", async () => {
+    const { sendContactMessage } = await import("./contact-service.js");
+    vi.stubEnv("TURNSTILE_SECRET_KEY", "");
+    await expect(sendContactMessage(validContact, "ip1")).rejects.toMatchObject(
+      { status: 503 },
+    );
+    expect(fetch).not.toHaveBeenCalled();
+    vi.stubEnv("TURNSTILE_SECRET_KEY", "secret-test");
+    vi.mocked(fetch).mockRejectedValue(new Error("offline"));
+    await expect(sendContactMessage(validContact, "ip1")).rejects.toMatchObject(
+      { status: 503 },
+    );
+  });
+  it("limits attempts per IP", async () => {
+    const { sendContactMessage } = await import("./contact-service.js");
+    for (let n = 0; n < 3; n++)
+      await sendContactMessage(
+        { ...fresh(), email: `visitor${n}@example.com` },
+        "ip1",
+      );
+    await expect(sendContactMessage(fresh(), "ip1")).rejects.toMatchObject({
       status: 429,
     });
-    expect(testState.resendSend).toHaveBeenCalledTimes(3);
+    expect(deliveries()).toHaveLength(3);
   });
-
-  it("invalidates a challenge after five incorrect codes", async () => {
-    const { requestContactVerification, verifyContactCode } = await import(
-      "./contact-service.js"
-    );
-    const challenge = await requestContactVerification(validContact);
-    const correctCode = extractLatestCode();
-    const incorrectCode = correctCode === "000000" ? "999999" : "000000";
-
-    for (let attempt = 1; attempt < 5; attempt += 1) {
-      await expect(
-        verifyContactCode(challenge.challengeId, incorrectCode),
-      ).rejects.toMatchObject({ status: 400 });
-    }
-
-    await expect(
-      verifyContactCode(challenge.challengeId, incorrectCode),
-    ).rejects.toMatchObject({ status: 410 });
-    await expect(
-      verifyContactCode(challenge.challengeId, correctCode),
-    ).rejects.toMatchObject({ status: 410 });
-    expect(fetch).not.toHaveBeenCalled();
+  it("limits messages per email across different IPs", async () => {
+    const { sendContactMessage } = await import("./contact-service.js");
+    for (let n = 0; n < 3; n++) await sendContactMessage(fresh(), `ip${n}`);
+    await expect(sendContactMessage(fresh(), "ip4")).rejects.toMatchObject({
+      status: 429,
+    });
   });
-
-  it("enforces the resend cooldown and replaces the old code", async () => {
-    const {
-      requestContactVerification,
-      resendContactVerification,
-      verifyContactCode,
-    } = await import("./contact-service.js");
-    const challenge = await requestContactVerification(validContact);
-    const firstCode = extractLatestCode();
-
-    await expect(
-      resendContactVerification(challenge.challengeId),
-    ).rejects.toMatchObject({ status: 429 });
-
-    testState.values.delete(`contact:resend:${challenge.challengeId}`);
-    await resendContactVerification(challenge.challengeId);
-    const secondCode = extractLatestCode();
-
-    expect(testState.resendSend).toHaveBeenCalledTimes(2);
-    if (secondCode !== firstCode) {
-      await expect(
-        verifyContactCode(challenge.challengeId, firstCode),
-      ).rejects.toMatchObject({ status: 400 });
-    }
-    await expect(
-      verifyContactCode(challenge.challengeId, secondCode),
-    ).resolves.toEqual({ success: true });
-  });
-
-  it("allows delivery to be retried when Discord temporarily fails", async () => {
-    const { requestContactVerification, verifyContactCode } = await import(
-      "./contact-service.js"
-    );
-    const challenge = await requestContactVerification(validContact);
-    const code = extractLatestCode();
+  it("permits retry after failed delivery", async () => {
+    const { sendContactMessage } = await import("./contact-service.js");
     vi.mocked(fetch)
-      .mockResolvedValueOnce(new Response(null, { status: 500 }))
-      .mockResolvedValueOnce(new Response(null, { status: 204 }));
-
+      .mockResolvedValueOnce(Response.json(verification))
+      .mockResolvedValueOnce(new Response(null, { status: 500 }));
+    await expect(sendContactMessage(validContact, "ip1")).rejects.toMatchObject(
+      { status: 502 },
+    );
     await expect(
-      verifyContactCode(challenge.challengeId, code),
-    ).rejects.toMatchObject({
-      status: 502,
-    });
+      sendContactMessage(
+        { ...validContact, turnstileToken: "fresh-token" },
+        "ip1",
+      ),
+    ).resolves.toEqual({ success: true });
+    expect(deliveries()).toHaveLength(2);
+  });
+  it("rejects reuse of an ID for changed details", async () => {
+    const { sendContactMessage } = await import("./contact-service.js");
+    await sendContactMessage(validContact, "ip1");
     await expect(
-      verifyContactCode(challenge.challengeId, code),
-    ).resolves.toEqual({
-      success: true,
-    });
-    expect(fetch).toHaveBeenCalledTimes(2);
+      sendContactMessage(
+        {
+          ...validContact,
+          message: "Different sufficiently long message here.",
+        },
+        "ip1",
+      ),
+    ).rejects.toMatchObject({ status: 409 });
+    expect(deliveries()).toHaveLength(1);
+  });
+  it("blocks concurrent submissions with the same ID", async () => {
+    const { sendContactMessage } = await import("./contact-service.js");
+    const results = await Promise.allSettled([
+      sendContactMessage(validContact, "ip1"),
+      sendContactMessage(validContact, "ip1"),
+    ]);
+    expect(results.filter((r) => r.status === "fulfilled")).toHaveLength(1);
+    expect(deliveries()).toHaveLength(1);
   });
 });

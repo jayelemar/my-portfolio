@@ -1,16 +1,13 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 import {
   ArrowRightIcon,
   Loader2,
-  MailCheck,
   MailIcon,
   MessageSquare,
-  RotateCcw,
   User,
 } from "lucide-react";
 import {
@@ -19,290 +16,82 @@ import {
 } from "@/lib/contact-schema";
 import { Button } from "../ui/button";
 import { Form } from "../ui/form";
-import { Input } from "../ui/input";
 import InputField from "../form-elements/InputField";
 import TextAreaField from "../form-elements/TextAreaField";
-
-const STORAGE_KEY = "portfolio-contact-verification";
-
-type ChallengeState = {
-  challengeId: string;
-  maskedEmail: string;
-  expiresAt: number;
-  resendAvailableAt: number;
-};
-
-type ApiError = {
-  message?: string;
-};
-
-async function postJson<T>(url: string, body: unknown): Promise<T> {
-  const response = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
-  const payload = (await response.json().catch(() => ({}))) as T & ApiError;
-
-  if (!response.ok) {
-    if (response.status === 429) {
-      throw new Error(
-        payload.message ?? "Too many attempts. Please try again later.",
-      );
-    }
-    throw new Error(
-      payload.message ?? "The contact service is temporarily unavailable.",
-    );
-  }
-
-  return payload;
-}
+import ContactTurnstile, {
+  type ContactSecurityHandle,
+} from "./ContactTurnstile";
 
 const ContactForm = () => {
-  const [challenge, setChallenge] = useState<ChallengeState | null>(null);
-  const [code, setCode] = useState("");
-  const [isVerifying, setIsVerifying] = useState(false);
-  const [isResending, setIsResending] = useState(false);
-  const [now, setNow] = useState(() => Date.now());
-
+  const [active, setActive] = useState(false);
+  const [status, setStatus] = useState<{
+    error: boolean;
+    message: string;
+  } | null>(null);
+  const security = useRef<ContactSecurityHandle>(null);
+  const draft = useRef<{ body: string; id: string }>();
+  const sitekey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
   const form = useForm<ContactRequest>({
     resolver: zodResolver(contactRequestSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      message: "",
-      website: "",
-    },
+    defaultValues: { name: "", email: "", message: "", website: "" },
   });
-
   useEffect(() => {
-    const stored = sessionStorage.getItem(STORAGE_KEY);
-    if (!stored) return;
-
     try {
-      const parsed = JSON.parse(stored) as ChallengeState;
-      if (
-        parsed.challengeId &&
-        parsed.maskedEmail &&
-        parsed.expiresAt > Date.now()
-      ) {
-        setChallenge(parsed);
-      } else {
-        sessionStorage.removeItem(STORAGE_KEY);
-      }
+      sessionStorage.removeItem("portfolio-contact-verification");
     } catch {
-      sessionStorage.removeItem(STORAGE_KEY);
+      /* Storage may be disabled. */
     }
   }, []);
-
-  useEffect(() => {
-    if (!challenge) return;
-    const timer = window.setInterval(() => setNow(Date.now()), 1_000);
-    return () => window.clearInterval(timer);
-  }, [challenge]);
-
-  const resendSeconds = useMemo(
-    () =>
-      challenge
-        ? Math.max(0, Math.ceil((challenge.resendAvailableAt - now) / 1_000))
-        : 0,
-    [challenge, now],
-  );
-  const isExpired = Boolean(challenge && challenge.expiresAt <= now);
-
-  const rememberChallenge = (nextChallenge: ChallengeState) => {
-    setChallenge(nextChallenge);
-    setNow(Date.now());
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(nextChallenge));
-  };
-
-  const clearChallenge = () => {
-    setChallenge(null);
-    setCode("");
-    sessionStorage.removeItem(STORAGE_KEY);
-  };
-
   const onSubmit = async (data: ContactRequest) => {
+    setStatus(null);
+    setActive(true);
+    const body = JSON.stringify(data);
+    if (draft.current?.body !== body)
+      draft.current = { body, id: crypto.randomUUID() };
     try {
-      const nextChallenge = await postJson<ChallengeState>(
-        "/api/contact/request",
-        data,
-      );
-      rememberChallenge(nextChallenge);
-      toast.success(`Verification code sent to ${nextChallenge.maskedEmail}`);
-    } catch (error) {
-      toast.error(
-        error instanceof Error ? error.message : "Something went wrong.",
-      );
-    }
-  };
-
-  const onVerify = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (!challenge || !/^\d{6}$/.test(code)) {
-      toast.error("Enter the 6-digit verification code.");
-      return;
-    }
-
-    setIsVerifying(true);
-    try {
-      await postJson<{ success: true }>("/api/contact/verify", {
-        challengeId: challenge.challengeId,
-        code,
+      const turnstileToken = await security.current?.getToken();
+      if (!turnstileToken)
+        throw new Error(
+          "The security check is unavailable. Please retry or email me directly.",
+        );
+      const response = await fetch("/api/contact/request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...data,
+          turnstileToken,
+          submissionId: draft.current.id,
+        }),
+        signal: AbortSignal.timeout(20000),
       });
-      clearChallenge();
+      const result = await response.json();
+      if (!response.ok || result.success !== true)
+        throw new Error(
+          result.message ?? "Your message could not be sent. Please retry.",
+        );
       form.reset();
-      toast.success("Email verified—message sent successfully!");
+      draft.current = undefined;
+      setStatus({
+        error: false,
+        message: "Message sent. Thanks for reaching out!",
+      });
     } catch (error) {
-      const message =
-        error instanceof Error ? error.message : "Verification failed.";
-      toast.error(message);
-      if (/expired|start again/i.test(message)) clearChallenge();
+      setStatus({
+        error: true,
+        message:
+          error instanceof Error && error.name !== "TimeoutError"
+            ? error.message
+            : "Delivery could not be confirmed. Please retry or email me directly.",
+      });
     } finally {
-      setIsVerifying(false);
+      security.current?.reset();
     }
   };
-
-  const onResend = async () => {
-    if (!challenge || resendSeconds > 0) return;
-
-    setIsResending(true);
-    try {
-      const nextChallenge = await postJson<ChallengeState>(
-        "/api/contact/resend",
-        { challengeId: challenge.challengeId },
-      );
-      rememberChallenge(nextChallenge);
-      setCode("");
-      toast.success(`A new code was sent to ${nextChallenge.maskedEmail}`);
-    } catch (error) {
-      toast.error(
-        error instanceof Error ? error.message : "Could not resend the code.",
-      );
-    } finally {
-      setIsResending(false);
-    }
-  };
-
-  if (challenge) {
-    return (
-      <div className="top-[27px] mx-auto flex w-full flex-col items-center rounded-2xl border border-border bg-background/60 p-6 text-center md:mt-7 lg:-mt-12 lg:max-w-[680px] lg:items-stretch lg:px-10 lg:py-8 xl:relative xl:top-0">
-        <MailCheck className="mb-3 text-primary lg:hidden" size={42} />
-        <h3 className="text-xl font-semibold lg:mx-auto lg:w-full lg:max-w-[520px] lg:text-2xl">
-          You’re almost there!
-        </h3>
-        <p className="mt-2 max-w-md text-sm text-muted-foreground lg:mx-auto lg:w-full lg:max-w-[520px] lg:leading-relaxed">
-          We sent a 6-digit code to {challenge.maskedEmail}. Enter it below to
-          confirm your email and send your message.
-        </p>
-
-        <form
-          className="mt-6 w-full max-w-sm lg:mx-auto lg:mt-7 lg:max-w-[520px]"
-          onSubmit={onVerify}
-        >
-          <div className="relative w-full">
-            <label
-              className="sr-only lg:not-sr-only lg:absolute lg:-top-2.5 lg:left-6 lg:z-10 lg:bg-background lg:px-1 lg:text-sm lg:text-muted-foreground"
-              htmlFor="contact-verification-code"
-            >
-              Verification code:
-            </label>
-            <Input
-              id="contact-verification-code"
-              value={code}
-              onChange={(event) =>
-                setCode(event.target.value.replace(/\D/g, "").slice(0, 6))
-              }
-              inputMode="numeric"
-              autoComplete="one-time-code"
-              pattern="[0-9]{6}"
-              maxLength={6}
-              placeholder="000000"
-              disabled={isVerifying || isExpired}
-              className="h-14 text-center text-2xl tracking-[0.5em] lg:h-contact-field lg:rounded-2xl lg:px-8 lg:pr-14"
-            />
-            <MailCheck
-              aria-hidden="true"
-              className="absolute bottom-4 right-6 hidden text-primary lg:block"
-              size={20}
-            />
-          </div>
-
-          <Button
-            type="submit"
-            disabled={isVerifying || isExpired || code.length !== 6}
-            className="mt-4 flex w-full items-center gap-2 rounded-full lg:mt-5"
-          >
-            {isVerifying ? (
-              <>
-                <Loader2 className="animate-spin" size={20} />
-                Verifying
-              </>
-            ) : (
-              <>
-                <MailCheck size={20} />
-                Confirm Email &amp; Send Message
-              </>
-            )}
-          </Button>
-
-          {!isExpired && (
-            <p className="mt-4 text-sm text-muted-foreground lg:mt-5 lg:leading-relaxed">
-              This quick check ensures I can reply to you while keeping unwanted
-              messages away.
-            </p>
-          )}
-
-          {isExpired && (
-            <p className="mt-4 text-sm text-destructive lg:mt-5">
-              This code has expired. Please start again.
-            </p>
-          )}
-
-          <div className="mt-2 flex flex-col items-center justify-center lg:mt-4 lg:flex-row lg:justify-between lg:gap-4">
-            {!isExpired && (
-              <Button
-                type="button"
-                variant="ghost"
-                disabled={isResending || resendSeconds > 0}
-                onClick={onResend}
-                className="gap-2"
-              >
-                {isResending ? (
-                  <Loader2 className="animate-spin" size={16} />
-                ) : (
-                  <RotateCcw size={16} />
-                )}
-                {resendSeconds > 0
-                  ? `Resend in ${resendSeconds}s`
-                  : "Resend code"}
-              </Button>
-            )}
-
-            <Button
-              type="button"
-              variant="link"
-              onClick={clearChallenge}
-              className="w-full lg:w-auto"
-            >
-              Update email or message
-            </Button>
-          </div>
-
-          {!isExpired && (
-            <p className="text-sm text-muted-foreground lg:mt-2">
-              This code expires in 15 minutes.
-            </p>
-          )}
-        </form>
-      </div>
-    );
-  }
-
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
+        onFocusCapture={() => setActive(true)}
         className="top-[27px] mx-auto flex w-full flex-col gap-y-4 md:mt-7 lg:mt-0 xl:relative"
       >
         <fieldset disabled={form.formState.isSubmitting}>
@@ -355,32 +144,64 @@ const ContactForm = () => {
             icon={MessageSquare}
             maxLength={2_000}
           />
-
-          <p className="mb-4 max-w-lg text-sm leading-relaxed text-muted-foreground">
-            Next, we’ll email you a 6-digit code. Confirm your email to send
-            your message.
+        </fieldset>
+        {sitekey ? (
+          <ContactTurnstile ref={security} sitekey={sitekey} active={active} />
+        ) : (
+          <p role="status" className="text-sm text-muted-foreground">
+            The contact form is temporarily unavailable. Please{" "}
+            <a
+              href="mailto:jetermulo@gmail.com"
+              className="underline underline-offset-4"
+            >
+              email me directly
+            </a>
+            .
           </p>
-          <Button
-            type="submit"
-            disabled={form.formState.isSubmitting}
-            className="flex min-h-11 w-full items-center gap-2 rounded-full sm:max-w-sm xl:max-w-[400px]"
+        )}
+        {status && (
+          <p
+            role={status.error ? "alert" : "status"}
+            className={
+              status.error
+                ? "text-sm text-destructive"
+                : "text-sm text-forest-ink"
+            }
           >
-            {form.formState.isSubmitting ? (
+            {status.message}
+            {status.error && (
               <>
-                <span>Sending code</span>
-                <Loader2 className="animate-spin" size={20} />
-              </>
-            ) : (
-              <>
-                <span>Get verification code</span>
-                <ArrowRightIcon size={20} />
+                {" "}
+                <a
+                  href="mailto:jetermulo@gmail.com"
+                  className="underline underline-offset-4"
+                >
+                  Email me directly
+                </a>
+                .
               </>
             )}
-          </Button>
-        </fieldset>
+          </p>
+        )}
+        <Button
+          type="submit"
+          disabled={!sitekey || form.formState.isSubmitting}
+          className="flex min-h-11 w-full items-center gap-2 rounded-full sm:max-w-sm xl:max-w-[400px]"
+        >
+          {form.formState.isSubmitting ? (
+            <>
+              <span>Sending…</span>
+              <Loader2 aria-hidden="true" className="animate-spin" size={20} />
+            </>
+          ) : (
+            <>
+              <span>Send message</span>
+              <ArrowRightIcon aria-hidden="true" size={20} />
+            </>
+          )}
+        </Button>
       </form>
     </Form>
   );
 };
-
 export default ContactForm;

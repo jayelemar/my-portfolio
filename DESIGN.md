@@ -177,7 +177,7 @@ Layered depth gives previews a tangible frame while keeping page and project-car
 
 ## Shapes
 
-The shared radius variable starts at (8px); its smaller derivatives are (6px) and (4px). Project shells use the base radius; screenshot frames use (8px) or (12px). Contact fields and the verification panel use (16px). Primary page actions and category labels use pill rounding; circular controls use equal width and height.
+The shared radius variable starts at (8px); its smaller derivatives are (6px) and (4px). Project shells use the base radius; screenshot frames use (8px) or (12px). Contact fields use (16px). Primary page actions and category labels use pill rounding; circular controls use equal width and height.
 
 The portrait's organic silhouette is a specific existing asset treatment, with elliptical radii (`58% 42% 46% 54% / 40% 42% 58% 60%`) and feathered masks. Keep it local to that composition. Technology tags remain modest rounded rectangles, distinct from category pills.
 
@@ -205,7 +205,7 @@ Browser frames, three green window dots, and a layered phone image form the dist
 
 The base input is (40px) tall with medium corners (6px), a one-pixel input border, and padding (8px 12px). Contact fields override to (54px), larger corners (16px), text (16px), and horizontal padding (32px). The shared field frame owns labels, icons, and validation placement; field height and Forest Ink are now named theme tokens. Labels sit over the top border on the page background; trailing icons sit inside the field. Textareas grow from a minimum (130px) to (180px) at `lg`.
 
-Focus uses the shared theme ring. Disabled inputs use 50% opacity and a blocked cursor. Form errors appear in normal flow as destructive text below fields, allowing wrapping without overlapping the next control; do not assume a red input-border state exists. Message requirements and the emailed verification step appear before submission. Contact email and telephone details use the existing actionable destinations. The verification field uses centered digits with wide tracking, alongside pending, resend, expired, and confirmation states.
+Focus uses the shared theme ring. Disabled inputs use 50% opacity and a blocked cursor. Form errors appear in normal flow as destructive text below fields, allowing wrapping without overlapping the next control; do not assume a red input-border state exists. Message requirements appear before submission. A single Send message action uses background Turnstile checks, showing a checkbox only when required. Inline sending, error, and success states preserve the draft on failure. Contact email and telephone details use the existing actionable destinations. No emailed code or inbox confirmation is required.
 
 ### Reuse and implementation
 
@@ -214,12 +214,12 @@ Keep generic primitives in `src/components/ui/` and contact-form compositions in
 | Shared token or pattern | Source | Use |
 | --- | --- | --- |
 | `text-forest-ink` | `--forest-ink` in `src/app/globals.css`, exposed in `tailwind.config.ts` | Quiet green text/icons: `#287743` in light mode and `#86dba4` in dark mode. Supports opacity and state modifiers. Use `primary` for actions. |
-| `h-contact-field` | `theme.extend.height` in `tailwind.config.ts` | Contact input height, 3.375rem (54px). The verification input applies it only at `lg`; retain its larger mobile treatment. |
+| `h-contact-field` | `theme.extend.height` in `tailwind.config.ts` | Contact input height, 3.375rem (54px). |
 | `contactFieldStyles` | `form-elements/FieldFrame.tsx` | Contact control corners (16px), horizontal padding (32px), and text (16px). Merge with `cn` when composing `Input` or `Textarea`, then add control-specific height/padding. |
 | `FieldFrame` | `form-elements/FieldFrame.tsx` | The name, email, and message field's floating label, decorative icon, and validation message. Use inside `Form` and `FormField`, with the actual control as its direct child so labels and validation attributes reach that control. |
 | `Badge` variants | `ui/badge.tsx` | `technology` for project technology tags; `category` for project categories. `asChild` preserves the child element, including a semantic `li`. Existing badge variants and the default `div` remain available. |
 
-`FieldFrame` requires `label`, a Lucide `icon`, and one control child; `multiline` defaults to `false` and positions textarea icons at the top when enabled. Its optional `className` controls the field container. `InputField` and `TextAreaField` remain the typed React Hook Form adapters, forwarding native control props and allowing `className` overrides. `TextAreaField.containerStyles` controls its outer frame. The code-verification panel keeps its own layout and label treatment.
+`FieldFrame` requires `label`, a Lucide `icon`, and one control child; `multiline` defaults to `false` and positions textarea icons at the top when enabled. Its optional `className` controls the field container. `InputField` and `TextAreaField` remain the typed React Hook Form adapters, forwarding native control props and allowing `className` overrides. `TextAreaField.containerStyles` controls its outer frame.
 
 ```tsx
 import { Badge } from "@/components/ui/badge";

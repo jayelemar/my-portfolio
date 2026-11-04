@@ -24,18 +24,13 @@ export const contactRequestSchema = z
   })
   .strict();
 
-export const contactVerificationSchema = z
-  .object({
-    challengeId: z.string().uuid("Invalid verification request."),
-    code: z.string().regex(/^\d{6}$/, "Enter the 6-digit code."),
-  })
-  .strict();
-
-export const contactResendSchema = z
-  .object({
-    challengeId: z.string().uuid("Invalid verification request."),
-  })
-  .strict();
+export const contactSubmissionSchema = contactRequestSchema.extend({
+  turnstileToken: z
+    .string()
+    .min(1, "Please refresh this page and try again.")
+    .max(2048),
+  submissionId: z.string().uuid("Please refresh this page and try again."),
+});
 
 export type ContactRequest = z.infer<typeof contactRequestSchema>;
-export type ContactVerification = z.infer<typeof contactVerificationSchema>;
+export type ContactSubmission = z.infer<typeof contactSubmissionSchema>;

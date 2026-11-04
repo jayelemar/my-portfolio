@@ -25,4 +25,4 @@ The opening introduces Jay, his frontend-focused full stack positioning, Contact
 
 ## Content and behavior
 
-Keep the confirmed identity, project content and statuses, CV destination, theme control, navigation, and verified contact flow. Follow PRODUCT.md for factual content and DESIGN.md for the existing visual system. Future refinements should build on the current green interface.
+Keep the confirmed identity, project content and statuses, CV destination, theme control, navigation, and single-step contact flow with background bot protection. Follow PRODUCT.md for factual content and DESIGN.md for the existing visual system. Future refinements should build on the current green interface.
