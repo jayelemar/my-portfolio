@@ -18,11 +18,13 @@ import { Button } from "../ui/button";
 import { Form } from "../ui/form";
 import InputField from "../form-elements/InputField";
 import TextAreaField from "../form-elements/TextAreaField";
+import ContactReveal, { type ContactEntrance } from "./ContactReveal";
+import { contactTiming } from "./contactMotion";
 import ContactTurnstile, {
   type ContactSecurityHandle,
 } from "./ContactTurnstile";
 
-const ContactForm = () => {
+const ContactForm = ({ entrance }: { entrance: ContactEntrance }) => {
   const [active, setActive] = useState(false);
   const [phase, setPhase] = useState<"checking" | "sending" | null>(null);
   const [status, setStatus] = useState<{
@@ -121,7 +123,7 @@ const ContactForm = () => {
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 sm:gap-x-4 md:grid-cols-1 lg:grid-cols-2">
-            <div className="min-w-0">
+            <ContactReveal entrance={entrance} delay={contactTiming.fields}>
               <InputField
                 control={form.control}
                 name="name"
@@ -132,9 +134,12 @@ const ContactForm = () => {
                 maxLength={80}
                 required
               />
-            </div>
+            </ContactReveal>
 
-            <div className="min-w-0">
+            <ContactReveal
+              entrance={entrance}
+              delay={contactTiming.fields + contactTiming.stagger}
+            >
               <InputField
                 control={form.control}
                 name="email"
@@ -145,19 +150,24 @@ const ContactForm = () => {
                 maxLength={254}
                 required
               />
-            </div>
+            </ContactReveal>
           </div>
 
-          <TextAreaField
-            containerStyles=""
-            control={form.control}
-            name="message"
-            label="Message:"
-            description="At least 20 characters and 3 words. Up to 2,000 characters."
-            icon={MessageSquare}
-            maxLength={2_000}
-            required
-          />
+          <ContactReveal
+            entrance={entrance}
+            delay={contactTiming.fields + contactTiming.stagger * 2}
+          >
+            <TextAreaField
+              containerStyles=""
+              control={form.control}
+              name="message"
+              label="Message:"
+              description="At least 20 characters and 3 words. Up to 2,000 characters."
+              icon={MessageSquare}
+              maxLength={2_000}
+              required
+            />
+          </ContactReveal>
         </fieldset>
         <div className="mt-5 space-y-3">
           {phase && (
@@ -216,39 +226,44 @@ const ContactForm = () => {
               )}
             </p>
           )}
-          <Button
-            type={status && !status.error ? "button" : "submit"}
-            onClick={
-              status && !status.error
-                ? () => {
-                    setStatus(null);
-                    form.setFocus("name");
-                  }
-                : undefined
-            }
-            disabled={!sitekey || form.formState.isSubmitting}
-            className="flex min-h-11 w-full items-center gap-2 rounded-full sm:max-w-sm xl:max-w-[400px]"
+          <ContactReveal
+            entrance={entrance}
+            delay={contactTiming.fields + contactTiming.stagger * 3}
           >
-            {form.formState.isSubmitting ? (
-              <>
-                <span>{phase === "checking" ? "Checking…" : "Sending…"}</span>
-                <Loader2
-                  aria-hidden="true"
-                  className="motion-safe:animate-spin"
-                  size={20}
-                />
-              </>
-            ) : (
-              <>
-                <span>
-                  {status && !status.error
-                    ? "Send another message"
-                    : "Send message"}
-                </span>
-                <ArrowRightIcon aria-hidden="true" size={20} />
-              </>
-            )}
-          </Button>
+            <Button
+              type={status && !status.error ? "button" : "submit"}
+              onClick={
+                status && !status.error
+                  ? () => {
+                      setStatus(null);
+                      form.setFocus("name");
+                    }
+                  : undefined
+              }
+              disabled={!sitekey || form.formState.isSubmitting}
+              className="flex min-h-11 w-full items-center gap-2 rounded-full sm:max-w-sm xl:max-w-[400px]"
+            >
+              {form.formState.isSubmitting ? (
+                <>
+                  <span>{phase === "checking" ? "Checking…" : "Sending…"}</span>
+                  <Loader2
+                    aria-hidden="true"
+                    className="motion-safe:animate-spin"
+                    size={20}
+                  />
+                </>
+              ) : (
+                <>
+                  <span>
+                    {status && !status.error
+                      ? "Send another message"
+                      : "Send message"}
+                  </span>
+                  <ArrowRightIcon aria-hidden="true" size={20} />
+                </>
+              )}
+            </Button>
+          </ContactReveal>
         </div>
       </form>
     </Form>
