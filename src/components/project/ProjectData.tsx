@@ -129,7 +129,7 @@ export const projectData: ProjectType[] = [
     category: "Next.js",
     name: "My Portfolio",
     description:
-      "A personal portfolio built with Next.js, Tailwind CSS, and a verified email contact flow.",
+      "A personal portfolio built with Next.js, Tailwind CSS, and a contact form with bot protection.",
     technologies: ["Next.js", "Tailwind CSS", "React Hook Form"],
     featured: false,
     link: "https://elemar.site/",

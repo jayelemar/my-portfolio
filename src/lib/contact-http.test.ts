@@ -1,9 +1,9 @@
 import { NextRequest } from "next/server";
 import { describe, expect, it } from "vitest";
-import { contactVerificationSchema } from "./contact-schema";
+import { contactRequestSchema } from "./contact-schema";
 import { ContactApiError, parseJsonBody } from "./contact-http";
 
-const endpoint = "https://www.elemar.site/api/contact/verify";
+const endpoint = "https://www.elemar.site/api/contact/request";
 
 function makeRequest(body: BodyInit, headers: HeadersInit = {}) {
   return new NextRequest(endpoint, {
@@ -17,18 +17,21 @@ describe("parseJsonBody", () => {
   it("parses valid JSON using the supplied schema", async () => {
     const request = makeRequest(
       JSON.stringify({
-        challengeId: "1d449f88-75a0-4ad4-b1bb-12b19857598d",
-        code: "123456",
+        name: "Visitor",
+        email: "visitor@example.com",
+        message: "I would like to discuss a new website project.",
       }),
       { "Content-Type": "application/json" },
     );
 
-    await expect(
-      parseJsonBody(request, contactVerificationSchema),
-    ).resolves.toEqual({
-      challengeId: "1d449f88-75a0-4ad4-b1bb-12b19857598d",
-      code: "123456",
-    });
+    await expect(parseJsonBody(request, contactRequestSchema)).resolves.toEqual(
+      {
+        name: "Visitor",
+        email: "visitor@example.com",
+        message: "I would like to discuss a new website project.",
+        website: "",
+      },
+    );
   });
 
   it("rejects non-JSON content types", async () => {
@@ -37,7 +40,7 @@ describe("parseJsonBody", () => {
     });
 
     await expect(
-      parseJsonBody(request, contactVerificationSchema),
+      parseJsonBody(request, contactRequestSchema),
     ).rejects.toMatchObject({
       status: 400,
     } satisfies Partial<ContactApiError>);
@@ -47,7 +50,7 @@ describe("parseJsonBody", () => {
     const request = makeRequest("{", { "Content-Type": "application/json" });
 
     await expect(
-      parseJsonBody(request, contactVerificationSchema),
+      parseJsonBody(request, contactRequestSchema),
     ).rejects.toMatchObject({
       status: 400,
       message: "Invalid JSON body.",
@@ -60,7 +63,7 @@ describe("parseJsonBody", () => {
     });
 
     await expect(
-      parseJsonBody(request, contactVerificationSchema),
+      parseJsonBody(request, contactRequestSchema),
     ).rejects.toMatchObject({
       status: 413,
     } satisfies Partial<ContactApiError>);

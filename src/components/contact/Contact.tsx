@@ -7,7 +7,7 @@ import ContactHeader from "./ContactHeader";
 
 const Contact = () => {
   return (
-    <section id="contact" className="scroll-mt-24">
+    <section id="contact" className="scroll-mt-36 lg:scroll-mt-24">
       <div className="container mx-auto mb-16 xl:min-h-[55vh]">
         {/* header */}
         <ContactHeader />
