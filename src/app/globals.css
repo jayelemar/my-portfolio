@@ -105,6 +105,52 @@
   @apply text-primary underline underline-offset-4 transition-all ease-out;
 }
 
+.hero-portrait-shape {
+  border-radius: 58% 42% 46% 54% / 40% 42% 58% 60%;
+  animation: hero-portrait-wave 10s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-portrait-stage[data-animate="true"] .hero-portrait-shape {
+    animation-play-state: running;
+  }
+}
+
+@keyframes hero-portrait-wave {
+  0%,
+  100% {
+    border-radius: 58% 42% 46% 54% / 40% 42% 58% 60%;
+  }
+  33% {
+    border-radius: 32% 68% 72% 28% / 64% 30% 70% 36%;
+  }
+  66% {
+    border-radius: 72% 28% 30% 70% / 32% 72% 28% 68%;
+  }
+}
+
+.dark .hero-portrait-backdrop {
+  background-image:
+    radial-gradient(ellipse at 80% 20%, rgb(134 239 172 / 0.2), transparent 68%),
+    linear-gradient(135deg, #166534, #14532d 58%, #052e16);
+}
+
+.dark .hero-portrait-stage {
+  -webkit-mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
+}
+
+.hero-portrait-body {
+  -webkit-mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 82%, transparent 100%);
+}
+
+.dark .hero-portrait-body {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
 @keyframes customBounce {
   0%,
   20%,
