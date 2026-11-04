@@ -77,7 +77,7 @@ components:
   button-outline: {backgroundColor: "{colors.background}", typography: "{typography.label}", rounded: "{rounded.md}", padding: "8px 16px", height: "40px"}
   button-ghost: {typography: "{typography.label}", rounded: "{rounded.md}", padding: "8px 16px", height: "40px"}
   button-link: {textColor: "{colors.primary}", typography: "{typography.label}", rounded: "{rounded.md}", padding: "8px 16px", height: "40px"}
-  input-contact: {backgroundColor: "{colors.background}", typography: "{typography.body}", rounded: "{rounded.2xl}", padding: "8px 32px", height: "54px"}
+  input-contact: {backgroundColor: "{colors.background}", typography: "{typography.body}", rounded: "{rounded.2xl}", padding: "8px 56px 8px 32px", height: "54px"}
   navigation: {padding: "0px", typography: "{typography.navigation}"}
   technology-chip: {backgroundColor: "{colors.muted}", textColor: "{colors.muted-foreground}", typography: "{typography.metadata}", rounded: "{rounded.md}", padding: "4px 10px"}
   project-card: {rounded: "{rounded.lg}"}
@@ -159,7 +159,7 @@ Spacing is based on the observed four-pixel utility steps, with larger separatio
 - About content stacks below `lg`, then uses a fixed text column (360px) and a flexible skills column, with a desktop gap (64px). Skill groups divide with fine top borders; their labels gain a separate column at `xl`.
 - Featured projects stack below `lg`. At `lg`, a native horizontal scroll-snap gallery uses full-width items, a (32px) gap, project-name jump buttons, previous/next controls, and current/total progress. It does not consume vertical scrolling. Featured cards retain a text/preview split (0.9fr/1.1fr) and minimum height (440px). Descriptions are fully readable at every width. Reduced-motion users receive immediate gallery navigation.
 - Supporting projects use one column on small screens, two at `md`, and a three-item carousel at `lg`.
-- Contact details and form stack on small screens and sit side by side from `md`. Name/email fields have their own responsive wrapping rules.
+- Contact details and form stack on small screens with a (24px) gap and sit side by side from `md` with a (48px) gap. Contact rows use (8px) gaps on small screens and (20px) from `md`, retaining (44px) phone/email targets. Name/email fields have their own responsive wrapping rules; field groups use (24px) gaps. Requirements, security feedback, and the action stay grouped below the message.
 
 The `/projects` route reuses the homepage gallery inside its own main landmark. Navigation links return to homepage sections where appropriate.
 
@@ -203,9 +203,9 @@ Browser frames, three green window dots, and a layered phone image form the dist
 
 ### Inputs and fields
 
-The base input is (40px) tall with medium corners (6px), a one-pixel input border, and padding (8px 12px). Contact fields override to (54px), larger corners (16px), text (16px), and horizontal padding (32px). The shared field frame owns labels, icons, and validation placement; field height and Forest Ink are now named theme tokens. Labels sit over the top border on the page background; trailing icons sit inside the field. Textareas grow from a minimum (130px) to (180px) at `lg`.
+The base input is (40px) tall with medium corners (6px), a one-pixel input border, and padding (8px 12px). Contact fields override to (54px), larger corners (16px), text (16px), left padding (32px), and right padding (56px) to reserve trailing-icon space. The shared field frame owns labels, icons, and validation placement; field height and Forest Ink are now named theme tokens. Labels sit over the top border on the page background; muted trailing icons sit inside the field. Textareas grow from a minimum (130px) to (180px) at `lg`.
 
-Focus uses the shared theme ring. Disabled inputs use 50% opacity and a blocked cursor. Form errors appear in normal flow as destructive text below fields, allowing wrapping without overlapping the next control; do not assume a red input-border state exists. Message requirements appear before submission. A single Send message action uses background Turnstile checks, showing a checkbox only when required. Inline sending, error, and success states preserve the draft on failure. Contact email and telephone details use the existing actionable destinations. No emailed code or inbox confirmation is required.
+Focus uses the shared theme ring. Disabled inputs use 50% opacity and a blocked cursor. Form errors appear in normal flow as destructive text below fields, allowing wrapping without overlapping the next control; do not assume a red input-border state exists. Message requirements appear before submission, with native required semantics and schema-driven inline validation. The form begins directly with Name and Email, aligned to the contact introduction; no shared required-fields notice appears. All contact-detail rows retain a (44px) minimum height for consistent icon and text alignment. Description references include only rendered helper/error text. A single Send message action uses background Turnstile checks, showing a checkbox only when required. Checking and sending have distinct status text and a direct-email alternative. Success offers Send another message, which focuses the name field; editing also clears the prior success notice. Failures preserve the draft. Contact email and telephone details use the existing actionable destinations with persistent underlines. No emailed code or inbox confirmation is required.
 
 ### Reuse and implementation
 
@@ -215,7 +215,7 @@ Keep generic primitives in `src/components/ui/` and contact-form compositions in
 | --- | --- | --- |
 | `text-forest-ink` | `--forest-ink` in `src/app/globals.css`, exposed in `tailwind.config.ts` | Quiet green text/icons: `#287743` in light mode and `#86dba4` in dark mode. Supports opacity and state modifiers. Use `primary` for actions. |
 | `h-contact-field` | `theme.extend.height` in `tailwind.config.ts` | Contact input height, 3.375rem (54px). |
-| `contactFieldStyles` | `form-elements/FieldFrame.tsx` | Contact control corners (16px), horizontal padding (32px), and text (16px). Merge with `cn` when composing `Input` or `Textarea`, then add control-specific height/padding. |
+| `contactFieldStyles` | `form-elements/FieldFrame.tsx` | Contact control corners (16px), left/right padding (32px/56px), and text (16px). Merge with `cn` when composing `Input` or `Textarea`, then add control-specific height/padding. |
 | `FieldFrame` | `form-elements/FieldFrame.tsx` | The name, email, and message field's floating label, decorative icon, and validation message. Use inside `Form` and `FormField`, with the actual control as its direct child so labels and validation attributes reach that control. |
 | `Badge` variants | `ui/badge.tsx` | `technology` for project technology tags; `category` for project categories. `asChild` preserves the child element, including a semantic `li`. Existing badge variants and the default `div` remain available. |
 
