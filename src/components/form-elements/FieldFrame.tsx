@@ -11,7 +11,8 @@ import {
 } from "../ui/form";
 
 /** Merge with cn so these styles override the base Input/Textarea utilities. */
-export const contactFieldStyles = "rounded-2xl pl-8 pr-14 text-base";
+export const contactFieldStyles =
+  "rounded-2xl pl-8 pr-14 text-base aria-[invalid=true]:border-destructive aria-[invalid=true]:focus-visible:ring-destructive";
 
 export type FieldFrameProps = {
   label: string;
@@ -31,12 +32,23 @@ function FieldControl({
   hasDescription: boolean;
 }) {
   const { error, formDescriptionId, formMessageId } = useFormField();
-  const describedBy =
-    [hasDescription && formDescriptionId, error && formMessageId]
-      .filter(Boolean)
-      .join(" ") || undefined;
+  const describedBy = error
+    ? formMessageId
+    : hasDescription
+      ? formDescriptionId
+      : undefined;
 
   return <FormControl aria-describedby={describedBy}>{children}</FormControl>;
+}
+
+function FieldFeedback({ description }: { description?: string }) {
+  const { error } = useFormField();
+
+  if (error) return <FormMessage className="px-2 text-sm" />;
+
+  return description ? (
+    <FormDescription className="px-2 text-sm">{description}</FormDescription>
+  ) : null;
 }
 
 /** Contact field framing. Must be rendered within Form and FormField. */
@@ -69,12 +81,7 @@ export default function FieldFrame({
         )}
         size={20}
       />
-      {description && (
-        <FormDescription className="px-2 text-sm">
-          {description}
-        </FormDescription>
-      )}
-      <FormMessage className="px-2 text-sm" />
+      <FieldFeedback description={description} />
     </FormItem>
   );
 }

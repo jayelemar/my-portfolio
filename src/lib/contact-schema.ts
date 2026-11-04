@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 const threeWords = /\S+\s+\S+\s+\S+/;
+const messageMinimumError = "Write at least 20 characters and 3 words.";
 
 export const contactRequestSchema = z
   .object({
@@ -17,9 +18,9 @@ export const contactRequestSchema = z
     message: z
       .string()
       .trim()
-      .min(20, "Message must be at least 20 characters.")
+      .min(20, messageMinimumError)
       .max(2_000, "Message must be 2,000 characters or fewer.")
-      .regex(threeWords, "Message must contain at least 3 words."),
+      .regex(threeWords, messageMinimumError),
     website: z.string().max(200).optional().default(""),
   })
   .strict();
