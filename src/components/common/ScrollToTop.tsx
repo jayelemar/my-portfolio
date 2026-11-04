@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { TbSquareRoundedArrowUp } from "react-icons/tb";
+import { ArrowUp } from "lucide-react";
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -36,9 +36,9 @@ const ScrollToTop = () => {
           type="button"
           aria-label="Back to top"
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-20 hidden rounded-full bg-primary p-2 text-primary-foreground shadow-lg hover:bg-primary-hover sm:block"
+          className="fixed bottom-8 right-8 z-20 hidden h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-colors hover:bg-primary-hover sm:flex"
         >
-          <TbSquareRoundedArrowUp size={35} />
+          <ArrowUp size={22} strokeWidth={2} aria-hidden="true" />
         </button>
       )}
     </>

@@ -1,2 +1,1 @@
-export const DOWNLOAD_CV =
-  "https://drive.google.com/file/d/1RDdG30RQJ2DVNX0JChRk-fmMzx8afhKK/view?usp=sharing";
+export const CV_URL = "/Jay_Termulo_CV.pdf";
