@@ -115,7 +115,7 @@ const Projects = () => {
     <section
       id="projects"
       aria-labelledby="projects-heading"
-      className="mb-24 scroll-mt-20 xl:mb-32"
+      className="mb-24 scroll-mt-32 lg:scroll-mt-20 xl:mb-32"
     >
       <div className="container mx-auto max-w-[1264px]">
         <div

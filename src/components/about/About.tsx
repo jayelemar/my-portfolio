@@ -74,7 +74,7 @@ const About = () => {
       ref={sectionRef}
       id="about"
       aria-labelledby="about-heading"
-      className="relative mb-24 flex min-h-[calc(100svh-4.75rem)] scroll-mt-20 items-center py-6 sm:py-8 lg:mb-32 lg:pb-12"
+      className="relative mb-24 flex min-h-[calc(100svh-4.75rem)] scroll-mt-32 items-center py-6 sm:py-8 lg:mb-32 lg:scroll-mt-20 lg:pb-12"
     >
       <div className="container mx-auto">
         <motion.h2

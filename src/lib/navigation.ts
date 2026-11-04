@@ -1,10 +1,9 @@
-const PROJECTS_SCROLL_OFFSET = 80;
 const SCROLL_SETTLE_DELAY = 120;
 const ALIGNMENT_TIMEOUT = 2000;
 
 let cancelProjectsAlignment: (() => void) | undefined;
 
-function alignProjectsAfterScroll(element: HTMLElement) {
+function alignProjectsAfterScroll(element: HTMLElement, scrollOffset: number) {
   let settleTimer: number | undefined;
   let timeoutTimer: number | undefined;
   const inputEvents = [
@@ -29,8 +28,7 @@ function alignProjectsAfterScroll(element: HTMLElement) {
   const correctAlignment = () => {
     cleanup();
     if (!element.isConnected) return;
-    const correction =
-      element.getBoundingClientRect().top - PROJECTS_SCROLL_OFFSET;
+    const correction = element.getBoundingClientRect().top - scrollOffset;
     if (Math.abs(correction) <= 2) return;
     window.scrollBy({
       top: correction,
@@ -84,12 +82,12 @@ export function scrollToSection(id: string) {
     window.history.pushState(window.history.state, "", hash);
   }
   if (id === "projects") {
-    alignProjectsAfterScroll(element);
+    const scrollOffset = parseFloat(
+      window.getComputedStyle(element).scrollMarginTop,
+    );
+    alignProjectsAfterScroll(element, scrollOffset);
     window.scrollTo({
-      top:
-        window.scrollY +
-        element.getBoundingClientRect().top -
-        PROJECTS_SCROLL_OFFSET,
+      top: window.scrollY + element.getBoundingClientRect().top - scrollOffset,
       behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
         ? "instant"
         : "smooth",
