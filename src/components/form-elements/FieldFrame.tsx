@@ -7,10 +7,11 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  useFormField,
 } from "../ui/form";
 
 /** Merge with cn so these styles override the base Input/Textarea utilities. */
-export const contactFieldStyles = "rounded-2xl px-8 text-base";
+export const contactFieldStyles = "rounded-2xl pl-8 pr-14 text-base";
 
 export type FieldFrameProps = {
   label: string;
@@ -21,6 +22,22 @@ export type FieldFrameProps = {
   className?: string;
   description?: string;
 };
+
+function FieldControl({
+  children,
+  hasDescription,
+}: {
+  children: ReactElement;
+  hasDescription: boolean;
+}) {
+  const { error, formDescriptionId, formMessageId } = useFormField();
+  const describedBy =
+    [hasDescription && formDescriptionId, error && formMessageId]
+      .filter(Boolean)
+      .join(" ") || undefined;
+
+  return <FormControl aria-describedby={describedBy}>{children}</FormControl>;
+}
 
 /** Contact field framing. Must be rendered within Form and FormField. */
 export default function FieldFrame({
@@ -41,11 +58,13 @@ export default function FieldFrame({
       <FormLabel className="absolute left-6 top-0 z-10 bg-background px-1 text-muted-foreground">
         {label}
       </FormLabel>
-      <FormControl>{children}</FormControl>
+      <FieldControl hasDescription={Boolean(description)}>
+        {children}
+      </FieldControl>
       <Icon
         aria-hidden="true"
         className={cn(
-          "pointer-events-none absolute right-6 !mt-0",
+          "pointer-events-none absolute right-6 !mt-0 text-muted-foreground",
           multiline ? "top-8" : "top-[25px]",
         )}
         size={20}
