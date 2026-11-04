@@ -17,12 +17,11 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Full Stack Developer specializing in frontend development with React, Next.js, TypeScript, and modern web technologies. Experienced in building scalable web applications, APIs, and intuitive user experiences.",
+    "Full Stack Developer building modern web applications with React, Next.js, TypeScript, and Node.js. Experienced in creating intuitive interfaces, scalable backend systems, and APIs.",
 
   keywords: [
     "Jay Elemar Termulo",
     "Full Stack Developer",
-    "Frontend Specialist",
     "Frontend Developer",
     "Backend Developer",
     "React Developer",
@@ -42,10 +41,9 @@ export const metadata: Metadata = {
   creator: "Jay Elemar Termulo",
 
   openGraph: {
-    title:
-      "Jay Elemar Termulo | Full Stack Developer specializing in Frontend Development",
+    title: "Jay Elemar Termulo | Full Stack Developer",
     description:
-      "Full Stack Developer focused on crafting exceptional frontend experiences with React, Next.js, and TypeScript while building scalable backend systems and APIs.",
+      "Full Stack Developer building modern web applications with React, Next.js, TypeScript, and Node.js—from intuitive interfaces to scalable backend systems and APIs.",
     url: "https://www.elemar.site",
     siteName: "Jay Elemar Termulo Portfolio",
     locale: "en_US",
@@ -54,10 +52,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title:
-      "Jay Elemar Termulo | Full Stack Developer specializing in Frontend Development",
+    title: "Jay Elemar Termulo | Full Stack Developer",
     description:
-      "Building modern web applications with React, Next.js, TypeScript, Node.js, and scalable backend solutions.",
+      "Full Stack Developer building modern web applications with React, Next.js, TypeScript, and Node.js—from intuitive interfaces to scalable backend systems and APIs.",
     images: [
       {
         url: "/opengraph-image",
