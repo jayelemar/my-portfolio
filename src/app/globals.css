@@ -111,9 +111,44 @@
   animation-play-state: paused;
 }
 
+.hero-portrait-accent {
+  border-radius: 46% 54% 58% 42% / 54% 40% 60% 46%;
+  animation: hero-portrait-accent-wave 10s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.hero-portrait-accent-right {
+  animation-delay: -5s;
+}
+
+.hero-portrait-accent-top {
+  animation-delay: -2.5s;
+}
+
+.hero-portrait-accent-bottom {
+  animation-delay: -7.5s;
+}
+
 @media (prefers-reduced-motion: no-preference) {
-  .hero-portrait-stage[data-animate="true"] .hero-portrait-shape {
+  .hero-portrait-stage[data-animate="true"] .hero-portrait-shape,
+  .hero-portrait-stage[data-animate="true"] .hero-portrait-accent {
     animation-play-state: running;
+  }
+}
+
+@keyframes hero-portrait-accent-wave {
+  0%,
+  100% {
+    border-radius: 46% 54% 58% 42% / 54% 40% 60% 46%;
+  }
+  25% {
+    border-radius: 62% 38% 40% 60% / 38% 62% 38% 62%;
+  }
+  50% {
+    border-radius: 38% 62% 64% 36% / 60% 36% 64% 40%;
+  }
+  75% {
+    border-radius: 54% 46% 34% 66% / 42% 58% 42% 58%;
   }
 }
 
@@ -123,20 +158,20 @@
     border-radius: 58% 42% 46% 54% / 40% 42% 58% 60%;
   }
   33% {
-    border-radius: 32% 68% 72% 28% / 64% 30% 70% 36%;
+    border-radius: 48% 52% 56% 44% / 48% 40% 60% 52%;
   }
   66% {
-    border-radius: 72% 28% 30% 70% / 32% 72% 28% 68%;
+    border-radius: 62% 38% 42% 58% / 42% 54% 46% 58%;
   }
 }
 
 .dark .hero-portrait-backdrop {
   background-image:
-    radial-gradient(ellipse at 80% 20%, rgb(134 239 172 / 0.2), transparent 68%),
-    linear-gradient(135deg, #166534, #14532d 58%, #052e16);
+    radial-gradient(ellipse at 54% 24%, rgb(134 239 172 / 0.24), transparent 62%),
+    linear-gradient(155deg, #166534, #14532d 48%, #052e16 90%);
 }
 
-.dark .hero-portrait-stage {
+.hero-portrait-composition {
   -webkit-mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 88%, transparent 100%);
 }
