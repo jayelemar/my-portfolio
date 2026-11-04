@@ -24,6 +24,7 @@ import ContactTurnstile, {
 
 const ContactForm = () => {
   const [active, setActive] = useState(false);
+  const [phase, setPhase] = useState<"checking" | "sending" | null>(null);
   const [status, setStatus] = useState<{
     error: boolean;
     message: string;
@@ -45,6 +46,7 @@ const ContactForm = () => {
   const onSubmit = async (data: ContactRequest) => {
     setStatus(null);
     setActive(true);
+    setPhase("checking");
     const body = JSON.stringify(data);
     if (draft.current?.body !== body)
       draft.current = { body, id: crypto.randomUUID() };
@@ -54,6 +56,7 @@ const ContactForm = () => {
         throw new Error(
           "The security check is unavailable. Please retry or email me directly.",
         );
+      setPhase("sending");
       const response = await fetch("/api/contact/request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -84,17 +87,25 @@ const ContactForm = () => {
             : "Delivery could not be confirmed. Please retry or email me directly.",
       });
     } finally {
+      setPhase(null);
       security.current?.reset();
     }
   };
   return (
     <Form {...form}>
       <form
+        noValidate
         onSubmit={form.handleSubmit(onSubmit)}
         onFocusCapture={() => setActive(true)}
-        className="top-[27px] mx-auto flex w-full flex-col gap-y-4 md:mt-7 lg:mt-0 xl:relative"
+        onChangeCapture={() => {
+          if (status && !status.error) setStatus(null);
+        }}
+        className="mx-auto flex w-full flex-col"
       >
-        <fieldset disabled={form.formState.isSubmitting}>
+        <fieldset
+          disabled={form.formState.isSubmitting}
+          className="grid min-w-0 gap-6"
+        >
           <div
             aria-hidden="true"
             className="absolute left-[-10000px] top-auto h-px w-px overflow-hidden"
@@ -109,8 +120,8 @@ const ContactForm = () => {
             />
           </div>
 
-          <div className="flex flex-1 flex-col sm:flex-row sm:gap-x-4 md:flex-col lg:flex-row">
-            <div className="relative mb-6 flex w-full items-center lg:mb-6">
+          <div className="grid gap-6 sm:grid-cols-2 sm:gap-x-4 md:grid-cols-1 lg:grid-cols-2">
+            <div className="min-w-0">
               <InputField
                 control={form.control}
                 name="name"
@@ -119,10 +130,11 @@ const ContactForm = () => {
                 icon={User}
                 autoComplete="name"
                 maxLength={80}
+                required
               />
             </div>
 
-            <div className="relative mb-6 flex w-full items-center lg:mb-6">
+            <div className="min-w-0">
               <InputField
                 control={form.control}
                 name="email"
@@ -131,75 +143,113 @@ const ContactForm = () => {
                 icon={MailIcon}
                 autoComplete="email"
                 maxLength={254}
+                required
               />
             </div>
           </div>
 
           <TextAreaField
-            containerStyles="mb-8 lg:mb-6"
+            containerStyles=""
             control={form.control}
             name="message"
             label="Message:"
             description="At least 20 characters and 3 words. Up to 2,000 characters."
             icon={MessageSquare}
             maxLength={2_000}
+            required
           />
         </fieldset>
-        {sitekey ? (
-          <ContactTurnstile ref={security} sitekey={sitekey} active={active} />
-        ) : (
-          <p role="status" className="text-sm text-muted-foreground">
-            The contact form is temporarily unavailable. Please{" "}
-            <a
-              href="mailto:jetermulo@gmail.com"
-              className="underline underline-offset-4"
+        <div className="mt-5 space-y-3">
+          {phase && (
+            <p role="status" className="text-sm text-muted-foreground">
+              {phase === "checking"
+                ? "Checking before sending. Complete the security check below if prompted."
+                : "Sending your message…"}{" "}
+              <a
+                href="mailto:jetermulo@gmail.com"
+                className="underline underline-offset-4"
+              >
+                Email me directly
+              </a>
+              .
+            </p>
+          )}
+          {sitekey ? (
+            <ContactTurnstile
+              ref={security}
+              sitekey={sitekey}
+              active={active}
+            />
+          ) : (
+            <p role="status" className="text-sm text-muted-foreground">
+              The contact form is temporarily unavailable. Please{" "}
+              <a
+                href="mailto:jetermulo@gmail.com"
+                className="underline underline-offset-4"
+              >
+                email me directly
+              </a>
+              .
+            </p>
+          )}
+          {status && (
+            <p
+              role={status.error ? "alert" : "status"}
+              className={
+                status.error
+                  ? "text-sm text-destructive"
+                  : "text-sm text-forest-ink"
+              }
             >
-              email me directly
-            </a>
-            .
-          </p>
-        )}
-        {status && (
-          <p
-            role={status.error ? "alert" : "status"}
-            className={
-              status.error
-                ? "text-sm text-destructive"
-                : "text-sm text-forest-ink"
+              {status.message}
+              {status.error && (
+                <>
+                  {" "}
+                  <a
+                    href="mailto:jetermulo@gmail.com"
+                    className="underline underline-offset-4"
+                  >
+                    Email me directly
+                  </a>
+                  .
+                </>
+              )}
+            </p>
+          )}
+          <Button
+            type={status && !status.error ? "button" : "submit"}
+            onClick={
+              status && !status.error
+                ? () => {
+                    setStatus(null);
+                    form.setFocus("name");
+                  }
+                : undefined
             }
+            disabled={!sitekey || form.formState.isSubmitting}
+            className="flex min-h-11 w-full items-center gap-2 rounded-full sm:max-w-sm xl:max-w-[400px]"
           >
-            {status.message}
-            {status.error && (
+            {form.formState.isSubmitting ? (
               <>
-                {" "}
-                <a
-                  href="mailto:jetermulo@gmail.com"
-                  className="underline underline-offset-4"
-                >
-                  Email me directly
-                </a>
-                .
+                <span>{phase === "checking" ? "Checking…" : "Sending…"}</span>
+                <Loader2
+                  aria-hidden="true"
+                  className="motion-safe:animate-spin"
+                  size={20}
+                />
+              </>
+            ) : (
+              <>
+                <span>
+                  {status && !status.error
+                    ? "Send another message"
+                    : "Send message"}
+                </span>
+                <ArrowRightIcon aria-hidden="true" size={20} />
               </>
             )}
-          </p>
-        )}
-        <Button
-          type="submit"
-          disabled={!sitekey || form.formState.isSubmitting}
-          className="flex min-h-11 w-full items-center gap-2 rounded-full sm:max-w-sm xl:max-w-[400px]"
-        >
-          {form.formState.isSubmitting ? (
-            <>
-              <span>Sending…</span>
-              <Loader2 aria-hidden="true" className="animate-spin" size={20} />
-            </>
-          ) : (
-            <>
-              <span>Send message</span>
-              <ArrowRightIcon aria-hidden="true" size={20} />
-            </>
-          )}
-        </Button>
+          </Button>
+        </div>
       </form>
     </Form>
   );

@@ -12,7 +12,7 @@ const Contact = () => {
         {/* header */}
         <ContactHeader />
 
-        <div className="flex flex-col gap-x-8 md:mx-0 md:flex-row md:items-start md:justify-between">
+        <div className="flex flex-col gap-x-12 gap-y-6 md:flex-row md:items-start md:justify-between">
           {/* text & illustration*/}
           <ContactInfo />
           {/* form */}
