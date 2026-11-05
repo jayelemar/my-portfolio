@@ -49,7 +49,7 @@ const HeroText = ({ controls }: { controls: AnimationControls }) => {
               delay: index * heroTiming.lineStagger,
               duration: heroTiming.lineDuration,
             }}
-            className="block whitespace-nowrap"
+            className="hero-enter hero-enter-heading block whitespace-nowrap"
           >
             {line}
             {index < greetingLines.length - 1 ? " " : ""}
@@ -64,7 +64,7 @@ const HeroText = ({ controls }: { controls: AnimationControls }) => {
           delay: heroTiming.descriptionDelay,
           duration: heroTiming.descriptionDuration,
         }}
-        className="max-w-lg text-center text-xl font-light text-muted-foreground xl:text-left"
+        className="hero-enter hero-enter-description max-w-lg text-center text-xl font-light text-muted-foreground xl:text-left"
       >
         a software developer with passion for design, automation and
         technologies
