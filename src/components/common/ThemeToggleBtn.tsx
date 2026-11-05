@@ -1,30 +1,34 @@
-"use client"
+"use client";
 
-import * as React from "react"
-
-import { useTheme } from "next-themes"
-
-import { Button } from "@/components/ui/button"
-import { MoonIcon, SunIcon } from "@radix-ui/react-icons"
-
+import { useTheme } from "next-themes";
+import { Moon, Sun } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function ThemeToggleBtn() {
-  const { theme, setTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme();
 
   return (
-    <div>
-      <Button 
-        className="h-10 rounded-full text-base bg-transparent"
-        variant={"outline"} 
-        name="theme"
-        size="icon"
-        onClick={() => setTheme( theme === 'dark' ? 'light' : 'dark')}
-        aria-label="theme"
-        role="button"
-      >
-        <SunIcon className="h-5 w-5 rotate-0 scale-100 transition-all dark:rotate-90 dark:scale-0"/>
-        <MoonIcon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"/>
-      </Button>
-    </div>
-  )
+    <Button
+      type="button"
+      className="size-11 rounded-full bg-muted/60 text-foreground hover:bg-muted"
+      variant="ghost"
+      name="theme"
+      size="icon"
+      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+      aria-label="Toggle color theme"
+    >
+      <Moon
+        size={22}
+        strokeWidth={1.75}
+        className="dark:hidden"
+        aria-hidden="true"
+      />
+      <Sun
+        size={22}
+        strokeWidth={1.75}
+        className="hidden dark:block"
+        aria-hidden="true"
+      />
+    </Button>
+  );
 }
