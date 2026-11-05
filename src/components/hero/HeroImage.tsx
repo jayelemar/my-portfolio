@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { fadeIn } from "@/lib/variant";
 
+const ACCENT_ENTRY_DELAY_MS = 500;
+
 const accentAreas = {
   top: { x: [-25, 45], y: [-40, 0] },
   left: { x: [-20, 10], y: [-70, 70] },
@@ -85,6 +87,7 @@ const HeroImage = () => {
           accentAreas[accent.dataset.motion as keyof typeof accentAreas];
         const play = (previousEnd?: AccentPoint) => {
           if (generation !== currentGeneration) return;
+          const earlyEntrance = !previousEnd && index % 2 === 0;
           const from = pickAccentPoint(area, previousEnd);
           const to = pickAccentPoint(area, from);
           const frame = (progress: number, scale: number, opacity: number) => ({
@@ -92,16 +95,27 @@ const HeroImage = () => {
             transform: `translate(${from.x + (to.x - from.x) * progress}px, ${from.y + (to.y - from.y) * progress}px) scale(${scale})`,
             opacity,
           });
+          const duration = 8500 + Math.random() * 2500;
           const animation = accent.animate(
             [
-              frame(0, 0, 0),
+              {
+                ...frame(0, earlyEntrance ? 0.45 : 0, 0),
+                easing: earlyEntrance
+                  ? "cubic-bezier(0.16, 1, 0.3, 1)"
+                  : "linear",
+              },
+              ...(earlyEntrance ? [frame(450 / duration, 0.85, 1)] : []),
               frame(0.18, 1, 1),
               frame(0.78, 0.85, 1),
               frame(1, 0, 0),
             ],
             {
-              duration: 8500 + Math.random() * 2500,
-              delay: previousEnd ? 0 : index * 650,
+              duration,
+              delay: previousEnd
+                ? 0
+                : earlyEntrance
+                  ? ACCENT_ENTRY_DELAY_MS
+                  : index * 650,
               easing: "linear",
               fill: "both",
             },

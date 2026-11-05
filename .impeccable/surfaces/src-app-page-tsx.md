@@ -26,3 +26,5 @@ The opening introduces Jay, his frontend-focused full stack positioning, Contact
 ## Content and behavior
 
 Keep the confirmed identity, project content and statuses, CV destination, theme control, navigation, and single-step contact flow with background bot protection. Follow PRODUCT.md for factual content and DESIGN.md for the existing visual system. Future refinements should build on the current green interface.
+
+Portrait accents: the top and right green circles begin fading and growing into view over 450ms after a 0.5-second delay when the portrait section enters view, while the remaining accents keep their staggered emergence. Later cycles retain their existing fade-in/out motion, and reduced motion keeps static accents visible.
