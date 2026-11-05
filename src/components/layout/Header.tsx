@@ -7,9 +7,7 @@ import MobileNav from "../nav/MobileNav";
 import Nav from "../nav/Nav";
 import { useEffect, useState } from "react";
 import { useMobileNavStore } from "@/store/MobileNavStore";
-import { AlignJustify } from "lucide-react";
-import { motion } from "framer-motion";
-import { fadeIn } from "@/lib/variant";
+import { Button } from "../ui/button";
 
 const Header = () => {
   // header style event transition
@@ -37,65 +35,54 @@ const Header = () => {
     >
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
-          <motion.div
-            variants={fadeIn("right", 0.2)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.2 }}
-          >
+          <div>
             <Logo />
-          </motion.div>
+          </div>
 
           {/* nav */}
           <div className="flex items-center gap-4 xl:gap-6">
-            <motion.div
-              variants={fadeIn("left", 0.6)}
-              initial="hidden"
-              whileInView={"show"}
-              viewport={{ once: false, amount: 0.2 }}
-              className="hidden lg:flex"
-            >
+            <div className="hidden lg:flex">
               <Nav
                 containerStyles="flex justify-center items-center gap-10"
                 linkStyles="relative hover:text-primary transition-all duration-300 text-lg font-medium"
                 activeLinkStyles="text-primary"
               />
-            </motion.div>
-            <motion.div
-              variants={fadeIn("down", 1.6)}
-              initial="hidden"
-              whileInView={"show"}
-              viewport={{ once: false, amount: 0.2 }}
-            >
-              <ThemeToggleBtn />
-            </motion.div>
+            </div>
+            <ThemeToggleBtn />
 
             {/* mobile nav */}
-            <motion.div
-              variants={fadeIn("left", 0.4)}
-              initial="hidden"
-              whileInView={"show"}
-              viewport={{ once: false, amount: 0.2 }}
-              className="flex xl:hidden"
-            >
-              <button
+            <div className="flex lg:hidden">
+              <Button
                 id="mobile-navigation-trigger"
                 type="button"
+                variant="ghost"
+                size="icon"
                 aria-label="Open navigation"
                 aria-expanded={isOpen}
                 aria-controls={isOpen ? "mobile-navigation" : undefined}
                 aria-haspopup="dialog"
-                className="inline-flex size-11 items-center justify-center rounded-full hover:bg-accent lg:hidden"
+                className="size-11 rounded-full bg-muted/60 text-foreground hover:bg-muted lg:hidden"
                 onClick={() => setIsOpen(true)}
               >
-                <AlignJustify size={30} aria-hidden="true" />
-              </button>
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.75"
+                  strokeLinecap="round"
+                  aria-hidden="true"
+                >
+                  <path d="M4 8h16M4 16h16" />
+                </svg>
+              </Button>
               <MobileNav
                 containerStyles="flex flex-col gap-y-6 items-center"
                 linkStyles="text-2xl"
                 activeLinkStyles=""
               />
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
