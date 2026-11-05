@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import { useRouteEntry } from "@/components/provider/RouteEntryProvider";
+import { useEffect, type ReactNode } from "react";
 
 const variants = {
   hidden: { opacity: 0 },
@@ -9,11 +10,17 @@ const variants = {
 };
 
 const Template = ({ children }: { children: ReactNode }) => {
+  const entered = useRouteEntry();
+  // Paint the first document immediately; keep the fade for client navigation.
+  const animateEntry = entered?.current ?? false;
+  useEffect(() => {
+    if (entered) entered.current = true;
+  }, [entered]);
   return (
     <motion.div
       className="overflow-x-clip"
       variants={variants}
-      initial="hidden"
+      initial={animateEntry ? "hidden" : false}
       animate="enter"
       transition={{
         type: "tween",

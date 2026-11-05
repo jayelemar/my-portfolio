@@ -1,11 +1,24 @@
 "use client";
 
-import Image from "next/image";
+import { getImageProps } from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { fadeIn } from "@/lib/variant";
 
 const ACCENT_ENTRY_DELAY_MS = 500;
+// A media-qualified source avoids downloading the hidden portrait on mobile.
+const {
+  props: { srcSet: portraitSrcSet, src: _portraitSrc, ...portraitProps },
+} = getImageProps({
+  src: "/about/jay-elemar-termulo-transparent.png",
+  width: 1254,
+  height: 1254,
+  sizes: "(min-width: 1536px) 540px, 500px",
+  alt: "",
+  loading: "eager",
+});
+const transparentPortrait =
+  "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
 
 const accentAreas = {
   top: { x: [-25, 45], y: [-40, 0] },
@@ -142,70 +155,92 @@ const HeroImage = () => {
   }, [isInView, pageVisible]);
 
   return (
-    <div className="absolute right-0 top-1/2 -mt-6 hidden h-[520px] w-[500px] -translate-y-1/2 xl:block 2xl:h-[560px] 2xl:w-[540px]">
-      <div
-        ref={portraitRef}
-        className="hero-portrait-stage relative isolate h-full w-full"
-        data-animate={isInView && pageVisible}
-      >
-        <span
-          aria-hidden="true"
-          data-motion="top"
-          className="hero-portrait-accent hero-portrait-accent-top pointer-events-none absolute left-[8%] top-[17%] h-4 w-4 bg-green-200 dark:bg-green-800"
-        />
-        <span
-          aria-hidden="true"
-          data-motion="left"
-          className="hero-portrait-accent hero-portrait-accent-left pointer-events-none absolute left-[-44px] top-[72%] h-8 w-8 bg-green-200 dark:bg-green-800"
-        />
-        <span
-          aria-hidden="true"
-          data-motion="right"
-          className="hero-portrait-accent hero-portrait-accent-right pointer-events-none absolute right-[-8px] top-[26%] h-11 w-11 bg-green-300 dark:bg-green-700"
-        />
-        <span
-          aria-hidden="true"
-          data-motion="bottom"
-          className="hero-portrait-accent hero-portrait-accent-bottom pointer-events-none absolute right-[-12px] top-[70%] h-6 w-6 bg-green-200 dark:bg-green-800"
-        />
-        <motion.div
-          variants={fadeIn("up", 1.3)}
-          initial={reduceMotion ? false : "hidden"}
-          whileInView="show"
-          viewport={{ once: false, amount: 0.2 }}
-          className="hero-portrait-composition absolute inset-0"
+    <>
+      <link
+        rel="preload"
+        as="image"
+        media="(min-width: 1280px)"
+        imageSrcSet={portraitSrcSet}
+        imageSizes={portraitProps.sizes}
+        fetchPriority="high"
+      />
+      <div className="absolute right-0 top-1/2 -mt-6 hidden h-[520px] w-[500px] -translate-y-1/2 xl:block 2xl:h-[560px] 2xl:w-[540px]">
+        <div
+          ref={portraitRef}
+          className="hero-portrait-stage relative isolate h-full w-full"
+          data-animate={isInView && pageVisible}
         >
-          <div
+          <span
             aria-hidden="true"
-            className="hero-portrait-shape hero-portrait-backdrop absolute inset-x-0 bottom-0 top-20 overflow-hidden bg-gradient-to-tr from-green-100 via-green-200 to-green-300"
-          >
-            <Image
-              src="/about/jay-elemar-termulo-transparent.png"
-              width={1254}
-              height={1254}
-              alt=""
-              sizes="(min-width: 1536px) 540px, 500px"
-              className="hero-portrait-body absolute inset-x-0 bottom-0 h-auto w-full object-contain"
-            />
-          </div>
-          <Image
-            src="/about/jay-elemar-termulo-transparent.png"
-            width={1254}
-            height={1254}
-            alt="Portrait of Jay Elemar Termulo in a dark suit"
-            sizes="(min-width: 1536px) 540px, 500px"
-            preload
-            className="absolute inset-x-0 bottom-0 h-auto w-full object-contain"
-            style={{
-              maskImage:
-                "linear-gradient(to bottom, black 50%, transparent 64%)",
-              WebkitMaskImage:
-                "linear-gradient(to bottom, black 50%, transparent 64%)",
-            }}
+            data-motion="top"
+            className="hero-portrait-accent hero-portrait-accent-top pointer-events-none absolute left-[8%] top-[17%] h-4 w-4 bg-green-200 dark:bg-green-800"
           />
-        </motion.div>
+          <span
+            aria-hidden="true"
+            data-motion="left"
+            className="hero-portrait-accent hero-portrait-accent-left pointer-events-none absolute left-[-44px] top-[72%] h-8 w-8 bg-green-200 dark:bg-green-800"
+          />
+          <span
+            aria-hidden="true"
+            data-motion="right"
+            className="hero-portrait-accent hero-portrait-accent-right pointer-events-none absolute right-[-8px] top-[26%] h-11 w-11 bg-green-300 dark:bg-green-700"
+          />
+          <span
+            aria-hidden="true"
+            data-motion="bottom"
+            className="hero-portrait-accent hero-portrait-accent-bottom pointer-events-none absolute right-[-12px] top-[70%] h-6 w-6 bg-green-200 dark:bg-green-800"
+          />
+          <motion.div
+            variants={fadeIn("up", 1.3)}
+            initial={reduceMotion ? false : "hidden"}
+            whileInView="show"
+            viewport={{ once: false, amount: 0.2 }}
+            className="hero-portrait-composition absolute inset-0"
+          >
+            <div
+              aria-hidden="true"
+              className="hero-portrait-shape hero-portrait-backdrop absolute inset-x-0 bottom-0 top-20 overflow-hidden bg-gradient-to-tr from-green-100 via-green-200 to-green-300"
+            >
+              <picture>
+                <source
+                  media="(min-width: 1280px)"
+                  srcSet={portraitSrcSet}
+                  sizes={portraitProps.sizes}
+                />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  {...portraitProps}
+                  src={transparentPortrait}
+                  alt=""
+                  className="hero-portrait-body absolute inset-x-0 bottom-0 h-auto w-full object-contain"
+                />
+              </picture>
+            </div>
+            <picture>
+              <source
+                media="(min-width: 1280px)"
+                srcSet={portraitSrcSet}
+                sizes={portraitProps.sizes}
+              />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                {...portraitProps}
+                src={transparentPortrait}
+                alt="Portrait of Jay Elemar Termulo in a dark suit"
+                fetchPriority="high"
+                className="absolute inset-x-0 bottom-0 h-auto w-full object-contain"
+                style={{
+                  maskImage:
+                    "linear-gradient(to bottom, black 50%, transparent 64%)",
+                  WebkitMaskImage:
+                    "linear-gradient(to bottom, black 50%, transparent 64%)",
+                }}
+              />
+            </picture>
+          </motion.div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

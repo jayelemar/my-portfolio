@@ -28,7 +28,7 @@ const ProjectCardHeader: FC<ProjectCardHeader> = ({
               src={desktopImage}
               alt={`${projectName} desktop interface`}
               fill
-              sizes="(max-width: 768px) 90vw, (max-width: 1024px) 42vw, 22vw"
+              sizes="auto, (max-width: 639px) calc(100vw - 98px), (max-width: 767px) calc(100vw - 114px), (max-width: 1023px) calc(50vw - 92px), (max-width: 1263px) calc(33.333vw - 87.333px), 334px"
               className="bg-white object-contain object-top"
               loading="lazy"
             />
@@ -53,7 +53,7 @@ const ProjectCardHeader: FC<ProjectCardHeader> = ({
           <Image
             src={desktopImage}
             alt={`${projectName} desktop interface`}
-            sizes="(max-width: 1023px) 80vw, 44vw"
+            sizes="auto, (max-width: 1023px) calc(80vw - 52.8px), (max-width: 1263px) calc(44vw - 29.04px), 527.12px"
             className="h-auto w-full"
             loading="lazy"
           />
@@ -64,7 +64,7 @@ const ProjectCardHeader: FC<ProjectCardHeader> = ({
             src={mobileImage}
             alt={`${projectName} mobile interface`}
             fill
-            sizes="(max-width: 1023px) 24vw, 14vw"
+            sizes="auto, (max-width: 1023px) calc(24vw - 15.84px), (max-width: 1263px) calc(13.2vw - 8.712px), 158.136px"
             className="object-contain object-bottom"
             loading="lazy"
           />

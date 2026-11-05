@@ -105,6 +105,56 @@
   @apply text-primary underline underline-offset-4 transition-all ease-out;
 }
 
+/* Start the coordinated first visit in CSS; Framer Motion owns scroll replay. */
+.hero-enter-heading:nth-child(2) {
+  --hero-enter-delay: 80ms;
+}
+
+.hero-enter-heading:nth-child(3) {
+  --hero-enter-delay: 160ms;
+}
+
+.hero-enter-description {
+  --hero-enter-delay: 240ms;
+  --hero-enter-duration: 400ms;
+  --hero-enter-opacity: 0.9;
+}
+
+.hero-enter-buttons {
+  --hero-enter-delay: 350ms;
+  --hero-enter-duration: 400ms;
+  --hero-enter-opacity: 0;
+}
+
+.hero-enter-socials {
+  --hero-enter-delay: 450ms;
+  --hero-enter-duration: 300ms;
+  --hero-enter-opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-hero-replay="false"] .hero-enter {
+    animation: hero-enter var(--hero-enter-duration, 500ms)
+      cubic-bezier(0.16, 1, 0.3, 1) var(--hero-enter-delay, 0ms) both;
+  }
+
+  [data-hero-replay="false"] .hero-enter:focus-within {
+    animation: none;
+  }
+}
+
+@keyframes hero-enter {
+  from {
+    /* Opening text stays readable while it settles; controls can fade in. */
+    opacity: var(--hero-enter-opacity, 0.85);
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .hero-portrait-shape {
   border-radius: 58% 42% 46% 54% / 40% 42% 58% 60%;
   animation: hero-portrait-wave 10s ease-in-out infinite;
@@ -166,8 +216,11 @@
 }
 
 .dark .hero-portrait-backdrop {
-  background-image:
-    radial-gradient(ellipse at 54% 24%, rgb(134 239 172 / 0.24), transparent 62%),
+  background-image: radial-gradient(
+      ellipse at 54% 24%,
+      rgb(134 239 172 / 0.24),
+      transparent 62%
+    ),
     linear-gradient(155deg, #166534, #14532d 48%, #052e16 90%);
 }
 
