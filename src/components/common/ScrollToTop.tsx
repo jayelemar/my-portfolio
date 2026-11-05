@@ -36,7 +36,7 @@ const ScrollToTop = () => {
           type="button"
           aria-label="Back to top"
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-20 hidden h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-colors hover:bg-primary-hover sm:flex"
+          className="fixed bottom-8 right-8 z-20 hidden h-12 w-12 items-center justify-center rounded-full bg-green-200 text-green-900 shadow-lg transition-colors hover:bg-green-300 dark:bg-green-300 dark:text-green-950 dark:hover:bg-green-200 sm:flex"
         >
           <ArrowUp size={22} strokeWidth={2} aria-hidden="true" />
         </button>
