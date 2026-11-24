@@ -1,6 +1,7 @@
 "use client";
 
-import { getImageProps } from "next/image";
+import { getResponsiveImageProps } from "@/lib/responsive-images";
+import imageManifest from "@/lib/generated/image-manifest.json";
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { fadeIn } from "@/lib/variant";
@@ -8,15 +9,17 @@ import { fadeIn } from "@/lib/variant";
 const ACCENT_ENTRY_DELAY_MS = 500;
 // A media-qualified source avoids downloading the hidden portrait on mobile.
 const {
-  props: { srcSet: portraitSrcSet, src: _portraitSrc, ...portraitProps },
-} = getImageProps({
-  src: "/about/jay-elemar-termulo-transparent.png",
-  width: 1254,
-  height: 1254,
-  sizes: "(min-width: 1536px) 540px, 500px",
-  alt: "",
-  loading: "eager",
-});
+  srcSet: portraitSrcSet,
+  src: portraitSrc,
+  ...portraitProps
+} = getResponsiveImageProps(
+  imageManifest["/about/jay-elemar-termulo-transparent.png"],
+  {
+    sizes: "(min-width: 1536px) 540px, 500px",
+    alt: "",
+    loading: "eager",
+  },
+);
 const transparentPortrait =
   "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
 
@@ -159,6 +162,7 @@ const HeroImage = () => {
       <link
         rel="preload"
         as="image"
+        href={portraitSrc}
         media="(min-width: 1280px)"
         imageSrcSet={portraitSrcSet}
         imageSizes={portraitProps.sizes}

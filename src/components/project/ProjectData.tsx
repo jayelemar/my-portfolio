@@ -1,26 +1,28 @@
-import type { StaticImageData } from "next/image";
-import gondoorDesktop from "../../../public/work/Gondoor_Desktop.png";
-import gondoorMobile from "../../../public/work/Gondoor_Mobile.png";
-import dutyFreeDesktop from "../../../public/work/Duty_Free_Desktop3.png";
-import dutyFreeMobile from "../../../public/work/Duty_Free_Mobile.png";
-import futrDesktop from "../../../public/work/Futr_Desktop5.png";
-import futrMobile from "../../../public/work/Futr_Mobile.png";
-import backToTheFutrDesktop from "../../../public/work/BackToTheFutr_Desktop2.png";
-import backToTheFutrMobile from "../../../public/work/BackToTheFutr_Mobile.png";
-import bikeMeDesktop from "../../../public/work/1.png";
-import bikeMeMobile from "../../../public/work/bike-me-mobile.png";
-import leaveDesktop from "../../../public/work/2.png";
-import leaveMobile from "../../../public/work/leave-mobile.png";
-import figmaDesktop from "../../../public/work/4.png";
-import figmaMobile from "../../../public/work/anime-mobile.png";
-import portfolioDesktop from "../../../public/work/3.png";
-import portfolioMobile from "../../../public/work/port-mobile.png";
+import type { ResponsiveImageAsset } from "@/lib/responsive-images";
+import imageManifest from "@/lib/generated/image-manifest.json";
+
+const gondoorDesktop = imageManifest["/work/Gondoor_Desktop.png"];
+const gondoorMobile = imageManifest["/work/Gondoor_Mobile.png"];
+const dutyFreeDesktop = imageManifest["/work/Duty_Free_Desktop3.png"];
+const dutyFreeMobile = imageManifest["/work/Duty_Free_Mobile.png"];
+const futrDesktop = imageManifest["/work/Futr_Desktop5.png"];
+const futrMobile = imageManifest["/work/Futr_Mobile.png"];
+const backToTheFutrDesktop = imageManifest["/work/BackToTheFutr_Desktop2.png"];
+const backToTheFutrMobile = imageManifest["/work/BackToTheFutr_Mobile.png"];
+const bikeMeDesktop = imageManifest["/work/1.png"];
+const bikeMeMobile = imageManifest["/work/bike-me-mobile.png"];
+const leaveDesktop = imageManifest["/work/2.png"];
+const leaveMobile = imageManifest["/work/leave-mobile.png"];
+const figmaDesktop = imageManifest["/work/4.png"];
+const figmaMobile = imageManifest["/work/anime-mobile.png"];
+const portfolioDesktop = imageManifest["/work/3.png"];
+const portfolioMobile = imageManifest["/work/port-mobile.png"];
 
 export type ProjectStatus = "active" | "inactive" | "demo";
 
 export type ProjectType = {
-  desktopImage: StaticImageData;
-  mobileImage: StaticImageData;
+  desktopImage: ResponsiveImageAsset;
+  mobileImage: ResponsiveImageAsset;
   category: string;
   name: string;
   description: string;

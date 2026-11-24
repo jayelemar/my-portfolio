@@ -1,5 +1,5 @@
 import { resolve } from "node:path";
-import { defineConfig } from "vitest/config";
+import { configDefaults, defineConfig } from "vitest/config";
 
 export default defineConfig({
   resolve: {
@@ -8,6 +8,8 @@ export default defineConfig({
     },
   },
   test: {
+    // .ai is a separate repository whose Node test suites have their own runner.
+    exclude: [...configDefaults.exclude, ".ai/**"],
     environment: "node",
     clearMocks: true,
   },
