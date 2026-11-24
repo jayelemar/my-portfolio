@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,7 +22,6 @@ import {
   projectCarouselEntrance,
   projectSlideEntrance,
   projectTiming,
-  useProjectEntrance,
 } from "./useProjectEntrance";
 
 const featuredProjects = projectData.filter((project) => project.featured);
@@ -34,7 +33,7 @@ const Projects = () => {
   const requestedProject = useRef(0);
   const navigating = useRef(false);
   const settleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const { ref: stageRef, reduceMotion, visit } = useProjectEntrance();
+  const reduceMotion = Boolean(useReducedMotion());
 
   const showProject = useCallback((index: number, instant = false) => {
     index = Math.max(0, Math.min(featuredProjects.length - 1, index));
@@ -118,15 +117,8 @@ const Projects = () => {
       className="mb-24 scroll-mt-32 lg:scroll-mt-20 xl:mb-32"
     >
       <div className="container mx-auto max-w-[1264px]">
-        <div
-          ref={stageRef}
-          className="flex min-h-[calc(100svh-4.75rem)] flex-col justify-center py-6 sm:py-8"
-        >
-          <ProjectReveal
-            sequence
-            reduceMotion={reduceMotion}
-            entranceKey={visit}
-          >
+        <div className="flex min-h-[calc(100svh-4.75rem)] flex-col justify-center py-6 sm:py-8">
+          <ProjectReveal sequence reduceMotion={reduceMotion}>
             {(controls) => (
               <>
                 <ProjectHeader controls={controls} />
@@ -218,12 +210,7 @@ const Projects = () => {
           </ProjectReveal>
         </div>
 
-        <ProjectReveal
-          sequence
-          className="mt-16"
-          reduceMotion={reduceMotion}
-          entranceKey={visit}
-        >
+        <ProjectReveal sequence className="mt-16" reduceMotion={reduceMotion}>
           {(controls) => (
             <>
               <div className="mb-8 flex flex-col items-start gap-2 lg:pr-28">
