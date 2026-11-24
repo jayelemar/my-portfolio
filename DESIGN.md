@@ -268,9 +268,13 @@ The sticky header contains the existing green `elemar` logo, desktop navigation 
 
 ### Motion
 
-The shared reveal moves content (40px) into place over (500ms), with delays capped at (300ms). Hero text is static apart from a one-time heading entrance; the portrait retains its authored entrance. Contact and project content are immediately visible, and the role is static rather than typewritten. About uses a gentler reveal (16px, 500ms) and easing `cubic-bezier(0.16, 1, 0.3, 1)`, with replay when the section re-enters view. Its heading accent reveals over (450ms). Route content fades in over (400ms) after a (200ms) delay.
+The shared reveal moves content (40px) into place over (500ms), with delays capped at (300ms). Hero text is static apart from a one-time heading entrance; the portrait retains its authored entrance. Contact content is immediately visible, and the role is static rather than typewritten. About uses a gentler reveal (16px, 500ms) and easing `cubic-bezier(0.16, 1, 0.3, 1)`, with replay when the section re-enters view. Its heading accent reveals over (450ms). Route content fades in over (400ms) after a (200ms) delay.
 
-A shared MotionConfig respects the user’s reduced-motion preference for transforms. CSS suppresses animation and smooth scrolling under that preference; gallery controls and programmatic section scrolling also switch to immediate movement. Project cards have no entrance animation. This records implemented handling, not a claim of complete accessibility compliance.
+A shared MotionConfig respects the user’s reduced-motion preference for transforms. CSS suppresses animation and smooth scrolling under that preference; gallery controls and programmatic section scrolling also switch to immediate movement. This records implemented handling, not a claim of complete accessibility compliance.
+
+Projects use one short entrance per mounted page: the heading starts immediately, description at 50ms, selectors at 100ms, and featured gallery at 150ms, with 300ms movement. Compact cards stagger by 50ms, completing the last card at 550ms. Already visible server-rendered content stays visible during hydration. Seen groups remain visible on scroll return, repeated section navigation, resize, and tab return; interrupted entrances settle visible. A new route mount may enter again.
+
+Project screenshots keep their existing frame sizes, responsive candidates, and lazy loading. Client-managed pending images show a static theme-matched skeleton inside the frame; after decode, only the screenshot fades in over 200ms. Already completed images appear without a skeleton flash, and screenshots remain native and visible before hydration or without JavaScript. Failed images retain their reserved slot and show “Preview unavailable” while project text and actions remain usable. Loading does not gate the section or add a full-page loader.
 
 ## Do's and Don'ts
 

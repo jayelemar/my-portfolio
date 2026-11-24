@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, type ReactNode } from "react";
 import {
   motion,
   useAnimationControls,
@@ -13,7 +13,6 @@ const visible = { opacity: 1, y: 0 };
 type ProjectRevealProps = {
   children: ReactNode | ((controls: AnimationControls) => ReactNode);
   reduceMotion: boolean;
-  entranceKey: number;
   className?: string;
   sequence?: boolean;
 };
@@ -21,46 +20,60 @@ type ProjectRevealProps = {
 export default function ProjectReveal({
   children,
   reduceMotion,
-  entranceKey,
   className,
   sequence = false,
 }: ProjectRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const controls = useAnimationControls();
+  const phase = useRef<"unseen" | "entering" | "visible">("unseen");
+
+  const showImmediately = useCallback(() => {
+    phase.current = "visible";
+    controls.stop();
+    controls.set(sequence ? "visible" : visible);
+  }, [controls, sequence]);
 
   useEffect(() => {
-    controls.stop();
-    if (reduceMotion) {
-      controls.set(sequence ? "visible" : visible);
-      return () => controls.stop();
+    const element = ref.current;
+    if (!element) return;
+    const bounds = element.getBoundingClientRect();
+    // SSR content already in view must not disappear when hydration finishes.
+    if (
+      phase.current !== "unseen" ||
+      reduceMotion ||
+      typeof IntersectionObserver === "undefined" ||
+      (bounds.bottom > 80 && bounds.top < window.innerHeight - 32)
+    ) {
+      showImmediately();
+      return;
     }
 
-    const element = ref.current;
-    if (!element || typeof IntersectionObserver === "undefined") return;
-    let armed = true;
     let ready = false;
+    let disposed = false;
     let observer: IntersectionObserver;
 
     const reveal = () => {
-      if (document.hidden) {
-        controls.stop();
-        controls.set(sequence ? "rest" : rest);
-        armed = true;
-      } else if (ready && armed) {
-        armed = false;
-        controls.set(sequence ? "rest" : rest);
-        void controls.start(
-          sequence
-            ? "visible"
-            : {
-                ...visible,
-                transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
-              },
-        );
+      if (document.hidden && phase.current === "entering") {
+        showImmediately();
+      } else if (!document.hidden && ready && phase.current === "unseen") {
+        phase.current = "entering";
+        void controls
+          .start(
+            sequence
+              ? "visible"
+              : {
+                  ...visible,
+                  transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
+                },
+          )
+          .then(() => {
+            if (!disposed) phase.current = "visible";
+          });
       }
     };
 
     const observe = () => {
+      if (phase.current !== "unseen") return;
       // Tall mobile stacks should enter after the same visible distance as a
       // desktop carousel, rather than waiting for a fraction of the full stack.
       const height = element.getBoundingClientRect().height;
@@ -73,10 +86,8 @@ export default function ProjectReveal({
       observer = new IntersectionObserver(
         ([entry]) => {
           ready = entry.isIntersecting && entry.intersectionRatio >= threshold;
-          if (!entry.isIntersecting) {
-            armed = true;
-            controls.stop();
-            controls.set(sequence ? "rest" : rest);
+          if (!entry.isIntersecting && phase.current === "entering") {
+            showImmediately();
           }
           reveal();
         },
@@ -92,23 +103,21 @@ export default function ProjectReveal({
     window.addEventListener("resize", observe, { passive: true });
     document.addEventListener("visibilitychange", reveal);
     return () => {
+      disposed = true;
       observer.disconnect();
       resize.disconnect();
       window.removeEventListener("resize", observe);
       document.removeEventListener("visibilitychange", reveal);
       controls.stop();
     };
-  }, [controls, reduceMotion, entranceKey, sequence]);
+  }, [controls, reduceMotion, sequence, showImmediately]);
 
   return (
     <div ref={ref} className={className}>
       <motion.div
         initial={false}
         animate={sequence ? undefined : controls}
-        onFocusCapture={() => {
-          controls.stop();
-          controls.set(sequence ? "visible" : visible);
-        }}
+        onFocusCapture={showImmediately}
       >
         {typeof children === "function" ? children(controls) : children}
       </motion.div>
