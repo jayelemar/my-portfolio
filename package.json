@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "images:generate": "node scripts/generate-images.mjs",
+    "predev": "npm run images:generate",
+    "prebuild": "npm run images:generate",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -41,6 +44,7 @@
     "react-icons": "^5.0.1",
     "react-scroll": "^1.9.0",
     "react-simple-typewriter": "^5.0.1",
+    "sharp": "0.34.5",
     "swiper": "^11.0.6",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",

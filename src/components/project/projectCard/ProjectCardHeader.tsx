@@ -1,9 +1,12 @@
-import Image, { type StaticImageData } from "next/image";
+import {
+  getResponsiveImageProps,
+  type ResponsiveImageAsset,
+} from "@/lib/responsive-images";
 import type { FC } from "react";
 
 type ProjectCardHeader = {
-  desktopImage: StaticImageData;
-  mobileImage: StaticImageData;
+  desktopImage: ResponsiveImageAsset;
+  mobileImage: ResponsiveImageAsset;
   projectName: string;
   variant: "featured" | "compact";
 };
@@ -24,13 +27,16 @@ const ProjectCardHeader: FC<ProjectCardHeader> = ({
             <span className="size-1.5 rounded-full bg-primary/30" />
           </div>
           <div className="relative h-[calc(100%_-_1.25rem)]">
-            <Image
-              src={desktopImage}
-              alt={`${projectName} desktop interface`}
-              fill
-              sizes="auto, (max-width: 639px) calc(100vw - 98px), (max-width: 767px) calc(100vw - 114px), (max-width: 1023px) calc(50vw - 92px), (max-width: 1263px) calc(33.333vw - 87.333px), 334px"
-              className="bg-white object-contain object-top"
-              loading="lazy"
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              {...getResponsiveImageProps(desktopImage, {
+                alt: `${projectName} desktop interface`,
+                fill: true,
+                sizes:
+                  "auto, (max-width: 639px) calc(100vw - 98px), (max-width: 767px) calc(100vw - 114px), (max-width: 1023px) calc(50vw - 92px), (max-width: 1263px) calc(33.333vw - 87.333px), 334px",
+                className: "bg-white object-contain object-top",
+                loading: "lazy",
+              })}
             />
           </div>
         </div>
@@ -50,23 +56,29 @@ const ProjectCardHeader: FC<ProjectCardHeader> = ({
             <span className="size-1 rounded-full bg-primary/60 sm:size-2" />
             <span className="size-1 rounded-full bg-primary/30 sm:size-2" />
           </div>
-          <Image
-            src={desktopImage}
-            alt={`${projectName} desktop interface`}
-            sizes="auto, (max-width: 1023px) calc(80vw - 52.8px), (max-width: 1263px) calc(44vw - 29.04px), 527.12px"
-            className="h-auto w-full"
-            loading="lazy"
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            {...getResponsiveImageProps(desktopImage, {
+              alt: `${projectName} desktop interface`,
+              sizes:
+                "auto, (max-width: 1023px) calc(80vw - 52.8px), (max-width: 1263px) calc(44vw - 29.04px), 527.12px",
+              className: "h-auto w-full",
+              loading: "lazy",
+            })}
           />
         </div>
 
         <div className="absolute bottom-[5%] right-[2%] h-[72%] w-[24%]">
-          <Image
-            src={mobileImage}
-            alt={`${projectName} mobile interface`}
-            fill
-            sizes="auto, (max-width: 1023px) calc(24vw - 15.84px), (max-width: 1263px) calc(13.2vw - 8.712px), 158.136px"
-            className="object-contain object-bottom"
-            loading="lazy"
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            {...getResponsiveImageProps(mobileImage, {
+              alt: `${projectName} mobile interface`,
+              fill: true,
+              sizes:
+                "auto, (max-width: 1023px) calc(24vw - 15.84px), (max-width: 1263px) calc(13.2vw - 8.712px), 158.136px",
+              className: "object-contain object-bottom",
+              loading: "lazy",
+            })}
           />
         </div>
       </div>

@@ -1,0 +1,13 @@
+.git/
+.ai/
+.agents/
+.codex/
+.aws/
+.impeccable/
+node_modules/
+.next/
+.vercel/
+.env*
+!.env.example
+*.tsbuildinfo
+.DS_Store
