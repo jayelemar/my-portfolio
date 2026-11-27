@@ -3,6 +3,8 @@ import imageManifest from "@/lib/generated/image-manifest.json";
 
 const gondoorDesktop = imageManifest["/work/Gondoor_Desktop.png"];
 const gondoorMobile = imageManifest["/work/Gondoor_Mobile.png"];
+const bulakenyaDesktop = imageManifest["/work/Bulakenya_Desktop.png"];
+const bulakenyaMobile = imageManifest["/work/Bulakenya_Mobile.png"];
 const dutyFreeDesktop = imageManifest["/work/Duty_Free_Desktop3.png"];
 const dutyFreeMobile = imageManifest["/work/Duty_Free_Mobile.png"];
 const futrDesktop = imageManifest["/work/Futr_Desktop5.png"];
@@ -48,6 +50,18 @@ export const projectData: ProjectType[] = [
     status: "active",
   },
   {
+    desktopImage: bulakenyaDesktop,
+    mobileImage: bulakenyaMobile,
+    category: "E-commerce",
+    name: "Bulakenya Gift Shop",
+    description:
+      "A curated online gift shop for personalized gift sets, keepsakes, and thoughtful details.",
+    technologies: ["E-commerce", "Gift Catalog", "Messenger Ordering"],
+    featured: true,
+    link: "https://www.bulakenya-giftshop.com/",
+    status: "active",
+  },
+  {
     desktopImage: dutyFreeDesktop,
     mobileImage: dutyFreeMobile,
     category: "React.js",
@@ -79,7 +93,7 @@ export const projectData: ProjectType[] = [
     description:
       "The official franchise hub for news, events, licensed merchandise, screenings, and fan experiences.",
     technologies: ["Next.js", "Web Platform"],
-    featured: true,
+    featured: false,
     link: "https://www.backtothefutr.com",
     status: "inactive",
   },
