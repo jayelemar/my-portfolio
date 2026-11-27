@@ -5,31 +5,31 @@
     "height": 665,
     "variants": [
       {
-        "src": "/images/generated/Gondoor_Desktop-4716e7d3a359880f-160.webp",
+        "src": "/images/generated/Gondoor_Desktop-bb288d6168db32a2-160.webp",
         "width": 160
       },
       {
-        "src": "/images/generated/Gondoor_Desktop-4716e7d3a359880f-240.webp",
+        "src": "/images/generated/Gondoor_Desktop-bb288d6168db32a2-240.webp",
         "width": 240
       },
       {
-        "src": "/images/generated/Gondoor_Desktop-4716e7d3a359880f-320.webp",
+        "src": "/images/generated/Gondoor_Desktop-bb288d6168db32a2-320.webp",
         "width": 320
       },
       {
-        "src": "/images/generated/Gondoor_Desktop-4716e7d3a359880f-480.webp",
+        "src": "/images/generated/Gondoor_Desktop-bb288d6168db32a2-480.webp",
         "width": 480
       },
       {
-        "src": "/images/generated/Gondoor_Desktop-4716e7d3a359880f-640.webp",
+        "src": "/images/generated/Gondoor_Desktop-bb288d6168db32a2-640.webp",
         "width": 640
       },
       {
-        "src": "/images/generated/Gondoor_Desktop-4716e7d3a359880f-960.webp",
+        "src": "/images/generated/Gondoor_Desktop-bb288d6168db32a2-960.webp",
         "width": 960
       },
       {
-        "src": "/images/generated/Gondoor_Desktop-4716e7d3a359880f-1023.webp",
+        "src": "/images/generated/Gondoor_Desktop-bb288d6168db32a2-1023.webp",
         "width": 1023
       }
     ]
@@ -40,27 +40,93 @@
     "height": 1366,
     "variants": [
       {
-        "src": "/images/generated/Gondoor_Mobile-f6125e1d87977a48-160.webp",
+        "src": "/images/generated/Gondoor_Mobile-a3a41ec0266c9750-160.webp",
         "width": 160
       },
       {
-        "src": "/images/generated/Gondoor_Mobile-f6125e1d87977a48-240.webp",
+        "src": "/images/generated/Gondoor_Mobile-a3a41ec0266c9750-240.webp",
         "width": 240
       },
       {
-        "src": "/images/generated/Gondoor_Mobile-f6125e1d87977a48-320.webp",
+        "src": "/images/generated/Gondoor_Mobile-a3a41ec0266c9750-320.webp",
         "width": 320
       },
       {
-        "src": "/images/generated/Gondoor_Mobile-f6125e1d87977a48-480.webp",
+        "src": "/images/generated/Gondoor_Mobile-a3a41ec0266c9750-480.webp",
         "width": 480
       },
       {
-        "src": "/images/generated/Gondoor_Mobile-f6125e1d87977a48-640.webp",
+        "src": "/images/generated/Gondoor_Mobile-a3a41ec0266c9750-640.webp",
         "width": 640
       },
       {
-        "src": "/images/generated/Gondoor_Mobile-f6125e1d87977a48-685.webp",
+        "src": "/images/generated/Gondoor_Mobile-a3a41ec0266c9750-685.webp",
+        "width": 685
+      }
+    ]
+  },
+  "/work/Bulakenya_Desktop.png": {
+    "src": "/work/Bulakenya_Desktop.png",
+    "width": 1023,
+    "height": 665,
+    "variants": [
+      {
+        "src": "/images/generated/Bulakenya_Desktop-c723b752f52544f4-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/images/generated/Bulakenya_Desktop-c723b752f52544f4-240.webp",
+        "width": 240
+      },
+      {
+        "src": "/images/generated/Bulakenya_Desktop-c723b752f52544f4-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/images/generated/Bulakenya_Desktop-c723b752f52544f4-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/generated/Bulakenya_Desktop-c723b752f52544f4-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/images/generated/Bulakenya_Desktop-c723b752f52544f4-960.webp",
+        "width": 960
+      },
+      {
+        "src": "/images/generated/Bulakenya_Desktop-c723b752f52544f4-1023.webp",
+        "width": 1023
+      }
+    ]
+  },
+  "/work/Bulakenya_Mobile.png": {
+    "src": "/work/Bulakenya_Mobile.png",
+    "width": 685,
+    "height": 1366,
+    "variants": [
+      {
+        "src": "/images/generated/Bulakenya_Mobile-cd5320947ce7de88-160.webp",
+        "width": 160
+      },
+      {
+        "src": "/images/generated/Bulakenya_Mobile-cd5320947ce7de88-240.webp",
+        "width": 240
+      },
+      {
+        "src": "/images/generated/Bulakenya_Mobile-cd5320947ce7de88-320.webp",
+        "width": 320
+      },
+      {
+        "src": "/images/generated/Bulakenya_Mobile-cd5320947ce7de88-480.webp",
+        "width": 480
+      },
+      {
+        "src": "/images/generated/Bulakenya_Mobile-cd5320947ce7de88-640.webp",
+        "width": 640
+      },
+      {
+        "src": "/images/generated/Bulakenya_Mobile-cd5320947ce7de88-685.webp",
         "width": 685
       }
     ]

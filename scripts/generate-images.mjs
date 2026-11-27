@@ -8,6 +8,8 @@ import sharp from "sharp";
 export const IMAGE_SOURCES = [
   "/work/Gondoor_Desktop.png",
   "/work/Gondoor_Mobile.png",
+  "/work/Bulakenya_Desktop.png",
+  "/work/Bulakenya_Mobile.png",
   "/work/Duty_Free_Desktop3.png",
   "/work/Duty_Free_Mobile.png",
   "/work/Futr_Desktop5.png",
